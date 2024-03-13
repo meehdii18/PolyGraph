@@ -11,6 +11,9 @@
 *******************************************************
 * INCLUSIONS EXTERNES :
 */
+#include <iostream>
+#include <string>
+using namespace std;
 
 /* TYPES :
 * Pas de type particulier déclaré
@@ -22,18 +25,74 @@ class CSommet
 {
 private:
 	// ATTRIBUTS
+	string sSMTIdentifiant;
+
+
 public:
 	// CONSTRUCTEURS ET DESTRUCTEUR
 
-	// MÉTHODES
 	/******************************************************
-	* CArbreRecherche
+	* CSommet
 	*******************************************************
 	* Entrée : Rien
 	* Nécessite : Rien
 	* Sortie : Rien
-	* Entraîne : L'arbre est initialisé
+	* Entraîne : Le sommet est initialisé
 	******************************************************/
+	CSommet();
+
+
+	/******************************************************
+	* CSommet
+	*******************************************************
+	* Entrée : sParam string, l'identifiant avec lequel est
+	* initialisé le sommet
+	* Nécessite : Rien
+	* Sortie : Rien
+	* Entraîne : Le sommet est initialisé avec 
+	* l'identifiant en paramètre
+	******************************************************/
+	CSommet(string sParam);
+
+	/******************************************************
+	* ~CSommet
+	*******************************************************
+	* Entrée : Rien
+	* Nécessite : Rien
+	* Sortie : Rien
+	* Entraîne : Le sommet est détruit ainsi que les 
+	* potentiels arcs qui lui sont associés
+	******************************************************/
+	~CSommet();
+
+
+
+	// MÉTHODES
+
+	/******************************************************
+	* SMTLireIdentifiant
+	*******************************************************
+	* Entrée : Rien
+	* Nécessite : Rien
+	* Sortie : L'identifiant du sommet, string
+	* Entraîne : La lecture de l'attribut identifiant du 
+	* sommet
+	******************************************************/
+	string SMTLireIdentifiant() const { return sSMTIdentifiant; };
+
+	/******************************************************
+	* SMTModifierIdentifiant
+	*******************************************************
+	* Entrée : sIdentifiant, string
+	* Nécessite : Rien
+	* Sortie : Rien
+	* Entraîne : La modification de l'attribut identifiant
+	* du sommet
+	******************************************************/
+	inline void SMTModifierIdentifiant(string sIdentifiant) { sSMTIdentifiant = sIdentifiant; };
+
+	
+
 
 };
 

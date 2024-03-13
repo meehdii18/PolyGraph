@@ -142,7 +142,7 @@
     <ClCompile Include="CArc.cpp" />
     <ClCompile Include="CGraphOrient.cpp" />
     <ClCompile Include="CSommet.cpp" />
-    <ClCompile Include="PolyGraph.cpp" />
+    <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CArc.h" />
