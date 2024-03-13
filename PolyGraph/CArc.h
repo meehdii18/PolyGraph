@@ -94,8 +94,29 @@ public:
 	* Sortie : Rien
 	* Entraîne : L'origine de l'arc est modifiée
 	******************************************************/
-	string ARCLireOrigine() const { return sARCOrigine; };
+	inline void ARCModifierOrigine(string sParam) { sARCOrigine = sParam; };
 
+	/******************************************************
+	* ARCModifierDestination
+	*******************************************************
+	* Entrée : sParam string, la nouvelle destination 
+	* de l'arc
+	* Nécessite : sParam appartient au graphe
+	* Sortie : Rien
+	* Entraîne : La destination de l'arc est modifiée
+	******************************************************/
+	inline void ARCModifierDestination(string sParam) { sARCDestination = sParam; };
+
+	/******************************************************
+	* ARCInverser
+	*******************************************************
+	* Entrée : Rien
+	* Nécessite : Rien
+	* Sortie : Rien
+	* Entraîne : L'origine et la destination de l'arc sont
+	* inversées
+	******************************************************/
+	void ARCInverser();
 };
 
 
