@@ -1,32 +1,6 @@
 #include "CSommet.h"
 
 /******************************************************
-* CSommet
-*******************************************************
-* Entrée : Rien
-* Nécessite : Rien
-* Sortie : Rien
-* Entraîne : Le sommet est initialisé
-******************************************************/
-CSommet::CSommet()
-{
-}
-
-/******************************************************
-* CSommet
-*******************************************************
-* Entrée : sParam string, l'identifiant avec lequel est
-* initialisé le sommet
-* Nécessite : Rien
-* Sortie : Rien
-* Entraîne : Le sommet est initialisé avec
-* l'identifiant en paramètre
-******************************************************/
-CSommet::CSommet(string sParam)
-{
-}
-
-/******************************************************
 * ~CSommet
 *******************************************************
 * Entrée : Rien
@@ -37,4 +11,52 @@ CSommet::CSommet(string sParam)
 ******************************************************/
 CSommet::~CSommet()
 {
+	unsigned int uiNombreArcsEntrants = vSMTArcsEntrants.size();
+	unsigned int uiNombreArcsSortants = vSMTArcsSortants.size();
+	unsigned int uiBoucle = 0;
+
+	for (uiBoucle = 0; uiBoucle < uiNombreArcsEntrants; uiBoucle++)
+	{
+		delete vSMTArcsEntrants[uiBoucle];
+	}
+
+	for (uiBoucle = 0; uiBoucle < uiNombreArcsSortants; uiBoucle++)
+	{
+		delete vSMTArcsSortants[uiBoucle];
+	}
+
+}
+
+void CSommet::SMTAfficherArcsEntrants()
+{
+	unsigned int uiNombreArcsEntrants = vSMTArcsEntrants.size();
+	unsigned int uiBoucle = 0;
+
+	cout << "Arcs Entrants :" << endl;
+
+	for (uiBoucle = 0; uiBoucle < uiNombreArcsEntrants; uiBoucle++)
+	{
+		const CArc &ARCCourant = *vSMTArcsEntrants[uiBoucle];
+
+		cout << uiBoucle << ". ";
+		ARCCourant.ARCAfficherArc();
+		cout << endl;
+	}
+}
+
+void CSommet::SMTAfficherArcsSortants()
+{
+	unsigned int uiNombreArcsSortants = vSMTArcsSortants.size();
+	unsigned int uiBoucle = 0;
+
+	cout << "Arcs Sortants :" << endl;
+
+	for (uiBoucle = 0; uiBoucle < uiNombreArcsSortants; uiBoucle++)
+	{
+		const CArc& ARCCourant = *vSMTArcsSortants[uiBoucle];
+
+		cout << uiBoucle << ". ";
+		ARCCourant.ARCAfficherArc();
+		cout << endl;
+	}
 }

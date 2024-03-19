@@ -11,8 +11,11 @@
 *******************************************************
 * INCLUSIONS EXTERNES :
 */
+#include "CArc.h"
+
 #include <iostream>
 #include <string>
+#include <vector>
 using namespace std;
 
 /* TYPES :
@@ -26,20 +29,25 @@ class CSommet
 private:
 	// ATTRIBUTS
 	string sSMTIdentifiant;
+	
+	vector<CArc*> vSMTArcsEntrants;
+
+	vector<CArc*> vSMTArcsSortants;
 
 
 public:
 	// CONSTRUCTEURS ET DESTRUCTEUR
 
-	/******************************************************
-	* CSommet
-	*******************************************************
-	* Entrée : Rien
-	* Nécessite : Rien
-	* Sortie : Rien
-	* Entraîne : Le sommet est initialisé
-	******************************************************/
-	CSommet();
+			/******************************************************
+			* CSommet
+			*******************************************************
+			* Entrée : Rien
+			* Nécessite : Rien
+			* Sortie : Rien
+			* Entraîne : Le sommet est initialisé avec une chaîne
+			* vide
+			******************************************************/
+			// CSommet();
 
 
 	/******************************************************
@@ -52,7 +60,7 @@ public:
 	* Entraîne : Le sommet est initialisé avec 
 	* l'identifiant en paramètre
 	******************************************************/
-	CSommet(string sParam);
+	CSommet(const string& sParam) : sSMTIdentifiant(sParam) {}
 
 	/******************************************************
 	* ~CSommet
@@ -88,10 +96,27 @@ public:
 	* Entraîne : La modification de l'attribut identifiant
 	* du sommet
 	******************************************************/
-	inline void SMTModifierIdentifiant(string sIdentifiant) { sSMTIdentifiant = sIdentifiant; };
+	inline void SMTModifierIdentifiant(const string &sIdentifiant) { sSMTIdentifiant = sIdentifiant; };
 
-	
+	/******************************************************
+	* SMTAfficherArcsEntrants
+	*******************************************************
+	* Entrée : Rien
+	* Nécessite : Rien
+	* Sortie : Rien
+	* Entraîne : Affichage des arcs entrants dans la console
+	******************************************************/
+	void SMTAfficherArcsEntrants();
 
+	/******************************************************
+	* SMTAfficherArcsSortants
+	*******************************************************
+	* Entrée : Rien
+	* Nécessite : Rien
+	* Sortie : Rien
+	* Entraîne : Affichage des arcs sortants dans la console
+	******************************************************/
+	void SMTAfficherArcsSortants();
 
 };
 

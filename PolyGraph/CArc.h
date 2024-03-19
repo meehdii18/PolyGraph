@@ -12,7 +12,10 @@
 * INCLUSIONS EXTERNES :
 */
 
-#include "CSommet.h"
+#include <iostream>
+#include <string>
+
+using namespace std;
 
 /* TYPES :
 * Pas de type particulier déclaré
@@ -30,17 +33,17 @@ private:
 public:
 	// CONSTRUCTEURS ET DESTRUCTEUR
 
-	/******************************************************
-	* CArc
-	*******************************************************
-	* Entrée : Rien
-	* Nécessite : Rien
-	* Sortie : Rien
-	* Entraîne : Un arc est initialisé avec une origine et
-	* une destination vide, ce constructeur donne un objet
-	* non cohérent qui n'est pas à utiliser en l'état.
-	******************************************************/
-	CArc();
+			/******************************************************
+			* CArc
+			*******************************************************
+			* Entrée : Rien
+			* Nécessite : Rien
+			* Sortie : Rien
+			* Entraîne : Un arc est initialisé avec une origine et
+			* une destination vide, ce constructeur donne un objet
+			* non cohérent qui n'est pas à utiliser en l'état.
+			******************************************************/
+			//CArc();
 
 	/******************************************************
 	* CArc
@@ -52,17 +55,17 @@ public:
 	* Entraîne : Un arc reliant origine vers destination
 	* est initialisé
 	******************************************************/
-	CArc(string sOrigine, string sDestination);
+	CArc(const string &sOrigine, const string &sDestination);
 
-	/******************************************************
-	* ~CArc
-	*******************************************************
-	* Entrée : Rien
-	* Nécessite : Rien
-	* Sortie : Rien
-	* Entraîne : L'arc est détruit
-	******************************************************/
-	~CArc();
+			/******************************************************
+			* ~CArc
+			*******************************************************
+			* Entrée : Rien
+			* Nécessite : Rien
+			* Sortie : Rien
+			* Entraîne : L'arc est détruit
+			******************************************************/
+			//~CArc();
 
 	// MÉTHODES
 
@@ -74,7 +77,7 @@ public:
 	* Sortie : sARCOrigine : string
 	* Entraîne : Rien
 	******************************************************/
-	string ARCLireOrigine() const { return sARCOrigine; };
+	string ARCLireOrigine() const { return sARCOrigine; }
 
 	/******************************************************
 	* ARCLireDestination
@@ -84,7 +87,7 @@ public:
 	* Sortie : sARCDestination : string
 	* Entraîne : Rien
 	******************************************************/
-	string ARCLireOrigine() const { return sARCDestination; };
+	string ARCLireDestination() const { return sARCDestination; }
 
 	/******************************************************
 	* ARCModifierOrigine
@@ -94,7 +97,7 @@ public:
 	* Sortie : Rien
 	* Entraîne : L'origine de l'arc est modifiée
 	******************************************************/
-	inline void ARCModifierOrigine(string sParam) { sARCOrigine = sParam; };
+	inline void ARCModifierOrigine(const string &sParam) { sARCOrigine = sParam; }
 
 	/******************************************************
 	* ARCModifierDestination
@@ -105,7 +108,7 @@ public:
 	* Sortie : Rien
 	* Entraîne : La destination de l'arc est modifiée
 	******************************************************/
-	inline void ARCModifierDestination(string sParam) { sARCDestination = sParam; };
+	inline void ARCModifierDestination(const string &sParam) { sARCDestination = sParam; }
 
 	/******************************************************
 	* ARCInverser
@@ -117,6 +120,17 @@ public:
 	* inversées
 	******************************************************/
 	void ARCInverser();
+
+	/******************************************************
+	* ARCAfficherArc
+	*******************************************************
+	* Entrée : Rien
+	* Nécessite : Rien
+	* Sortie : Rien
+	* Entraîne : Affichage des infos de l'arc 
+	* dans la console
+	******************************************************/
+	inline void ARCAfficherArc() const;
 };
 
 
