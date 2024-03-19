@@ -9,10 +9,15 @@
 *******************************************************
 * VERSION : 1.0
 * AUTEUR : Mehdi AMELLADI et Raphaël AVELINE
-* DATE : 13/03/2024
+* DATE : 19/03/2024
 *******************************************************
 * INCLUSIONS EXTERNES :
 */
+#include "CArc.h"
+#include "CSommet.h"
+
+#include <vector>
+using namespace std;
 
 /* TYPES :
 * Pas de type particulier déclaré
@@ -20,7 +25,46 @@
 
 /* VARIABLES:
 */
-class CGraphOrient
+template<class TArc, class TSommet> class PGraphOrient
 {
+private:
+	// ATTRIBUTS
+
+	vector<TArc*> vGPOListeArcs;
+
+	vector<TSommet*> vGPOListeSommets;
+
+public:
+	// CONSTRUCTEURS ET DESTRUCTEURS
+
+	/******************************************************
+	* PGraphOrient
+	*******************************************************
+	* Entrée : Rien
+	* Nécessite : Rien
+	* Sortie : Rien
+	* Entraîne : Un graphe vide est créé
+	******************************************************/
+	PGraphOrient();
+
+	/******************************************************
+	* PGraphOrient (Recopie)
+	*******************************************************
+	* Entrée : Rien
+	* Nécessite : Rien
+	* Sortie : Rien
+	* Entraîne : Un graphe copie de GPOParam est créé
+	******************************************************/
+	PGraphOrient(const PGraphOrient &GPOParam);
+
+	/******************************************************
+	* ~PGraphOrient
+	*******************************************************
+	* Entrée : Rien
+	* Nécessite : Rien
+	* Sortie : Rien
+	* Entraîne : Un graphe vide est créé
+	******************************************************/
+	~PGraphOrient();
 };
 
