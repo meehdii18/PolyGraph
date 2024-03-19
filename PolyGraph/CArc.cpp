@@ -22,7 +22,7 @@ void CArc::ARCInverser()
 	sARCOrigine = sTampon;
 }
 
-inline void CArc::ARCAfficherArc() const
+void CArc::ARCAfficherArc() const
 {
 	cout << "Origine de l'arc : \'" << ARCLireOrigine() << "\', Destination de l'arc : \'" << ARCLireDestination() << "\';";
 }

@@ -130,7 +130,7 @@ public:
 	* Entraîne : Affichage des infos de l'arc 
 	* dans la console
 	******************************************************/
-	inline void ARCAfficherArc() const;
+	void ARCAfficherArc() const;
 };
 
 

@@ -96,7 +96,7 @@ public:
 	* Entraîne : La modification de l'attribut identifiant
 	* du sommet
 	******************************************************/
-	inline void SMTModifierIdentifiant(const string &sIdentifiant) { sSMTIdentifiant = sIdentifiant; };
+	void SMTModifierIdentifiant(const string &sIdentifiant);
 
 	/******************************************************
 	* SMTAfficherArcsEntrants

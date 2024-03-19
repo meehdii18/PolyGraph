@@ -27,6 +27,29 @@ CSommet::~CSommet()
 
 }
 
+void CSommet::SMTModifierIdentifiant(const string& sIdentifiant)
+{
+	unsigned int uiNombreArcsEntrants = vSMTArcsEntrants.size();
+	unsigned int uiNombreArcsSortants = vSMTArcsSortants.size();
+	unsigned int uiBoucle = 0;
+
+	for (uiBoucle = 0; uiBoucle < uiNombreArcsEntrants; uiBoucle++)
+	{
+		CArc& ARCCourant = *vSMTArcsEntrants[uiBoucle];
+
+		ARCCourant.ARCModifierDestination(sIdentifiant);
+	}
+
+	for (uiBoucle = 0; uiBoucle < uiNombreArcsSortants; uiBoucle++)
+	{
+		CArc& ARCCourant = *vSMTArcsSortants[uiBoucle];
+
+		ARCCourant.ARCModifierOrigine(sIdentifiant);
+	}
+
+	sSMTIdentifiant = sIdentifiant;
+}
+
 void CSommet::SMTAfficherArcsEntrants()
 {
 	unsigned int uiNombreArcsEntrants = vSMTArcsEntrants.size();
