@@ -4,6 +4,20 @@ CArc::CArc(const string& sOrigine, const string& sDestination) : sARCOrigine(sOr
 {
 }
 
+/****************************************************************
+* A DEPLACER DANS CGRAPHORIENT
+* 
+inline void CArc::ARCModifierOrigine(const string& sParam)
+{
+	// MODIFIER L'ANCIEN ET LE NOUVEAU SOMMET D'ORIGINE
+}
+
+inline void CArc::ARCModifierDestination(const string& sParam)
+{
+	// MODIFIER L'ANCIEN ET LE NOUVEAU SOMMET DE DESTINATION
+}
+*****************************************************************/
+
 /******************************************************
 * ARCInverser
 *******************************************************

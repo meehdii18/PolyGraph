@@ -38,16 +38,17 @@ private:
 public:
 	// CONSTRUCTEURS ET DESTRUCTEUR
 
-			/******************************************************
-			* CSommet
-			*******************************************************
-			* Entrée : Rien
-			* Nécessite : Rien
-			* Sortie : Rien
-			* Entraîne : Le sommet est initialisé avec une chaîne
-			* vide
-			******************************************************/
-			// CSommet();
+	/******************************************************
+	* CSommet (interdit)
+	*******************************************************
+	* Entrée : Rien
+	* Nécessite : Rien
+	* Sortie : Rien
+	* Entraîne : Le sommet est initialisé avec une chaîne
+	* vide, celà n'est pas vraiment utile
+	* Il est donc interdit
+	******************************************************/
+	CSommet() = delete;
 
 
 	/******************************************************
@@ -98,25 +99,25 @@ public:
 	******************************************************/
 	void SMTModifierIdentifiant(const string &sIdentifiant);
 
-	/******************************************************
-	* SMTAfficherArcsEntrants
-	*******************************************************
-	* Entrée : Rien
-	* Nécessite : Rien
-	* Sortie : Rien
-	* Entraîne : Affichage des arcs entrants dans la console
-	******************************************************/
-	void SMTAfficherArcsEntrants();
+		/******************************************************
+		* SMTAfficherArcsEntrants
+		*******************************************************
+		* Entrée : Rien
+		* Nécessite : Rien
+		* Sortie : Rien
+		* Entraîne : Affichage des arcs entrants dans la console
+		******************************************************/
+		void SMTAfficherArcsEntrants(); // A DEPLACER DE CSOMMET.h
 
-	/******************************************************
-	* SMTAfficherArcsSortants
-	*******************************************************
-	* Entrée : Rien
-	* Nécessite : Rien
-	* Sortie : Rien
-	* Entraîne : Affichage des arcs sortants dans la console
-	******************************************************/
-	void SMTAfficherArcsSortants();
+		/******************************************************
+		* SMTAfficherArcsSortants
+		*******************************************************
+		* Entrée : Rien
+		* Nécessite : Rien
+		* Sortie : Rien
+		* Entraîne : Affichage des arcs sortants dans la console
+		******************************************************/
+		void SMTAfficherArcsSortants(); // A DEPLACER DE CSOMMET.h
 
 };
 

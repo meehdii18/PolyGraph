@@ -17,6 +17,7 @@
 #include "CSommet.h"
 
 #include <vector>
+#include <algorithm>
 using namespace std;
 
 /* TYPES :
@@ -66,5 +67,50 @@ public:
 	* Entraîne : Un graphe vide est créé
 	******************************************************/
 	~PGraphOrient();
+
+	// MÉTHODES
+
+	/******************************************************
+	* GPOLireListeArcs
+	*******************************************************
+	* Entrée : Rien
+	* Nécessite : Rien
+	* Sortie : Le vecteur contenant les arcs du graphe
+	* Entraîne : Rien
+	******************************************************/
+	vector<TArc*> GPOLireListeArcs() { return vGPOListeArcs; }
+
+	/******************************************************
+	* GPOLireListeSommets
+	*******************************************************
+	* Entrée : Rien
+	* Nécessite : Rien
+	* Sortie : Le vecteur contenant les sommets du graphe
+	* Entraîne : Rien
+	******************************************************/
+	vector<TSommet*> GPOLireListeSommets() { return vGPOListeSommets; }
+
+	/******************************************************
+	* GPOAjouterSommet
+	*******************************************************
+	* Entrée : Rien
+	* Nécessite : Rien
+	* Sortie : Rien
+	* Entraîne : La création d'un sommet d'identifiant sIdentifiant,
+	* puis l'ajout de ce sommet dans vGPOListeSommets
+	******************************************************/
+	void GPOAjouterSommet(const string& sIdentifiant);
+
+	/******************************************************
+	* GPOTrouverSommet
+	*******************************************************
+	* Entrée : Rien
+	* Nécessite : Rien
+	* Sortie : Un pointeur vers le sommet si il est dans le
+	* graphe, nullptr sinon
+	* Entraîne : Rien
+	******************************************************/
+	TSommet* GPOTrouverSommet(const string& sIdentifiant);
 };
 
+#include "CGraphOrient.th"

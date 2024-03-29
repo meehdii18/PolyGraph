@@ -150,6 +150,7 @@
     <ClInclude Include="CGraph.h" />
     <ClInclude Include="CGraphOrient.h" />
     <ClInclude Include="CSommet.h" />
+    <ClInclude Include="CGraphOrient.th" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

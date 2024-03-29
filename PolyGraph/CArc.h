@@ -33,17 +33,18 @@ private:
 public:
 	// CONSTRUCTEURS ET DESTRUCTEUR
 
-			/******************************************************
-			* CArc
-			*******************************************************
-			* Entrée : Rien
-			* Nécessite : Rien
-			* Sortie : Rien
-			* Entraîne : Un arc est initialisé avec une origine et
-			* une destination vide, ce constructeur donne un objet
-			* non cohérent qui n'est pas à utiliser en l'état.
-			******************************************************/
-			//CArc();
+	/******************************************************
+	* CArc (interdit)
+	*******************************************************
+	* Entrée : Rien
+	* Nécessite : Rien
+	* Sortie : Rien
+	* Entraîne : Un arc est initialisé avec une origine et
+	* une destination vide, ce constructeur donne un objet
+	* non cohérent qui n'est pas à utiliser en l'état.
+	* Il est donc interdit.
+	******************************************************/
+	CArc() = delete;
 
 	/******************************************************
 	* CArc
@@ -56,16 +57,6 @@ public:
 	* est initialisé
 	******************************************************/
 	CArc(const string &sOrigine, const string &sDestination);
-
-			/******************************************************
-			* ~CArc
-			*******************************************************
-			* Entrée : Rien
-			* Nécessite : Rien
-			* Sortie : Rien
-			* Entraîne : L'arc est détruit
-			******************************************************/
-			//~CArc();
 
 	// MÉTHODES
 
@@ -89,48 +80,48 @@ public:
 	******************************************************/
 	string ARCLireDestination() const { return sARCDestination; }
 
-	/******************************************************
-	* ARCModifierOrigine
-	*******************************************************
-	* Entrée : sParam string, la nouvelle origine de l'arc
-	* Nécessite : sParam appartient au graphe
-	* Sortie : Rien
-	* Entraîne : L'origine de l'arc est modifiée
-	******************************************************/
-	inline void ARCModifierOrigine(const string &sParam) { sARCOrigine = sParam; }
+		/******************************************************
+		* ARCModifierOrigine
+		*******************************************************
+		* Entrée : sParam string, la nouvelle origine de l'arc
+		* Nécessite : sParam appartient au graphe
+		* Sortie : Rien
+		* Entraîne : L'origine de l'arc est modifiée
+		******************************************************/
+		//inline void ARCModifierOrigine(const string& sParam);
 
-	/******************************************************
-	* ARCModifierDestination
-	*******************************************************
-	* Entrée : sParam string, la nouvelle destination 
-	* de l'arc
-	* Nécessite : sParam appartient au graphe
-	* Sortie : Rien
-	* Entraîne : La destination de l'arc est modifiée
-	******************************************************/
-	inline void ARCModifierDestination(const string &sParam) { sARCDestination = sParam; }
+		/******************************************************
+		* ARCModifierDestination
+		*******************************************************
+		* Entrée : sParam string, la nouvelle destination 
+		* de l'arc
+		* Nécessite : sParam appartient au graphe
+		* Sortie : Rien
+		* Entraîne : La destination de l'arc est modifiée
+		******************************************************/
+		//inline void ARCModifierDestination(const string& sParam);
 
-	/******************************************************
-	* ARCInverser
-	*******************************************************
-	* Entrée : Rien
-	* Nécessite : Rien
-	* Sortie : Rien
-	* Entraîne : L'origine et la destination de l'arc sont
-	* inversées
-	******************************************************/
-	void ARCInverser();
+		/******************************************************
+		* ARCInverser
+		*******************************************************
+		* Entrée : Rien
+		* Nécessite : Rien
+		* Sortie : Rien
+		* Entraîne : L'origine et la destination de l'arc sont
+		* inversées
+		******************************************************/
+		void ARCInverser(); // A DEPLACER DE CARC.h
 
-	/******************************************************
-	* ARCAfficherArc
-	*******************************************************
-	* Entrée : Rien
-	* Nécessite : Rien
-	* Sortie : Rien
-	* Entraîne : Affichage des infos de l'arc 
-	* dans la console
-	******************************************************/
-	void ARCAfficherArc() const;
+		/******************************************************
+		* ARCAfficherArc
+		*******************************************************
+		* Entrée : Rien
+		* Nécessite : Rien
+		* Sortie : Rien
+		* Entraîne : Affichage des infos de l'arc 
+		* dans la console
+		******************************************************/
+		void ARCAfficherArc() const; // A DEPLACER DE CARC.h
 };
 
 
