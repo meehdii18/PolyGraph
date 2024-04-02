@@ -99,6 +99,28 @@ public:
 	******************************************************/
 	void SMTModifierIdentifiant(const string &sIdentifiant);
 
+	/******************************************************
+	* SMTLireArcsEntrants
+	*******************************************************
+	* Entrée : Rien
+	* Nécessite : Rien
+	* Sortie : Liste des arcs entrants du sommet, vector<CArc*>
+	* Entraîne : La lecture de l'attribut contenant la 
+	* liste des arcs entrants
+	******************************************************/
+	vector<CArc*> SMTLireArcsEntrants() const { return vSMTArcsEntrants; };
+
+	/******************************************************
+	* SMTLireArcsSortants
+	*******************************************************
+	* Entrée : Rien
+	* Nécessite : Rien
+	* Sortie : Liste des arcs sortants du sommet, vector<CArc*>
+	* Entraîne : La lecture de l'attribut contenant la
+	* liste des arcs sortants
+	******************************************************/
+	vector<CArc*> SMTLireArcsSortants() const { return vSMTArcsSortants; };
+
 		/******************************************************
 		* SMTAfficherArcsEntrants
 		*******************************************************

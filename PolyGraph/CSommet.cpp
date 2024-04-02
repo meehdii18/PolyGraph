@@ -32,7 +32,7 @@ void CSommet::SMTModifierIdentifiant(const string& sIdentifiant)
 	unsigned int uiNombreArcsEntrants = vSMTArcsEntrants.size();
 	unsigned int uiNombreArcsSortants = vSMTArcsSortants.size();
 	unsigned int uiBoucle = 0;
-
+	/*
 	for (uiBoucle = 0; uiBoucle < uiNombreArcsEntrants; uiBoucle++)
 	{
 		CArc& ARCCourant = *vSMTArcsEntrants[uiBoucle];
@@ -46,7 +46,7 @@ void CSommet::SMTModifierIdentifiant(const string& sIdentifiant)
 
 		ARCCourant.ARCModifierOrigine(sIdentifiant);
 	}
-
+	*/
 	sSMTIdentifiant = sIdentifiant;
 }
 
