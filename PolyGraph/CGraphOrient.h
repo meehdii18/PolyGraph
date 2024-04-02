@@ -18,6 +18,7 @@
 
 #include <vector>
 #include <algorithm>
+#include <functional>
 using namespace std;
 
 /* TYPES :
@@ -46,7 +47,7 @@ public:
 	* Sortie : Rien
 	* Entraîne : Un graphe vide est créé
 	******************************************************/
-	PGraphOrient();
+	PGraphOrient() {}
 
 	/******************************************************
 	* PGraphOrient (Recopie)
@@ -64,9 +65,9 @@ public:
 	* Entrée : Rien
 	* Nécessite : Rien
 	* Sortie : Rien
-	* Entraîne : Un graphe vide est créé
+	* Entraîne : Le graphe est détruit
 	******************************************************/
-	~PGraphOrient();
+	~PGraphOrient() {}
 
 	// MÉTHODES
 
@@ -78,7 +79,7 @@ public:
 	* Sortie : Le vecteur contenant les arcs du graphe
 	* Entraîne : Rien
 	******************************************************/
-	vector<TArc*> GPOLireListeArcs() { return vGPOListeArcs; }
+	vector<TArc*> GPOLireListeArcs() const { return vGPOListeArcs; }
 
 	/******************************************************
 	* GPOLireListeSommets
@@ -88,7 +89,7 @@ public:
 	* Sortie : Le vecteur contenant les sommets du graphe
 	* Entraîne : Rien
 	******************************************************/
-	vector<TSommet*> GPOLireListeSommets() { return vGPOListeSommets; }
+	vector<TSommet*> GPOLireListeSommets() const { return vGPOListeSommets; }
 
 	/******************************************************
 	* GPOAjouterSommet

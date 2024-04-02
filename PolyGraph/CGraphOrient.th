@@ -1,20 +1,26 @@
-#include "CGraphOrient.h"
 #pragma once
-
+#include "CGraphOrient.h"
 
 template<class TArc, class TSommet>
 inline void PGraphOrient<TArc, TSommet>::GPOAjouterSommet(const string& sIdentifiant)
 {
 	TSommet* SMTNouveau = new TSommet(sIdentifiant);
 
-	GPOLireListeSommets().push_back(SMTNouveau);
+	vGPOListeSommets.push_back(SMTNouveau);
 }
 
 template<class TArc, class TSommet>
 inline TSommet* PGraphOrient<TArc, TSommet>::GPOTrouverSommet(const string& sIdentifiant)
 {
 	vector<TSommet*> vSMTListeSommets = GPOLireListeSommets();
-	// A CONTINUER
-	
-	return nullptr;
+	unsigned int uiBoucle = 0; 
+
+	while (uiBoucle < vSMTListeSommets.size())
+	{
+		if (vSMTListeSommets[uiBoucle]->SMTLireIdentifiant() == sIdentifiant)
+		{
+			return vSMTListeSommets[uiBoucle];
+		}
+		uiBoucle++;
+	}
 }
