@@ -45,7 +45,9 @@ inline void PGraphOrient<TArc, TSommet>::GPOAjouterSommet(const string& sIdentif
 template<class TArc, class TSommet>
 inline void PGraphOrient<TArc, TSommet>::GPOSupprimerSommet(const string& sIdentifiant)
 {
-	if (GPOTrouverSommet(sIdentifiant) == nullptr)
+	TSommet* SMTAncienSommet = GPOTrouverSommet(sIdentifiant);
+
+	if (SMTAncienSommet == nullptr)
 	{
 		ostringstream ssMessageErreur;
 
@@ -57,8 +59,19 @@ inline void PGraphOrient<TArc, TSommet>::GPOSupprimerSommet(const string& sIdent
 	}
 	else
 	{
+		vGPOListeArcs.erase(remove_if(vGPOListeArcs.begin(),
+			vGPOListeArcs.end(),
+			[](TArc* ARCElement) {return ARCElement->ARCLireOrigine() == sIdentifiant or ARCElement->ARCLireDestination() == sIdentifiant; }));
+		
+		vGPOListeSommets.erase(remove_if(vGPOListeSommets.begin(),
+			vGPOListeSommets.end(),
+			[](TSommet* SMTElement) {return SMTElement->SMTLireIdentifiant == sIdentifiant}));
+
+		delete SMTAncienSommet;
+		
 		// supprimer le sommet de la liste de sommets du graphe
 		// puis delete le sommet
+		// C'est censé faire ça, à tester !!!
 	}
 }
 
