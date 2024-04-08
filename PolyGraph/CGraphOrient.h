@@ -79,7 +79,7 @@ public:
 	* Sortie : Le vecteur contenant les arcs du graphe
 	* Entraîne : Rien
 	******************************************************/
-	vector<TArc*> GPOLireListeArcs() const { return vGPOListeArcs; }
+	const vector<TArc*>& GPOLireListeArcs() const { return vGPOListeArcs; }
 
 	/******************************************************
 	* GPOLireListeSommets
@@ -89,23 +89,36 @@ public:
 	* Sortie : Le vecteur contenant les sommets du graphe
 	* Entraîne : Rien
 	******************************************************/
-	vector<TSommet*> GPOLireListeSommets() const { return vGPOListeSommets; }
+	const vector<TSommet*>& GPOLireListeSommets() const { return vGPOListeSommets; }
 
 	/******************************************************
 	* GPOAjouterSommet
 	*******************************************************
-	* Entrée : Rien
+	* Entrée : sIdentifiant l'identifiant du sommet à créer
 	* Nécessite : Rien
 	* Sortie : Rien
-	* Entraîne : La création d'un sommet d'identifiant sIdentifiant,
-	* puis l'ajout de ce sommet dans vGPOListeSommets
+	* Entraîne : La création d'un sommet d'identifiant 
+	* sIdentifiant, puis l'ajout de ce sommet dans 
+	* vGPOListeSommets.
 	******************************************************/
 	void GPOAjouterSommet(const string& sIdentifiant);
 
 	/******************************************************
+	* GPOSupprimerSommet
+	*******************************************************
+	* Entrée : sIdentifiant l'identifiant du sommet à 
+	* supprimer
+	* Nécessite : Rien
+	* Sortie : Rien
+	* Entraîne : La suppression du sommet d'identifiant
+	* sIdentifiant du graphe
+	******************************************************/
+	void GPOSupprimerSommet(const string& sIdentifiant);
+
+	/******************************************************
 	* GPOTrouverSommet
 	*******************************************************
-	* Entrée : Rien
+	* Entrée : sIdentifiant l'identifiant du sommet cherché
 	* Nécessite : Rien
 	* Sortie : Un pointeur vers le sommet si il est dans le
 	* graphe, nullptr sinon
@@ -125,6 +138,31 @@ public:
 	* du sommet
 	******************************************************/
 	void GPOModifierIdentifiantSommet(const string& sIdentifiant, const string& sNouvelIdentifiant);
+
+	/******************************************************
+	* GPOAjouterArc
+	*******************************************************
+	* Entrée : sOrigine et sDestination l'origine et la
+	* destination de l'arc à créer
+	* Nécessite : Rien
+	* Sortie : Rien
+	* Entraîne : La création d'un arc reliant les sommets
+	* d'origine et de destination, si ceux-si existent et
+	* si l'arc n'existe pas.
+	******************************************************/
+	void GPOAjouterArc(const string& sOrigine, const string& sDestination);
+
+	/******************************************************
+	* GPOTrouverArc
+	*******************************************************
+	* Entrée : sOrigine et sDestination l'origine et la
+	* destination de l'arc cherché
+	* Nécessite : Rien
+	* Sortie : Un pointeur vers le'arc si il est dans le
+	* graphe, nullptr sinon
+	* Entraîne : Rien
+	******************************************************/
+	TArc* GPOTrouverArc(const string& sOrigine, const string& sDestination);
 };
 
 #include "CGraphOrient.th"

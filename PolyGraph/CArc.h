@@ -68,7 +68,7 @@ public:
 	* Sortie : sARCOrigine : string
 	* Entraîne : Rien
 	******************************************************/
-	string ARCLireOrigine() const { return sARCOrigine; }
+	const string& ARCLireOrigine() const { return sARCOrigine; }
 
 	/******************************************************
 	* ARCLireDestination
@@ -78,7 +78,7 @@ public:
 	* Sortie : sARCDestination : string
 	* Entraîne : Rien
 	******************************************************/
-	string ARCLireDestination() const { return sARCDestination; }
+	const string& ARCLireDestination() const { return sARCDestination; }
 
 	/******************************************************
 	* ARCModifierOrigine

@@ -86,7 +86,7 @@ public:
 	* Entraîne : La lecture de l'attribut identifiant du 
 	* sommet
 	******************************************************/
-	string SMTLireIdentifiant() const { return sSMTIdentifiant; };
+	const string& SMTLireIdentifiant() const { return sSMTIdentifiant; };
 
 
 
