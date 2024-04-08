@@ -45,8 +45,8 @@ public:
 	* Entrée : CSommet*, le sommet à afficher
 	* Nécessite : Rien
 	* Sortie : Rien
-	* Entraîne : L'affichage des informations concernants
-	* le sommet en paramètre
+	* Entraîne : L'affichage de l'identifiant du sommet 
+	* en paramètre
 	******************************************************/
 	void static AFHAfficherSommet(const CSommet& SMTParam);
 
@@ -56,8 +56,8 @@ public:
 	* Entrée : CSommet*, le sommet à afficher
 	* Nécessite : Rien
 	* Sortie : Rien
-	* Entraîne : L'affichage des informations concernants
-	* le sommet en paramètre
+	* Entraîne : L'affichage de l'identifiant et des arcs
+	* du sommet en paramètre
 	******************************************************/
 	void static AFHAfficherSommetAvecArc(const CSommet& SMTParam);
 
@@ -73,7 +73,7 @@ public:
 	void static AFHAfficherArc(const CArc& ARCParam);
 
 	/******************************************************
-	* AFHAfficherGrapheOrient
+	* AFHAfficherGraph
 	*******************************************************
 	* Entrée : PGraphOrient<CArc,CSommet>*, le graphe
 	* orienté à afficher
@@ -82,17 +82,17 @@ public:
 	* Entraîne : L'affichage des informations concernants
 	* le graphe orienté en paramètre
 	******************************************************/
-	void static AFHAfficherGrapheOrient(const PGraphOrient<CArc,CSommet>& GPOParam);
+	void static AFHAfficherGraphe(const PGraphOrient<CArc,CSommet>& GPOParam);
 
 	/******************************************************
 	* AFHAfficherGraphe
 	*******************************************************
-	* Entrée : PGraphOrient<?,CSommet>*, le graphe 
+	* Entrée : PGraph<?,CSommet>*, le graphe 
 	* à afficher
 	* Nécessite : Rien
 	* Sortie : Rien
 	* Entraîne : L'affichage des informations concernants
 	* le graphe en paramètre
 	******************************************************/
-	// void static AFHAfficherGraphe(PGraphOrient<?, CSommet>* ?Param); ? -> Classe héritée de CArc ayant la même origine et destination pas encore créer et trigramme pas encore trouvé pour CGraphe
+	// void static AFHAfficherGraphe(PGraph<?, CSommet>* ?Param); ? -> Classe héritée de CArc ayant la même origine et destination pas encore créer et trigramme pas encore trouvé pour CGraphe
 };

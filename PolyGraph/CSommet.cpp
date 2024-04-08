@@ -27,6 +27,7 @@ CSommet::~CSommet()
 
 }
 
+/*
 void CSommet::SMTModifierIdentifiant(const string& sIdentifiant)
 {
 	unsigned int uiNombreArcsEntrants = vSMTArcsEntrants.size();
@@ -48,38 +49,6 @@ void CSommet::SMTModifierIdentifiant(const string& sIdentifiant)
 	}
 	*/
 	sSMTIdentifiant = sIdentifiant;
+
 }
-
-void CSommet::SMTAfficherArcsEntrants()
-{
-	unsigned int uiNombreArcsEntrants = vSMTArcsEntrants.size();
-	unsigned int uiBoucle = 0;
-
-	cout << "Arcs Entrants :" << endl;
-
-	for (uiBoucle = 0; uiBoucle < uiNombreArcsEntrants; uiBoucle++)
-	{
-		const CArc &ARCCourant = *vSMTArcsEntrants[uiBoucle];
-
-		cout << uiBoucle << ". ";
-		ARCCourant.ARCAfficherArc();
-		cout << endl;
-	}
-}
-
-void CSommet::SMTAfficherArcsSortants()
-{
-	unsigned int uiNombreArcsSortants = vSMTArcsSortants.size();
-	unsigned int uiBoucle = 0;
-
-	cout << "Arcs Sortants :" << endl;
-
-	for (uiBoucle = 0; uiBoucle < uiNombreArcsSortants; uiBoucle++)
-	{
-		const CArc& ARCCourant = *vSMTArcsSortants[uiBoucle];
-
-		cout << uiBoucle << ". ";
-		ARCCourant.ARCAfficherArc();
-		cout << endl;
-	}
-}
+*/

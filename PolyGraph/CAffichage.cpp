@@ -75,13 +75,13 @@ void CAffichage::AFHAfficherArc(const CArc& ARCParam)
 * Entraîne : L'affichage des informations concernants
 * le graphe orienté en paramètre
 ******************************************************/
-void CAffichage::AFHAfficherGrapheOrient(const PGraphOrient<CArc, CSommet>& GPOParam)
+void CAffichage::AFHAfficherGraphe(const PGraphOrient<CArc, CSommet>& GPOParam)
 {
 	vector<CSommet*> vListeSommet = GPOParam.GPOLireListeSommets();
 	vector<CArc*> vListeArc = GPOParam.GPOLireListeArcs();
 	unsigned int uiBoucle;
 	cout << "------------------------------------------" << endl;
-	cout << "////////////// Sommets :" << endl;
+	cout << "Graphe Orienté : \n" << "////////////// Sommets :" << endl;
 	for (uiBoucle = 0; uiBoucle < vListeSommet.size(); uiBoucle++)
 	{
 		AFHAfficherSommet(*vListeSommet[uiBoucle]);

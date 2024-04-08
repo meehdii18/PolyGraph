@@ -88,16 +88,7 @@ public:
 	******************************************************/
 	string SMTLireIdentifiant() const { return sSMTIdentifiant; };
 
-	/******************************************************
-	* SMTModifierIdentifiant
-	*******************************************************
-	* Entrée : sIdentifiant, string
-	* Nécessite : Rien
-	* Sortie : Rien
-	* Entraîne : La modification de l'attribut identifiant
-	* du sommet
-	******************************************************/
-	void SMTModifierIdentifiant(const string &sIdentifiant);
+
 
 	/******************************************************
 	* SMTLireArcsEntrants
@@ -120,26 +111,6 @@ public:
 	* liste des arcs sortants
 	******************************************************/
 	vector<CArc*> SMTLireArcsSortants() const { return vSMTArcsSortants; };
-
-		/******************************************************
-		* SMTAfficherArcsEntrants
-		*******************************************************
-		* Entrée : Rien
-		* Nécessite : Rien
-		* Sortie : Rien
-		* Entraîne : Affichage des arcs entrants dans la console
-		******************************************************/
-		void SMTAfficherArcsEntrants(); // A DEPLACER DE CSOMMET.h
-
-		/******************************************************
-		* SMTAfficherArcsSortants
-		*******************************************************
-		* Entrée : Rien
-		* Nécessite : Rien
-		* Sortie : Rien
-		* Entraîne : Affichage des arcs sortants dans la console
-		******************************************************/
-		void SMTAfficherArcsSortants(); // A DEPLACER DE CSOMMET.h
 
 };
 

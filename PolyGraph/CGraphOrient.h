@@ -112,6 +112,19 @@ public:
 	* Entraîne : Rien
 	******************************************************/
 	TSommet* GPOTrouverSommet(const string& sIdentifiant);
+
+	/******************************************************
+	* GPOModifierIdentifiantSommet
+	*******************************************************
+	* Entrée : sIdentifiant, string, identifiant à modifier
+	* sNouvelIdenfiant, string, le nouvel identifiant du
+	* sommet
+	* Nécessite : Rien
+	* Sortie : Rien
+	* Entraîne : La modification de l'attribut identifiant
+	* du sommet
+	******************************************************/
+	void GPOModifierIdentifiantSommet(const string& sIdentifiant, const string& sNouvelIdentifiant);
 };
 
 #include "CGraphOrient.th"
