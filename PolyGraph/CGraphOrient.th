@@ -24,7 +24,9 @@ inline void PGraphOrient<TArc, TSommet>::GPOAjouterSommet(const string& sIdentif
 	{
 		ostringstream ssMessageErreur;
 
-		ssMessageErreur << "Le sommet d'identifiant " << sIdentifiant.c_str() << " existe déjà dans le graphe et n'a donc pas été ajouté.";
+		ssMessageErreur << "Le sommet d'identifiant ";
+		ssMessageErreur << sIdentifiant.c_str();
+		ssMessageErreur << " existe déjà dans le graphe et n'a donc pas été ajouté.";
 
 		string sDescription = ssMessageErreur.str();
 
@@ -51,7 +53,9 @@ inline void PGraphOrient<TArc, TSommet>::GPOSupprimerSommet(const string& sIdent
 	{
 		ostringstream ssMessageErreur;
 
-		ssMessageErreur << "Le sommet d'identifiant " << sIdentifiant.c_str() << " n'existe pas dans le graphe et n'a donc pas été supprimé.";
+		ssMessageErreur << "Le sommet d'identifiant "; 
+		ssMessageErreur << sIdentifiant.c_str();
+		ssMessageErreur << " n'existe pas dans le graphe et n'a donc pas été supprimé.";
 
 		string sDescription = ssMessageErreur.str();
 
@@ -120,7 +124,9 @@ inline void PGraphOrient<TArc, TSommet>::GPOAjouterArc(const string& sOrigine, c
 	{
 		ostringstream ssMessageErreur;
 
-		ssMessageErreur << "Le sommet " << sOrigine.c_str() << " n'existe pas dans le graphe et ne peut donc pas servir d'origine.";
+		ssMessageErreur << "Le sommet ";
+		ssMessageErreur << sOrigine.c_str();
+		ssMessageErreur << " n'existe pas dans le graphe et ne peut donc pas servir d'origine.";
 
 		string sDescription = ssMessageErreur.str();
 
@@ -130,7 +136,9 @@ inline void PGraphOrient<TArc, TSommet>::GPOAjouterArc(const string& sOrigine, c
 	{
 		ostringstream ssMessageErreur;
 
-		ssMessageErreur << "Le sommet " << sDestination.c_str() << " n'existe pas dans le graphe et ne peut donc pas servir de destination.";
+		ssMessageErreur << "Le sommet ";
+		ssMessageErreur << sDestination.c_str();
+		ssMessageErreur << " n'existe pas dans le graphe et ne peut donc pas servir de destination.";
 
 		string sDescription = ssMessageErreur.str();
 
@@ -146,7 +154,42 @@ inline void PGraphOrient<TArc, TSommet>::GPOAjouterArc(const string& sOrigine, c
 	{
 		ostringstream ssMessageErreur;
 
-		ssMessageErreur << "L'arc d'origine " << sOrigine.c_str() << " et de destination " << sDestination.c_str() << " existe déjà dans le graphe et n'a donc pas été ajouté.";
+		ssMessageErreur << "L'arc d'origine ";
+		ssMessageErreur << sOrigine.c_str();
+		ssMessageErreur << " et de destination ";
+		ssMessageErreur << sDestination.c_str();
+		ssMessageErreur << " existe déjà dans le graphe et n'a donc pas été ajouté.";
+
+		string sDescription = ssMessageErreur.str();
+
+		throw logic_error(sDescription);
+	}
+}
+
+/******************************************************
+	* GPOSupprimerArc
+	*******************************************************
+	* Entrée : sOrigine et sDestination l'origine et la
+	* destination de l'arc cà supprimer
+	* Nécessite : Rien
+	* Sortie : Rien
+	* Entraîne : La suppression de l'arc reliant les
+	* sommets d'origine et de destination
+	******************************************************/
+template<class TArc, class TSommet>
+inline void PGraphOrient<TArc, TSommet>::GPOSupprimerArc(const string& sOrigine, const string& sDestination)
+{
+	TArc* ARCAncienArc = GPOTrouverArc(sOrigine, sDestination);
+
+	if (ARCAncienArc == nullptr)
+	{
+		ostringstream ssMessageErreur;
+
+		ssMessageErreur << "L'arc d'origine ";
+		ssMessageErreur << sOrigine.c_str();
+		ssMessageErreur << " et de destination ";
+		ssMessageErreur << sDestination.c_str();
+		ssMessageErreur << " n'existe pas dans le graphe et n'a donc pas été supprimé.";
 
 		string sDescription = ssMessageErreur.str();
 
