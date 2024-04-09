@@ -153,12 +153,24 @@ public:
 	void GPOAjouterArc(const string& sOrigine, const string& sDestination);
 
 	/******************************************************
+	* GPOSupprimerArc
+	*******************************************************
+	* Entrée : sOrigine et sDestination l'origine et la
+	* destination de l'arc cà supprimer
+	* Nécessite : Rien
+	* Sortie : Rien
+	* Entraîne : La suppression de l'arc reliant les
+	* sommets d'origine et de destination
+	******************************************************/
+	void GPOSupprimerArc(const string& sOrigine, const string& sDestination);
+
+	/******************************************************
 	* GPOTrouverArc
 	*******************************************************
 	* Entrée : sOrigine et sDestination l'origine et la
 	* destination de l'arc cherché
 	* Nécessite : Rien
-	* Sortie : Un pointeur vers le'arc si il est dans le
+	* Sortie : Un pointeur vers l'arc si il est dans le
 	* graphe, nullptr sinon
 	* Entraîne : Rien
 	******************************************************/
