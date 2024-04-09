@@ -2,6 +2,8 @@
 //
 
 #include <iostream>
+#include "CGraphOrient.h"
+using namespace std;
 
 int main()
 {

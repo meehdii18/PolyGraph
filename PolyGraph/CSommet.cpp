@@ -47,7 +47,7 @@ void CSommet::SMTModifierIdentifiant(const string& sIdentifiant)
 
 		ARCCourant.ARCModifierOrigine(sIdentifiant);
 	}
-	*/
+	
 	sSMTIdentifiant = sIdentifiant;
 
 }

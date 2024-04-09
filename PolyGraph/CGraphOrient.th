@@ -169,8 +169,7 @@ inline TArc* PGraphOrient<TArc, TSommet>::GPOTrouverArc(const string& sOrigine, 
 {
 	vector<TArc*> vARCListeArcs = GPOLireListeArcs();
 	unsigned int uiBoucle = 0;
-	unsigned int uiCritereArret = vARCListeArcs.size(
-
+	unsigned int uiCritereArret = vARCListeArcs.size();
 	while (uiBoucle < uiCritereArret)
 	{
 		if (vARCListeArcs[uiBoucle]->ARCLireOrigine() == sOrigine and vARCListeArcs[uiBoucle]->ARCLireDestination() == sDestination)
