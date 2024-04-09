@@ -10,12 +10,12 @@ map<string, vector<pair<int, int> > >CParseur::PRSParserFichier(const string& sN
             if (sLigne.find(sDelimiteur) != string::npos) {
                 while (getline(isFichier, sLigne) && sLigne != "]") {
                     int iDebut, iFin;
-                    sscanf(sLigne.c_str(), "%s=%d, %s=%d", sDelimiteur.c_str(), &iDebut, sDelimiteur.c_str(), &iFin);
+                    sscanf_s(sLigne.c_str(), "%s=%d, %s=%d", sDelimiteur.c_str(), &iDebut, sDelimiteur.c_str(), &iFin);
                     mDonnees[sDelimiteur].push_back({ iDebut, iFin });
                 }
             }
         }
     }
-
+    
     return map<string, vector<pair<int, int> > >();
 }
