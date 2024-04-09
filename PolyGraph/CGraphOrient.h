@@ -19,6 +19,8 @@
 #include <vector>
 #include <algorithm>
 #include <functional>
+#include <sstream>
+#include <iostream>
 using namespace std;
 
 /* TYPES :
@@ -35,6 +37,31 @@ private:
 	vector<TArc*> vGPOListeArcs;
 
 	vector<TSommet*> vGPOListeSommets;
+
+	// MÉTHODES PRIVÉES
+
+	/******************************************************
+	* GPOTrouverSommet
+	*******************************************************
+	* Entrée : sIdentifiant l'identifiant du sommet cherché
+	* Nécessite : Rien
+	* Sortie : Un pointeur vers le sommet si il est dans le
+	* graphe, nullptr sinon
+	* Entraîne : Rien
+	******************************************************/
+	TSommet* GPOTrouverSommet(const string& sIdentifiant);
+
+	/******************************************************
+	* GPOTrouverArc
+	*******************************************************
+	* Entrée : sOrigine et sDestination l'origine et la
+	* destination de l'arc cherché
+	* Nécessite : Rien
+	* Sortie : Un pointeur vers l'arc si il est dans le
+	* graphe, nullptr sinon
+	* Entraîne : Rien
+	******************************************************/
+	TArc* GPOTrouverArc(const string& sOrigine, const string& sDestination);
 
 public:
 	// CONSTRUCTEURS ET DESTRUCTEURS
@@ -116,17 +143,6 @@ public:
 	void GPOSupprimerSommet(const string& sIdentifiant);
 
 	/******************************************************
-	* GPOTrouverSommet
-	*******************************************************
-	* Entrée : sIdentifiant l'identifiant du sommet cherché
-	* Nécessite : Rien
-	* Sortie : Un pointeur vers le sommet si il est dans le
-	* graphe, nullptr sinon
-	* Entraîne : Rien
-	******************************************************/
-	TSommet* GPOTrouverSommet(const string& sIdentifiant);
-
-	/******************************************************
 	* GPOModifierIdentifiantSommet
 	*******************************************************
 	* Entrée : sIdentifiant, string, identifiant à modifier
@@ -163,18 +179,6 @@ public:
 	* sommets d'origine et de destination
 	******************************************************/
 	void GPOSupprimerArc(const string& sOrigine, const string& sDestination);
-
-	/******************************************************
-	* GPOTrouverArc
-	*******************************************************
-	* Entrée : sOrigine et sDestination l'origine et la
-	* destination de l'arc cherché
-	* Nécessite : Rien
-	* Sortie : Un pointeur vers l'arc si il est dans le
-	* graphe, nullptr sinon
-	* Entraîne : Rien
-	******************************************************/
-	TArc* GPOTrouverArc(const string& sOrigine, const string& sDestination);
 };
 
 #include "CGraphOrient.th"

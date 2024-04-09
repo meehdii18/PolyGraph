@@ -16,6 +16,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include<sstream>
 using namespace std;
 
 /* TYPES :
@@ -88,8 +89,6 @@ public:
 	******************************************************/
 	const string& SMTLireIdentifiant() const { return sSMTIdentifiant; };
 
-
-
 	/******************************************************
 	* SMTLireArcsEntrants
 	*******************************************************
@@ -102,6 +101,17 @@ public:
 	vector<CArc*> SMTLireArcsEntrants() const { return vSMTArcsEntrants; };
 
 	/******************************************************
+	* SMTAjouterArcEntrant
+	*******************************************************
+	* Entrée : Un arc rentrant dans le sommet
+	* Nécessite : Rien
+	* Sortie : Rien
+	* Entraîne : L'arc est ajouté dans la liste des arcs
+	* entrant dans le sommet
+	******************************************************/
+	void SMTAjouterArcEntrant(CArc* ARCArcEntrant);
+
+	/******************************************************
 	* SMTLireArcsSortants
 	*******************************************************
 	* Entrée : Rien
@@ -112,5 +122,15 @@ public:
 	******************************************************/
 	vector<CArc*> SMTLireArcsSortants() const { return vSMTArcsSortants; };
 
+	/******************************************************
+	* SMTAjouterArcSortant
+	*******************************************************
+	* Entrée : Un arc sortant du sommet
+	* Nécessite : Rien
+	* Sortie : Rien
+	* Entraîne : L'arc est ajouté dans la liste des arcs
+	* sortant du sommet
+	******************************************************/
+	void SMTAjouterArcSortant(CArc* ARCArcSortant);
 };
 

@@ -111,6 +111,17 @@ public:
 	* inversées
 	******************************************************/
 	void ARCInverser(); // A DEPLACER DE CARC.h
+
+	/******************************************************
+	* operator==
+	*******************************************************
+	* Entrée : Deux arcs à comparer
+	* Nécessite : Rien
+	* Sortie : Vrai si les deux arcs ont les mêmes 
+	* origines et destinations.
+	* Entraîne : Rien
+	******************************************************/
+	bool operator==(const CArc& ARCArcAComparer) { return (ARCLireOrigine() == ARCArcAComparer.ARCLireOrigine() and ARCLireDestination() == ARCArcAComparer.ARCLireDestination()); }
 };
 
 

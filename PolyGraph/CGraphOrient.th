@@ -148,6 +148,8 @@ inline void PGraphOrient<TArc, TSommet>::GPOAjouterArc(const string& sOrigine, c
 	{
 		TArc* ARCNouveau = new TArc(sOrigine, sDestination);
 
+		// A COMPLETER
+
 		vGPOListeArcs.push_back(ARCNouveau);
 	}
 	else
@@ -180,6 +182,8 @@ template<class TArc, class TSommet>
 inline void PGraphOrient<TArc, TSommet>::GPOSupprimerArc(const string& sOrigine, const string& sDestination)
 {
 	TArc* ARCAncienArc = GPOTrouverArc(sOrigine, sDestination);
+	TSommet* SMTOrigine = GPOTrouverSommet(sOrigine);
+	TSommet* SMTDestination = GPOTrouverSommet(sDestination);
 
 	if (ARCAncienArc == nullptr)
 	{
@@ -194,6 +198,16 @@ inline void PGraphOrient<TArc, TSommet>::GPOSupprimerArc(const string& sOrigine,
 		string sDescription = ssMessageErreur.str();
 
 		throw logic_error(sDescription);
+	}
+	else
+	{
+		SMTOrigine->SMT
+
+		vGPOListeArcs.erase(remove_if(vGPOListeArcs.begin(),
+			vGPOListeArcs.end(),
+			[](TArc* ARCElement) {return ARCElement->ARCLireOrigine() == sOrigine and ARCElement->ARCLireDestination() == sDestination; }));
+
+		// ICI
 	}
 }
 
