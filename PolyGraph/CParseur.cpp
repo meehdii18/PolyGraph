@@ -1,21 +1,28 @@
 #include "CParseur.h"
+#include <iostream>
+#include <stdexcept>
+using namespace std;
 
-map<string, vector<pair<int, int> > >CParseur::PRSParserFichier(const string& sNomFichier, const vector<string>& vDelimiteurs) {
-    ifstream isFichier(sNomFichier);
-    string sLigne;
-    map<string, vector<pair<int, int> > > mDonnees;
-
-    while (getline(isFichier, sLigne)) {
-        for (const string& sDelimiteur : vDelimiteurs) {
-            if (sLigne.find(sDelimiteur) != string::npos) {
-                while (getline(isFichier, sLigne) && sLigne != "]") {
-                    int iDebut, iFin;
-                    sscanf_s(sLigne.c_str(), "%s=%d, %s=%d", sDelimiteur.c_str(), &iDebut, sDelimiteur.c_str(), &iFin);
-                    mDonnees[sDelimiteur].push_back({ iDebut, iFin });
+map<string, unsigned int> CParseur::PRSParserFichier(string sFichier,vector<string> vMotsCles)
+{
+    map<string, unsigned int> mDonnees;
+    for (const string& sMot : vMotsCles) {
+        mDonnees[sMot] = 0;
+    }
+    ifstream strFichier("donnees.txt");
+    if (strFichier.is_open()) {
+        string sLigne;
+        while (getline(strFichier, sLigne)) {
+            for (const string& sMot : vMotsCles) {
+                if (sLigne.find(("NB") + sMot)) {
+                    //cout << "AAAAAAAAAAAAAA" << endl;
                 }
             }
         }
+        strFichier.close();
+        return mDonnees;
     }
-    
-    return map<string, vector<pair<int, int> > >();
+    else {
+        throw runtime_error("Impossible d'ouvrir le fichier");
+    }
 }
