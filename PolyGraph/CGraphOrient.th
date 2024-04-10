@@ -120,7 +120,10 @@ inline TSommet* PGraphOrient<TArc, TSommet>::GPOTrouverSommet(const string& sIde
 template<class TArc, class TSommet>
 inline void PGraphOrient<TArc, TSommet>::GPOAjouterArc(const string& sOrigine, const string& sDestination)
 {
-	if (GPOTrouverSommet(sOrigine) == nullptr)
+	TSommet* SMTOrigine = GPOTrouverSommet(sOrigine);
+	TSommet* SMTDestination = GPOTrouverSommet(sDestination);
+
+	if (SMTOrigine == nullptr)
 	{
 		ostringstream ssMessageErreur;
 
@@ -132,7 +135,7 @@ inline void PGraphOrient<TArc, TSommet>::GPOAjouterArc(const string& sOrigine, c
 
 		throw logic_error(sDescription);
 	}
-	if (GPOTrouverSommet(sDestination) == nullptr)
+	if (SMTDestination == nullptr)
 	{
 		ostringstream ssMessageErreur;
 
@@ -144,15 +147,7 @@ inline void PGraphOrient<TArc, TSommet>::GPOAjouterArc(const string& sOrigine, c
 
 		throw logic_error(sDescription);
 	}
-	if (GPOTrouverArc(sOrigine, sDestination) == nullptr)
-	{
-		TArc* ARCNouveau = new TArc(sOrigine, sDestination);
-
-		// A COMPLETER
-
-		vGPOListeArcs.push_back(ARCNouveau);
-	}
-	else
+	if (GPOTrouverArc(sOrigine, sDestination) != nullptr)
 	{
 		ostringstream ssMessageErreur;
 
@@ -165,6 +160,16 @@ inline void PGraphOrient<TArc, TSommet>::GPOAjouterArc(const string& sOrigine, c
 		string sDescription = ssMessageErreur.str();
 
 		throw logic_error(sDescription);
+	}
+	else
+	{
+		TArc* ARCNouveau = new TArc(sOrigine, sDestination);
+
+		SMTOrigine->SMTAjouterArcSortant(ARCNouveau);
+
+		SMTDestination->SMTAjouterArcEntrant(ARCNouveau);
+
+		vGPOListeArcs.push_back(ARCNouveau);
 	}
 }
 
@@ -201,13 +206,13 @@ inline void PGraphOrient<TArc, TSommet>::GPOSupprimerArc(const string& sOrigine,
 	}
 	else
 	{
-		SMTOrigine->SMT
+		SMTOrigine->SMTSupprimerArcSortant(ARCAncienArc);
+
+		SMTDestination->SMTSupprimerArcEntrant(ARCAncienArc);
 
 		vGPOListeArcs.erase(remove_if(vGPOListeArcs.begin(),
 			vGPOListeArcs.end(),
 			[](TArc* ARCElement) {return ARCElement->ARCLireOrigine() == sOrigine and ARCElement->ARCLireDestination() == sDestination; }));
-
-		// ICI
 	}
 }
 

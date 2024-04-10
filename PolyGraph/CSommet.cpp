@@ -27,6 +27,15 @@ CSommet::~CSommet()
 
 }
 
+/******************************************************
+* SMTAjouterArcEntrant
+*******************************************************
+* Entrée : Un arc rentrant dans le sommet
+* Nécessite : Rien
+* Sortie : Rien
+* Entraîne : L'arc est ajouté dans la liste des arcs
+* entrant dans le sommet
+******************************************************/
 void CSommet::SMTAjouterArcEntrant(CArc* ARCArcEntrant)
 {
 	unsigned int uiBoucle = 0;
@@ -54,6 +63,31 @@ void CSommet::SMTAjouterArcEntrant(CArc* ARCArcEntrant)
 	vSMTArcsEntrants.push_back(ARCArcEntrant);
 }
 
+/******************************************************
+* SMTSupprimerArcEntrant
+*******************************************************
+* Entrée : Un arc rentrant dans le sommet
+* Nécessite : Rien
+* Sortie : Rien
+* Entraîne : L'arc est supprimé de la liste des arcs
+* entrant dans le sommet
+******************************************************/
+void CSommet::SMTSupprimerArcEntrant(CArc* ARCArcEntrant)
+{
+	vSMTArcsEntrants.erase(remove_if(vSMTArcsEntrants.begin(),
+		vSMTArcsEntrants.end(),
+		[&](CArc* ARCElement) {return *ARCElement == *ARCArcEntrant; }));
+}
+
+/******************************************************
+* SMTAjouterArcSortant
+*******************************************************
+* Entrée : Un arc sortant du sommet
+* Nécessite : Rien
+* Sortie : Rien
+* Entraîne : L'arc est ajouté dans la liste des arcs
+* sortant du sommet
+******************************************************/
 void CSommet::SMTAjouterArcSortant(CArc* ARCArcSortant)
 {
 	unsigned int uiBoucle = 0;
@@ -79,6 +113,22 @@ void CSommet::SMTAjouterArcSortant(CArc* ARCArcSortant)
 	}
 
 	vSMTArcsSortants.push_back(ARCArcSortant);
+}
+
+/******************************************************
+* SMTSupprimerArcSortant
+*******************************************************
+* Entrée : Un arc rentrant dans le sommet
+* Nécessite : Rien
+* Sortie : Rien
+* Entraîne : L'arc est supprimé de la liste des arcs
+* entrant dans le sommet
+******************************************************/
+void CSommet::SMTSupprimerArcSortant(CArc* ARCArcSortant)
+{
+	vSMTArcsSortants.erase(remove_if(vSMTArcsSortants.begin(),
+		vSMTArcsSortants.end(),
+		[&](CArc* ARCElement) {return *ARCElement == *ARCArcSortant; }));
 }
 
 /*
