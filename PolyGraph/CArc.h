@@ -88,7 +88,7 @@ public:
 	* Sortie : Rien
 	* Entraîne : L'origine de l'arc est modifiée
 	******************************************************/
-	//inline void ARCModifierOrigine(const string& sParam);
+	void ARCModifierOrigine(const string& sParam) { sARCOrigine = sParam; }
 
 	/******************************************************
 	* ARCModifierDestination
@@ -99,7 +99,7 @@ public:
 	* Sortie : Rien
 	* Entraîne : La destination de l'arc est modifiée
 	******************************************************/
-	//inline void ARCModifierDestination(const string& sParam);
+	void ARCModifierDestination(const string& sParam) { sARCDestination = sParam; }
 
 	/******************************************************
 	* ARCInverser
@@ -111,6 +111,17 @@ public:
 	* inversées
 	******************************************************/
 	void ARCInverser(); // A DEPLACER DE CARC.h
+
+	/******************************************************
+	* operator==
+	*******************************************************
+	* Entrée : Deux arcs à comparer
+	* Nécessite : Rien
+	* Sortie : Vrai si les deux arcs ont les mêmes 
+	* origines et destinations.
+	* Entraîne : Rien
+	******************************************************/
+	bool operator==(const CArc& ARCArcAComparer) { return (ARCLireOrigine() == ARCArcAComparer.ARCLireOrigine() and ARCLireDestination() == ARCArcAComparer.ARCLireDestination()); }
 };
 
 

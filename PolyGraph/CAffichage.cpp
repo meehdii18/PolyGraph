@@ -81,7 +81,7 @@ void CAffichage::AFHAfficherGraphe(const PGraphOrient<CArc, CSommet>& GPOParam)
 	vector<CArc*> vListeArc = GPOParam.GPOLireListeArcs();
 	unsigned int uiBoucle;
 	cout << "------------------------------------------" << endl;
-	cout << "Graphe Orienté : \n" << "////////////// Sommets :" << endl;
+	cout << "Graphe Oriente : \n" << "////////////// Sommets :" << endl;
 	for (uiBoucle = 0; uiBoucle < vListeSommet.size(); uiBoucle++)
 	{
 		AFHAfficherSommet(*vListeSommet[uiBoucle]);

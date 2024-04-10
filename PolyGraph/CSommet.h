@@ -16,6 +16,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include<sstream>
 using namespace std;
 
 /* TYPES :
@@ -88,8 +89,6 @@ public:
 	******************************************************/
 	const string& SMTLireIdentifiant() const { return sSMTIdentifiant; };
 
-
-
 	/******************************************************
 	* SMTLireArcsEntrants
 	*******************************************************
@@ -102,6 +101,28 @@ public:
 	vector<CArc*> SMTLireArcsEntrants() const { return vSMTArcsEntrants; };
 
 	/******************************************************
+	* SMTAjouterArcEntrant
+	*******************************************************
+	* Entrée : Un arc rentrant dans le sommet
+	* Nécessite : Rien
+	* Sortie : Rien
+	* Entraîne : L'arc est ajouté dans la liste des arcs
+	* entrant dans le sommet
+	******************************************************/
+	void SMTAjouterArcEntrant(CArc* ARCArcEntrant);
+
+	/******************************************************
+	* SMTSupprimerArcEntrant
+	*******************************************************
+	* Entrée : Un arc rentrant dans le sommet
+	* Nécessite : Rien
+	* Sortie : Rien
+	* Entraîne : L'arc est supprimé de la liste des arcs
+	* entrant dans le sommet
+	******************************************************/
+	void SMTSupprimerArcEntrant(CArc* ARCArcEntrant);
+
+	/******************************************************
 	* SMTLireArcsSortants
 	*******************************************************
 	* Entrée : Rien
@@ -112,5 +133,38 @@ public:
 	******************************************************/
 	vector<CArc*> SMTLireArcsSortants() const { return vSMTArcsSortants; };
 
+	/******************************************************
+	* SMTAjouterArcSortant
+	*******************************************************
+	* Entrée : Un arc sortant du sommet
+	* Nécessite : Rien
+	* Sortie : Rien
+	* Entraîne : L'arc est ajouté dans la liste des arcs
+	* sortant du sommet
+	******************************************************/
+	void SMTAjouterArcSortant(CArc* ARCArcSortant);
+
+	/******************************************************
+	* SMTSupprimerArcSortant
+	*******************************************************
+	* Entrée : Un arc rentrant dans le sommet
+	* Nécessite : Rien
+	* Sortie : Rien
+	* Entraîne : L'arc est supprimé de la liste des arcs
+	* entrant dans le sommet
+	******************************************************/
+	void SMTSupprimerArcSortant(CArc* ARCArcSortant);
+
+	/******************************************************
+	* operator==
+	*******************************************************
+	* Entrée : Deux sommets à comparer
+	* Nécessite : Rien
+	* Sortie : Vrai si les deux sommets ont le même
+	* identifiant
+	* Entraîne : Rien
+	******************************************************/
+	bool operator==(const CSommet& SMTSommetAComparer) { 
+		return (SMTLireIdentifiant() == SMTSommetAComparer.SMTLireIdentifiant()); }
 };
 
