@@ -34,11 +34,18 @@ int main()
 
     cout << "------------------------------------------FIN TEST------------------------------------------" << endl;
 
-    vector<string> Delimiteurs = { "Arcs","Sommets" };
-    map<string,unsigned int> data = CParseur::PRSParserFichier("./donnes.txt",Delimiteurs);
-    
+
+    // TEST PARSEUR
+    vector<string> Delimiteurs = { "NBArcs","NBSommets","Numero","Debut","Fin" };
+    map<string, vector<unsigned int>> data = CParseur::PRSParserFichier("./donnees.txt", Delimiteurs);
+
     for (const auto& pair : data) {
-        cout << pair.first << ": " << pair.second << endl;
+        cout << "Mot cle : " << pair.first << endl;
+        cout << "Valeurs : ";
+        for (const auto& value : pair.second) {
+            cout << value << " ";
+        }
+        cout << endl;
     }
 }
 
