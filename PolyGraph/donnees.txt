@@ -1,4 +1,4 @@
-NBSommets=3
+nbsommets=3
 NBArcs=3
 Sommets=[
 Numero=1

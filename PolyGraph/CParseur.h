@@ -9,5 +9,6 @@ using namespace std;
 class CParseur {
 public:
     CParseur() = delete;
-    static map<string, unsigned int> PRSParserFichier(string sFichier, vector<string> vMotsCles);
+    static map<string, vector<unsigned int>> PRSParserFichier(string sFichier, vector<string> vMotsCles);
+    static string PRSMinuscule(string sParam);
 };
