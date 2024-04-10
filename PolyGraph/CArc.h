@@ -88,7 +88,7 @@ public:
 	* Sortie : Rien
 	* Entraîne : L'origine de l'arc est modifiée
 	******************************************************/
-	//inline void ARCModifierOrigine(const string& sParam);
+	void ARCModifierOrigine(const string& sParam) { sARCOrigine = sParam; }
 
 	/******************************************************
 	* ARCModifierDestination
@@ -99,7 +99,7 @@ public:
 	* Sortie : Rien
 	* Entraîne : La destination de l'arc est modifiée
 	******************************************************/
-	//inline void ARCModifierDestination(const string& sParam);
+	void ARCModifierDestination(const string& sParam) { sARCDestination = sParam; }
 
 	/******************************************************
 	* ARCInverser

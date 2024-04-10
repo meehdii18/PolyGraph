@@ -164,6 +164,7 @@ public:
 	* identifiant
 	* Entraîne : Rien
 	******************************************************/
-	bool operator==(const CSommet& SMTSommetAComparer) { return SMTLireIdentifiant() == SMTSommetAComparer.sSMTIdentifiant(); }
+	bool operator==(const CSommet& SMTSommetAComparer) { 
+		return (SMTLireIdentifiant() == SMTSommetAComparer.SMTLireIdentifiant()); }
 };
 

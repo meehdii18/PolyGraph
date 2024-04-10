@@ -11,8 +11,8 @@
 ******************************************************/
 CSommet::~CSommet()
 {
-	unsigned int uiNombreArcsEntrants = vSMTArcsEntrants.size();
-	unsigned int uiNombreArcsSortants = vSMTArcsSortants.size();
+	unsigned int uiNombreArcsEntrants = (unsigned int) vSMTArcsEntrants.size();
+	unsigned int uiNombreArcsSortants = (unsigned int) vSMTArcsSortants.size();
 	unsigned int uiBoucle = 0;
 
 	for (uiBoucle = 0; uiBoucle < uiNombreArcsEntrants; uiBoucle++)
@@ -39,7 +39,7 @@ CSommet::~CSommet()
 void CSommet::SMTAjouterArcEntrant(CArc* ARCArcEntrant)
 {
 	unsigned int uiBoucle = 0;
-	unsigned int uiCritereArret = vSMTArcsEntrants.size();
+	unsigned int uiCritereArret = (unsigned int) vSMTArcsEntrants.size();
 
 	while (uiBoucle < uiCritereArret)
 	{
@@ -91,7 +91,7 @@ void CSommet::SMTSupprimerArcEntrant(CArc* ARCArcEntrant)
 void CSommet::SMTAjouterArcSortant(CArc* ARCArcSortant)
 {
 	unsigned int uiBoucle = 0;
-	unsigned int uiCritereArret = vSMTArcsSortants.size();
+	unsigned int uiCritereArret = (unsigned int) vSMTArcsSortants.size();
 
 	while (uiBoucle < uiCritereArret)
 	{
