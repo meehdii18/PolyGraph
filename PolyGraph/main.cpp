@@ -28,14 +28,8 @@ void testCGraphOrient()
     CAffichage::AFHAfficherGraphe(GPOGraphe);
 }
 
-int main()
+void testParseur()
 {
-    testCGraphOrient();
-
-    cout << "------------------------------------------FIN TEST------------------------------------------" << endl;
-
-
-    // TEST PARSEUR
     vector<string> Delimiteurs = { "NBArcs","NBSommets","Numero","Debut","Fin" };
     map<string, vector<unsigned int>> data = CParseur::PRSParserFichier("./donnees.txt", Delimiteurs);
 
@@ -47,6 +41,40 @@ int main()
         }
         cout << endl;
     }
+}
+
+int main()
+{
+    //testCGraphOrient();
+
+    //cout << "------------------------------------------FIN TEST CGraphOrient------------------------------------------" << endl;
+
+
+    string fichier = "./donnees.txt";
+    // TEST LIRE VALEUR
+    cout << CParseur::PRSLireValeur(fichier, "nbarcs") << endl;
+
+    // TEST LIRE VALEUR COMPLEXE
+    string motCle = "Sommets";
+    vector<string> delimiteurs = { "Numero" };
+    
+    try {
+        vector<vector<string>> valeursComplexes = CParseur::PRSLireValeurComplexe(fichier, motCle, delimiteurs);
+        for (const auto& valeurs : valeursComplexes) {
+            cout << "Valeurs complexes : ";
+            for (const auto& valeur : valeurs) {
+                cout << valeur << " ";
+            }
+            cout << endl;
+        }
+    }
+    catch (const std::runtime_error& e) {
+        std::cerr << "Erreur lors de la lecture du fichier : " << e.what() << std::endl;
+    }
+    
+    
+    // TEST PARSEUR
+    //testParseur();
 }
 
 

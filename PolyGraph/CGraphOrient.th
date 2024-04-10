@@ -114,7 +114,7 @@ inline void PGraphOrient<TArc, TSommet>::GPOModifierIdentifiantSommet(const stri
 
 		throw logic_error(sDescription);
 	}
-	if (GPOTrouverSommmet(sNouvelIdentifiant) != nullptr)
+	if (GPOTrouverSommet(sNouvelIdentifiant) != nullptr)
 	{
 		ostringstream ssMessageErreur;
 
@@ -139,7 +139,7 @@ inline void PGraphOrient<TArc, TSommet>::GPOModifierIdentifiantSommet(const stri
 		vARCArcsEntrants[uiBoucle]->ARCModifierOrigine(sNouvelIdentifiant);
 	}
 
-	SMTAncienSommet->SMT //Continuer ici, renommer l'identifiant du sommet puis tester
+	//SMTAncienSommet->SMT //Continuer ici, renommer l'identifiant du sommet puis tester
 
 }
 
