@@ -3,7 +3,15 @@
 #include <stdexcept>
 using namespace std;
 
-
+/******************************************************
+* PRSMinuscule
+*******************************************************
+* Entrée : sParam, chaîne de caractère à modifier
+* Nécessite : Rien
+* Sortie : string 
+* Entraîne : La transformation de toute la chaîne de 
+* caractère en minuscule
+******************************************************/
 string CParseur::PRSMinuscule(string sParam)
 {
     for (char& cLettre : sParam) {
@@ -12,6 +20,17 @@ string CParseur::PRSMinuscule(string sParam)
     return sParam;
 }
 
+/******************************************************
+* PRSLireValeur
+*******************************************************
+* Entrée : sFichier, fichier à traiter, 
+* sMotCle, châine de caractère à chercher
+* Nécessite : Rien
+* Sortie : string
+* Entraîne : Vérification de la présence du mot clé
+* sous la forme souhaitée dans le fichier et renvoie
+* la valeur associée
+******************************************************/
 string CParseur::PRSLireValeur(string sFichier, string sMotCle)
 {
     ifstream strFichier(sFichier); 
@@ -45,10 +64,22 @@ string CParseur::PRSLireValeur(string sFichier, string sMotCle)
     return ""; // Retourner une chaîne vide si aucune valeur correspondante n'a été trouvée
 }
 
-
-vector<vector<string>> CParseur::PRSLireValeurComplexe(const string &sFichier, const string &sMotCle, const vector<string> &vDelimiteurs)
+/******************************************************
+* PRSLireValeurComplexe
+*******************************************************
+* Entrée : sFichier, fichier à traiter,
+* sMotCle, châine de caractère à chercher
+* vDelimiteurs, liste de châine de caractère contenant
+* les délimiteurs
+* Nécessite : Rien
+* Sortie : map<string, vector<string>>
+* Entraîne : Vérification de la présence du mot clé
+* sous la forme souhaitée dans le fichier et renvoie
+* les valeurs associées
+******************************************************/
+map<string, vector<string>> CParseur::PRSLireValeurComplexe(const string &sFichier, const string &sMotCle, const vector<string> &vDelimiteurs)
 {   
-    vector<vector<string>> vDonnees;
+    map<string, vector<string>> vDonnees;
     ifstream strFichier(sFichier);
 
     if (strFichier.is_open()) {
@@ -64,7 +95,8 @@ vector<vector<string>> CParseur::PRSLireValeurComplexe(const string &sFichier, c
                     for (const string& sDelimiteurs : vDelimiteurs) {
                         // Créer une fonction PRSLireValeurLigne qui fait pareil que PRSLireValeur mais sur une seule ligne
                         // Cherche le mot clé suivi de =
-                        // Stocke dans une variable tout ce qui suit le = ( sauf les premiers espaces ) jusqu'à rencontré soit une virgule ou fin de ligne
+                        // Stocke dans une variable tout ce qui suit le = ( sauf les premiers espaces ) jusqu'à rencontré soit une virgule ou fin de ligne et recommence
+                        vDonnees[sDelimiteurs].push_back(PRSLireValeurLigne(sLigne,sDelimiteurs));
                     }
                 }
             }
@@ -77,3 +109,37 @@ vector<vector<string>> CParseur::PRSLireValeurComplexe(const string &sFichier, c
 
     return vDonnees;
 }
+
+/******************************************************
+* PRSLireValeurLigne
+*******************************************************
+* Entrée : sLigne, ligne à traiter,
+* sMotCle, châine de caractère à chercher
+* Nécessite : Rien
+* Sortie : string
+* Entraîne : Vérification de la présence du mot clé
+* sous la forme souhaitée sur la ligne uniquement et
+* renvoie la valeur associée
+******************************************************/
+string CParseur::PRSLireValeurLigne(const string& sLigne, const string& sMotCle)
+{
+    string sLigneMinuscule = PRSMinuscule(sLigne);
+    string sMotCleMinuscule = PRSMinuscule(sMotCle);
+    size_t stPosMotCle = sLigneMinuscule.find(sMotCleMinuscule);
+    if (stPosMotCle != string::npos) {
+        size_t stPosEgal = sLigneMinuscule.find('=', stPosMotCle);
+        if (stPosEgal != string::npos) {
+            size_t stPosVirgule = sLigneMinuscule.find(',', stPosEgal);
+            if (stPosVirgule != string::npos) {
+                size_t stPosNonEspace = sLigne.find_first_not_of(" \t", stPosEgal + 1);
+                return sLigne.substr(stPosNonEspace, stPosVirgule - stPosNonEspace);
+            }
+            else{
+                size_t stPosNonEspace = sLigne.find_first_not_of(" \t", stPosEgal + 1);
+                return sLigne.substr(stPosNonEspace);
+            }
+        }
+    }
+    return "";
+}
+
