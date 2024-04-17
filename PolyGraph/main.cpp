@@ -30,26 +30,35 @@ void testCGraphOrient()
 
 int main()
 {
-    //testCGraphOrient();
 
+    //testCGraphOrient();
     //cout << "------------------------------------------FIN TEST CGraphOrient------------------------------------------" << endl;
 
 
-    string fichier = "./donnees.txt";
-    // TEST LIRE VALEUR
-    // cout << CParseur::PRSLireValeur(fichier, "nbarcs") << endl;
+    try
+    {
+        string fichier = "./donnees.txt";
 
-    
-    // TEST LIRE VALEUR COMPLEXE
-    string motCle = "Arcs";
-    vector<string> delimiteurs = { "Debut","Fin"};
-    vector<vector<string>> valeursComplexes = CParseur::PRSLireValeurComplexe(fichier, motCle, delimiteurs);
-    for (const auto& valeurs : valeursComplexes) {
-        cout << "Valeurs complexes : ";
-        for (const auto& valeur : valeurs) {
-            cout << valeur << " ";
+        // TEST LIRE VALEUR
+        // cout << CParseur::PRSLireValeur(fichier, "nbarcs") << endl;
+
+
+        // TEST LIRE VALEUR COMPLEXE
+        string motCle = "Sommets";
+        vector<string> delimiteurs = { "Numero"};
+        map<string, vector<string>> valeursComplexes = CParseur::PRSLireValeurComplexe(fichier, motCle, delimiteurs);
+        for (const auto& entry : valeursComplexes) {
+            cout << "Cle : " << entry.first << endl;
+            cout << "Valeur : ";
+            for (const auto& value : entry.second) {
+                cout << value << " ";
+            }
+            cout << endl;
         }
-        cout << endl;
+    }
+    catch (const std::runtime_error& erreur)
+    {
+        std::cerr << "Runtime error: " << erreur.what() << std::endl;
     }
 }
 

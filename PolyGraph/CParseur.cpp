@@ -1,6 +1,7 @@
 #include "CParseur.h"
 #include <iostream>
 #include <stdexcept>
+#include <algorithm>
 using namespace std;
 
 /******************************************************
@@ -14,9 +15,7 @@ using namespace std;
 ******************************************************/
 string CParseur::PRSMinuscule(string sParam)
 {
-    for (char& cLettre : sParam) {
-        cLettre = tolower(cLettre);
-    }
+    transform(sParam.begin(), sParam.end(), sParam.begin(), tolower);
     return sParam;
 }
 
