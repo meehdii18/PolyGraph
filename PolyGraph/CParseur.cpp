@@ -7,11 +7,11 @@ using namespace std;
 /******************************************************
 * PRSMinuscule
 *******************************************************
-* EntrÈe : sParam, chaÓne de caractËre ‡ modifier
-* NÈcessite : Rien
+* Entr√©e : sParam, cha√Æne de caract√®re √† modifier
+* N√©cessite : rien
 * Sortie : string 
-* EntraÓne : La transformation de toute la chaÓne de 
-* caractËre en minuscule
+* Entra√Æne : La transformation de toute la cha√Æne de 
+* caract√®re en minuscule
 ******************************************************/
 string CParseur::PRSMinuscule(string sParam)
 {
@@ -22,13 +22,13 @@ string CParseur::PRSMinuscule(string sParam)
 /******************************************************
 * PRSLireValeur
 *******************************************************
-* EntrÈe : sFichier, fichier ‡ traiter, 
-* sMotCle, ch‚ine de caractËre ‡ chercher
-* NÈcessite : Rien
+* Entr√©e : sFichier, fichier √† traiter, 
+* sMotCle, ch√¢ine de caract√®re √† chercher
+* N√©cessite : Rien
 * Sortie : string
-* EntraÓne : VÈrification de la prÈsence du mot clÈ
-* sous la forme souhaitÈe dans le fichier et renvoie
-* la valeur associÈe
+* Entra√Æne : V√©rification de la pr√©sence du mot cl√©
+* sous la forme souhait√©e dans le fichier et renvoie
+* la valeur associ√©e
 ******************************************************/
 string CParseur::PRSLireValeur(string sFichier, string sMotCle)
 {
@@ -37,17 +37,17 @@ string CParseur::PRSLireValeur(string sFichier, string sMotCle)
     if (strFichier.is_open()) {
         string sLigne;
         while (getline(strFichier, sLigne)) {
-            // VÈrifier si la ligne ne se trouve pas entre des crochet car on la traite dans l'autre version de LireValeur
+            // V√©rifier si la ligne ne se trouve pas entre des crochet car on la traite dans l'autre version de LireValeur
             if (sLigne.find('[') == string::npos && sLigne.find(']') == string::npos) {
                 size_t stPosEgal = sLigne.find('=');
                 if (stPosEgal != string::npos) { // S'il y a bien un = dans la ligne et qu'il n'y a pas de crochet on traite la ligne
                     string sMotMinuscule = PRSMinuscule(sMotCle);
                     string sLigneMinuscule = PRSMinuscule(sLigne.substr(0, stPosEgal));
-                    // Supprimer les espaces entre le = et le mot clÈ
+                    // Supprimer les espaces entre le = et le mot cl√©
                     sLigneMinuscule.erase(remove_if(sLigneMinuscule.begin(), sLigneMinuscule.end(), ::isspace), sLigneMinuscule.end());
                     if (sLigneMinuscule == sMotMinuscule) {
                         string sValeur = sLigne.substr(stPosEgal + 1);
-                        // Retirer les espaces au dÈbut de la chaÓne
+                        // Retirer les espaces au d√©but de la cha√Æne
                         sValeur.erase(0, sValeur.find_first_not_of(" \t"));
                         return sValeur;
                     }
@@ -60,21 +60,21 @@ string CParseur::PRSLireValeur(string sFichier, string sMotCle)
         throw runtime_error("Impossible d'ouvrir le fichier");
     }
 
-    return ""; // Retourner une chaÓne vide si aucune valeur correspondante n'a ÈtÈ trouvÈe
+    return ""; // Retourner une cha√Æne vide si aucune valeur correspondante n'a √©t√© trouv√©e
 }
 
 /******************************************************
 * PRSLireValeurComplexe
 *******************************************************
-* EntrÈe : sFichier, fichier ‡ traiter,
-* sMotCle, ch‚ine de caractËre ‡ chercher
-* vDelimiteurs, liste de ch‚ine de caractËre contenant
-* les dÈlimiteurs
-* NÈcessite : Rien
+* Entr√©e : sFichier, fichier √† traiter,
+* sMotCle, ch√¢ine de caract√®re √† chercher
+* vDelimiteurs, liste de ch√¢ine de caract√®re contenant
+* les d√©limiteurs
+* N√©cessite : Rien
 * Sortie : map<string, vector<string>>
-* EntraÓne : VÈrification de la prÈsence du mot clÈ
-* sous la forme souhaitÈe dans le fichier et renvoie
-* les valeurs associÈes
+* Entra√Æne : V√©rification de la pr√©sence du mot cl√©
+* sous la forme souhait√©e dans le fichier et renvoie
+* les valeurs associ√©es
 ******************************************************/
 map<string, vector<string>> CParseur::PRSLireValeurComplexe(const string &sFichier, const string &sMotCle, const vector<string> &vDelimiteurs)
 {   
@@ -86,15 +86,15 @@ map<string, vector<string>> CParseur::PRSLireValeurComplexe(const string &sFichi
         while (getline(strFichier, sLigne)) {
             // On parcours chaque ligne
             // On cherche "sMotCle=["
-            // sur les ligne suivantes jusqu'‡ "]" on appel PRSLireValeur simple pour chaque dÈlimiteurs et 
-            // on ajoute dans vDonnees le rÈsultat pour chaque dÈlimiteurs sur chaque ligne
+            // sur les ligne suivantes jusqu'√† "]" on appel PRSLireValeur simple pour chaque d√©limiteurs et 
+            // on ajoute dans vDonnees le r√©sultat pour chaque d√©limiteurs sur chaque ligne
             if (sLigne.find(sMotCle + "=[") != string::npos) {
                 while (!(sLigne == "]")) {
                     getline(strFichier, sLigne);
                     for (const string& sDelimiteurs : vDelimiteurs) {
-                        // CrÈer une fonction PRSLireValeurLigne qui fait pareil que PRSLireValeur mais sur une seule ligne
-                        // Cherche le mot clÈ suivi de =
-                        // Stocke dans une variable tout ce qui suit le = ( sauf les premiers espaces ) jusqu'‡ rencontrÈ soit une virgule ou fin de ligne et recommence
+                        // Cr√©er une fonction PRSLireValeurLigne qui fait pareil que PRSLireValeur mais sur une seule ligne
+                        // Cherche le mot cl√© suivi de =
+                        // Stocke dans une variable tout ce qui suit le = ( sauf les premiers espaces ) jusqu'√† rencontr√© soit une virgule ou fin de ligne et recommence
                         vDonnees[sDelimiteurs].push_back(PRSLireValeurLigne(sLigne,sDelimiteurs));
                     }
                 }
@@ -112,13 +112,13 @@ map<string, vector<string>> CParseur::PRSLireValeurComplexe(const string &sFichi
 /******************************************************
 * PRSLireValeurLigne
 *******************************************************
-* EntrÈe : sLigne, ligne ‡ traiter,
-* sMotCle, ch‚ine de caractËre ‡ chercher
-* NÈcessite : Rien
+* Entr√©e : sLigne, ligne √† traiter,
+* sMotCle, ch√¢ine de caract√®re √† chercher
+* N√©cessite : Rien
 * Sortie : string
-* EntraÓne : VÈrification de la prÈsence du mot clÈ
-* sous la forme souhaitÈe sur la ligne uniquement et
-* renvoie la valeur associÈe
+* Entra√Æne : V√©rification de la pr√©sence du mot cl√©
+* sous la forme souhait√©e sur la ligne uniquement et
+* renvoie la valeur associ√©e
 ******************************************************/
 string CParseur::PRSLireValeurLigne(const string& sLigne, const string& sMotCle)
 {
