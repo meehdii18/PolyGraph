@@ -38,14 +38,15 @@ int main()
     try
     {
         string fichier = "./donnees.txt";
+        string arc = "nbarcs";
 
         // TEST LIRE VALEUR
-        // cout << CParseur::PRSLireValeur(fichier, "nbarcs") << endl;
+        cout << "NBArcs : " << CParseur::PRSLireValeur(fichier, arc) << endl;
 
 
         // TEST LIRE VALEUR COMPLEXE
-        string motCle = "Sommets";
-        vector<string> delimiteurs = { "Numero"};
+        string motCle = "Arcs";
+        vector<string> delimiteurs = { "Debut","Fin" };
         map<string, vector<string>> valeursComplexes = CParseur::PRSLireValeurComplexe(fichier, motCle, delimiteurs);
         for (const auto& entry : valeursComplexes) {
             cout << "Cle : " << entry.first << endl;
