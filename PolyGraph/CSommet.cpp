@@ -3,11 +3,11 @@
 /******************************************************
 * ~CSommet
 *******************************************************
-* Entrée : Rien
-* Nécessite : Rien
+* EntrÃ©e : Rien
+* NÃ©cessite : Rien
 * Sortie : Rien
-* Entraîne : Le sommet est détruit ainsi que les
-* potentiels arcs qui lui sont associés
+* EntraÃ®ne : Le sommet est dÃ©truit ainsi que les
+* potentiels arcs qui lui sont associÃ©s
 ******************************************************/
 CSommet::~CSommet()
 {
@@ -19,7 +19,6 @@ CSommet::~CSommet()
 	{
 		delete vSMTArcsEntrants[uiBoucle];
 	}
-
 	for (uiBoucle = 0; uiBoucle < uiNombreArcsSortants; uiBoucle++)
 	{
 		delete vSMTArcsSortants[uiBoucle];
@@ -30,10 +29,10 @@ CSommet::~CSommet()
 /******************************************************
 * SMTAjouterArcEntrant
 *******************************************************
-* Entrée : Un arc rentrant dans le sommet
-* Nécessite : Rien
+* EntrÃ©e : Un arc rentrant dans le sommet
+* NÃ©cessite : Rien
 * Sortie : Rien
-* Entraîne : L'arc est ajouté dans la liste des arcs
+* EntraÃ®ne : L'arc est ajoutÃ© dans la liste des arcs
 * entrant dans le sommet
 ******************************************************/
 void CSommet::SMTAjouterArcEntrant(CArc* ARCArcEntrant)
@@ -51,7 +50,7 @@ void CSommet::SMTAjouterArcEntrant(CArc* ARCArcEntrant)
 			ssMessageErreur << ARCArcEntrant->ARCLireOrigine().c_str();
 			ssMessageErreur << " et allant vers le sommet ";
 			ssMessageErreur << SMTLireIdentifiant().c_str();
-			ssMessageErreur << " existe déjà et n'a donc pas été ajouté.";
+			ssMessageErreur << " existe dÃ©jÃ  et n'a donc pas Ã©tÃ© ajoutÃ©.";
 
 			string sDescription = ssMessageErreur.str();
 
@@ -66,10 +65,10 @@ void CSommet::SMTAjouterArcEntrant(CArc* ARCArcEntrant)
 /******************************************************
 * SMTSupprimerArcEntrant
 *******************************************************
-* Entrée : Un arc rentrant dans le sommet
-* Nécessite : Rien
+* EntrÃ©e : Un arc rentrant dans le sommet
+* NÃ©cessite : Rien
 * Sortie : Rien
-* Entraîne : L'arc est supprimé de la liste des arcs
+* EntraÃ®ne : L'arc est supprimÃ© de la liste des arcs
 * entrant dans le sommet
 ******************************************************/
 void CSommet::SMTSupprimerArcEntrant(CArc* ARCArcEntrant)
@@ -82,10 +81,10 @@ void CSommet::SMTSupprimerArcEntrant(CArc* ARCArcEntrant)
 /******************************************************
 * SMTAjouterArcSortant
 *******************************************************
-* Entrée : Un arc sortant du sommet
-* Nécessite : Rien
+* EntrÃ©e : Un arc sortant du sommet
+* NÃ©cessite : Rien
 * Sortie : Rien
-* Entraîne : L'arc est ajouté dans la liste des arcs
+* EntraÃ®ne : L'arc est ajoutÃ© dans la liste des arcs
 * sortant du sommet
 ******************************************************/
 void CSommet::SMTAjouterArcSortant(CArc* ARCArcSortant)
@@ -103,7 +102,7 @@ void CSommet::SMTAjouterArcSortant(CArc* ARCArcSortant)
 			ssMessageErreur << ARCArcSortant->ARCLireDestination().c_str();
 			ssMessageErreur << " et allant vers le sommet ";
 			ssMessageErreur << SMTLireIdentifiant().c_str();
-			ssMessageErreur << " existe déjà et n'a donc pas été ajouté.";
+			ssMessageErreur << " existe dÃ©jÃ  et n'a donc pas Ã©tÃ© ajoutÃ©.";
 
 			string sDescription = ssMessageErreur.str();
 
@@ -118,10 +117,10 @@ void CSommet::SMTAjouterArcSortant(CArc* ARCArcSortant)
 /******************************************************
 * SMTSupprimerArcSortant
 *******************************************************
-* Entrée : Un arc rentrant dans le sommet
-* Nécessite : Rien
+* EntrÃ©e : Un arc rentrant dans le sommet
+* NÃ©cessite : Rien
 * Sortie : Rien
-* Entraîne : L'arc est supprimé de la liste des arcs
+* EntraÃ®ne : L'arc est supprimÃ© de la liste des arcs
 * entrant dans le sommet
 ******************************************************/
 void CSommet::SMTSupprimerArcSortant(CArc* ARCArcSortant)
