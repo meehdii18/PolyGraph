@@ -2,17 +2,16 @@
 /******************************************************
 * CLASSE : CSommet
 *******************************************************
-* ROLE : Interface de la classe CSommet représentant
+* ROLE : Interface de la classe CSommet reprÃ©sentant
 * les sommets d'un graphe
 *******************************************************
 * VERSION : 1.0
-* AUTEUR : Mehdi AMELLADI et Raphaël AVELINE
+* AUTEUR : Mehdi AMELLADI et RaphaÃ«l AVELINE
 * DATE : 13/03/2024
 *******************************************************
 * INCLUSIONS EXTERNES :
 */
 #include "CArc.h"
-
 #include <iostream>
 #include <string>
 #include <vector>
@@ -20,7 +19,7 @@
 using namespace std;
 
 /* TYPES :
-* Pas de type particulier déclaré
+* Pas de type particulier dÃ©clarÃ©
 */
 
 /* VARIABLES:
@@ -42,11 +41,11 @@ public:
 	/******************************************************
 	* CSommet (interdit)
 	*******************************************************
-	* Entrée : Rien
-	* Nécessite : Rien
+	* EntrÃ©e : Rien
+	* NÃ©cessite : Rien
 	* Sortie : Rien
-	* Entraîne : Le sommet est initialisé avec une chaîne
-	* vide, celà n'est pas vraiment utile
+	* EntraÃ®ne : Le sommet est initialisÃ© avec une chaÃ®ne
+	* vide, celÃ  n'est pas vraiment utile
 	* Il est donc interdit
 	******************************************************/
 	CSommet() = delete;
@@ -55,36 +54,36 @@ public:
 	/******************************************************
 	* CSommet
 	*******************************************************
-	* Entrée : sParam string, l'identifiant avec lequel est
-	* initialisé le sommet
-	* Nécessite : Rien
+	* EntrÃ©e : sParam string, l'identifiant avec lequel est
+	* initialisÃ© le sommet
+	* NÃ©cessite : Rien
 	* Sortie : Rien
-	* Entraîne : Le sommet est initialisé avec 
-	* l'identifiant en paramètre
+	* EntraÃ®ne : Le sommet est initialisÃ© avec 
+	* l'identifiant en paramÃ¨tre
 	******************************************************/
 	CSommet(const string& sParam) : sSMTIdentifiant(sParam) {}
 
 	/******************************************************
 	* ~CSommet
 	*******************************************************
-	* Entrée : Rien
-	* Nécessite : Rien
+	* EntrÃ©e : Rien
+	* NÃ©cessite : Rien
 	* Sortie : Rien
-	* Entraîne : Le sommet est détruit ainsi que les 
-	* potentiels arcs qui lui sont associés
+	* EntraÃ®ne : Le sommet est dÃ©truit ainsi que les 
+	* potentiels arcs qui lui sont associÃ©s
 	******************************************************/
 	~CSommet();
 
 
-	// MÉTHODES
+	// MÃ‰THODES
 
 	/******************************************************
 	* SMTLireIdentifiant
 	*******************************************************
-	* Entrée : Rien
-	* Nécessite : Rien
+	* EntrÃ©e : Rien
+	* NÃ©cessite : Rien
 	* Sortie : L'identifiant du sommet, string
-	* Entraîne : La lecture de l'attribut identifiant du 
+	* EntraÃ®ne : La lecture de l'attribut identifiant du 
 	* sommet
 	******************************************************/
 	const string& SMTLireIdentifiant() const { return sSMTIdentifiant; };
@@ -92,10 +91,10 @@ public:
 	/******************************************************
 	* SMTLireArcsEntrants
 	*******************************************************
-	* Entrée : Rien
-	* Nécessite : Rien
+	* EntrÃ©e : Rien
+	* NÃ©cessite : Rien
 	* Sortie : Liste des arcs entrants du sommet, vector<CArc*>
-	* Entraîne : La lecture de l'attribut contenant la 
+	* EntraÃ®ne : La lecture de l'attribut contenant la 
 	* liste des arcs entrants
 	******************************************************/
 	vector<CArc*> SMTLireArcsEntrants() const { return vSMTArcsEntrants; };
@@ -103,10 +102,10 @@ public:
 	/******************************************************
 	* SMTAjouterArcEntrant
 	*******************************************************
-	* Entrée : Un arc rentrant dans le sommet
-	* Nécessite : Rien
+	* EntrÃ©e : Un arc rentrant dans le sommet
+	* NÃ©cessite : Rien
 	* Sortie : Rien
-	* Entraîne : L'arc est ajouté dans la liste des arcs
+	* EntraÃ®ne : L'arc est ajoutÃ© dans la liste des arcs
 	* entrant dans le sommet
 	******************************************************/
 	void SMTAjouterArcEntrant(CArc* ARCArcEntrant);
@@ -114,10 +113,10 @@ public:
 	/******************************************************
 	* SMTSupprimerArcEntrant
 	*******************************************************
-	* Entrée : Un arc rentrant dans le sommet
-	* Nécessite : Rien
+	* EntrÃ©e : Un arc rentrant dans le sommet
+	* NÃ©cessite : Rien
 	* Sortie : Rien
-	* Entraîne : L'arc est supprimé de la liste des arcs
+	* EntraÃ®ne : L'arc est supprimÃ© de la liste des arcs
 	* entrant dans le sommet
 	******************************************************/
 	void SMTSupprimerArcEntrant(CArc* ARCArcEntrant);
@@ -125,10 +124,10 @@ public:
 	/******************************************************
 	* SMTLireArcsSortants
 	*******************************************************
-	* Entrée : Rien
-	* Nécessite : Rien
+	* EntrÃ©e : Rien
+	* NÃ©cessite : Rien
 	* Sortie : Liste des arcs sortants du sommet, vector<CArc*>
-	* Entraîne : La lecture de l'attribut contenant la
+	* EntraÃ®ne : La lecture de l'attribut contenant la
 	* liste des arcs sortants
 	******************************************************/
 	vector<CArc*> SMTLireArcsSortants() const { return vSMTArcsSortants; };
@@ -136,10 +135,10 @@ public:
 	/******************************************************
 	* SMTAjouterArcSortant
 	*******************************************************
-	* Entrée : Un arc sortant du sommet
-	* Nécessite : Rien
+	* EntrÃ©e : Un arc sortant du sommet
+	* NÃ©cessite : Rien
 	* Sortie : Rien
-	* Entraîne : L'arc est ajouté dans la liste des arcs
+	* EntraÃ®ne : L'arc est ajoutÃ© dans la liste des arcs
 	* sortant du sommet
 	******************************************************/
 	void SMTAjouterArcSortant(CArc* ARCArcSortant);
@@ -147,10 +146,10 @@ public:
 	/******************************************************
 	* SMTSupprimerArcSortant
 	*******************************************************
-	* Entrée : Un arc rentrant dans le sommet
-	* Nécessite : Rien
+	* EntrÃ©e : Un arc rentrant dans le sommet
+	* NÃ©cessite : Rien
 	* Sortie : Rien
-	* Entraîne : L'arc est supprimé de la liste des arcs
+	* EntraÃ®ne : L'arc est supprimÃ© de la liste des arcs
 	* entrant dans le sommet
 	******************************************************/
 	void SMTSupprimerArcSortant(CArc* ARCArcSortant);
@@ -158,11 +157,11 @@ public:
 	/******************************************************
 	* operator==
 	*******************************************************
-	* Entrée : Deux sommets à comparer
-	* Nécessite : Rien
-	* Sortie : Vrai si les deux sommets ont le même
+	* EntrÃ©e : Deux sommets Ã  comparer
+	* NÃ©cessite : Rien
+	* Sortie : Vrai si les deux sommets ont le mÃªme
 	* identifiant
-	* Entraîne : Rien
+	* EntraÃ®ne : Rien
 	******************************************************/
 	bool operator==(const CSommet& SMTSommetAComparer) { 
 		return (SMTLireIdentifiant() == SMTSommetAComparer.SMTLireIdentifiant()); }
