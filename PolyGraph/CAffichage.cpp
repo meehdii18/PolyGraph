@@ -3,27 +3,27 @@
 /******************************************************
 * AFHAfficherSommet
 *******************************************************
-* EntrÈe : CSommet*, pointeur sur le sommet ‡ afficher
-* NÈcessite : Rien
+* Entr√©e : CSommet*, pointeur sur le sommet √† afficher
+* N√©cessite : Rien
 * Sortie : Rien
-* EntraÓne : L'affichage des informations concernants
-* le sommet en paramËtre
+* Entra√Æne : L'affichage des informations concernants
+* le sommet en param√®tre
 ******************************************************/
 void CAffichage::AFHAfficherSommet(const CSommet& SMTParam)
 {
 	string sId = SMTParam.SMTLireIdentifiant();
-	cout << "ID Sommet : " << sId << endl;
+	cout << "ID Sommet : " << sId << endl ;
 }
 
 
 /******************************************************
 * AFHAfficherSommetAvecArc
 *******************************************************
-* EntrÈe : CSommet*, pointeur sur le sommet ‡ afficher
-* NÈcessite : Rien
+* Entr√©e : CSommet*, pointeur sur le sommet √† afficher
+* N√©cessite : Rien
 * Sortie : Rien
-* EntraÓne : L'affichage des informations concernants
-* le sommet en paramËtre
+* Entra√Æne : L'affichage des informations concernants
+* le sommet en param√®tre
 ******************************************************/
 void CAffichage::AFHAfficherSommetAvecArc(const CSommet& SMTParam)
 {
@@ -51,11 +51,11 @@ void CAffichage::AFHAfficherSommetAvecArc(const CSommet& SMTParam)
 /******************************************************
 * AFHAfficherArc
 *******************************************************
-* EntrÈe : CArc*, pointeur sur l'arc ‡ afficher
-* NÈcessite : Rien
+* Entr√©e : CArc*, pointeur sur l'arc √† afficher
+* N√©cessite : Rien
 * Sortie : Rien
-* EntraÓne : L'affichage des informations concernants
-* l'arc en paramËtre
+* Entra√Æne : L'affichage des informations concernants
+* l'arc en param√®tre
 ******************************************************/
 void CAffichage::AFHAfficherArc(const CArc& ARCParam)
 {
@@ -68,12 +68,12 @@ void CAffichage::AFHAfficherArc(const CArc& ARCParam)
 /******************************************************
 * AFHAfficherGrapheOrient
 *******************************************************
-* EntrÈe : PGraphOrient<CArc,CSommet>*, pointeur sur
-* le graphe orientÈ ‡ afficher
-* NÈcessite : Rien
+* Entr√©e : PGraphOrient<CArc,CSommet>*, pointeur sur
+* le graphe orient√© √† afficher
+* N√©cessite : Rien
 * Sortie : Rien
-* EntraÓne : L'affichage des informations concernants
-* le graphe orientÈ en paramËtre
+* Entra√Æne : L'affichage des informations concernants
+* le graphe orient√© en param√®tre
 ******************************************************/
 void CAffichage::AFHAfficherGraphe(const PGraphOrient<CArc, CSommet>& GPOParam)
 {
