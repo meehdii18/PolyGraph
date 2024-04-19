@@ -6,7 +6,7 @@
 * des fonctions de parsage
 *******************************************************
 * VERSION : 1.0
-* AUTEUR : Mehdi AMELLADI et RaphaÎl AVELINE
+* AUTEUR : Mehdi AMELLADI et Rapha√´l AVELINE
 * DATE : 17/04/2024
 *******************************************************
 * INCLUSIONS EXTERNES :
@@ -15,10 +15,10 @@
 #include <map>
 #include <fstream>
 #include <sstream>
-using namespace std;
+using namespace std ;
 
 /* TYPES :
-* Pas de type particulier dÈclarÈ
+* Pas de type particulier d√©clar√©
 */
 
 /* VARIABLES:
@@ -30,67 +30,67 @@ public:
     /******************************************************
 	* CParseur (interdit)
 	*******************************************************
-	* EntrÈe : Rien
-	* NÈcessite : Rien
+	* Entr√©e : Rien
+	* N√©cessite : Rien
 	* Sortie : Rien
-	* EntraÓne : Il ne fait pas sens d'instancier un objet
-	* de la classe CParseur Ètant donnÈe que toutes les 
-	* mÈthodes sont statiques 
+	* Entra√Æne : Il ne fait pas sens d'instancier un objet
+	* de la classe CParseur √©tant donn√©e que toutes les 
+	* m√©thodes sont statiques 
 	******************************************************/
     CParseur() = delete;
 
 	
-	// MÈthodes
+	// M√©thodes
 
 	/******************************************************
 	* PRSMinuscule
 	*******************************************************
-	* EntrÈe : sParam, chaÓne de caractËre ‡ modifier
-	* NÈcessite : Rien
+	* Entr√©e : sParam, cha√Æne de caract√®re √† modifier
+	* N√©cessite : Rien
 	* Sortie : string
-	* EntraÓne : La transformation de toute la chaÓne de
-	* caractËre en minuscule
+	* Entra√Æne : La transformation de toute la cha√Æne de
+	* caract√®re en minuscule
 	******************************************************/
     static string PRSMinuscule(string sParam);
 
 	/******************************************************
 	* PRSLireValeur
 	*******************************************************
-	* EntrÈe : sFichier, fichier ‡ traiter,
-	* sMotCle, ch‚ine de caractËre ‡ chercher
-	* NÈcessite : Rien
+	* Entr√©e : sFichier, fichier √† traiter,
+	* sMotCle, ch√¢ine de caract√®re √† chercher
+	* N√©cessite : Rien
 	* Sortie : string
-	* EntraÓne : VÈrification de la prÈsence du mot clÈ
-	* sous la forme souhaitÈe dans le fichier et renvoie
-	* la valeur associÈe
+	* Entra√Æne : V√©rification de la pr√©sence du mot cl√©
+	* sous la forme souhait√©e dans le fichier et renvoie
+	* la valeur associ√©e
 	******************************************************/
     static string PRSLireValeur(string sFichier,string sMotCle);
 
 	/******************************************************
 	* PRSLireValeurComplexe
 	*******************************************************
-	* EntrÈe : sFichier, fichier ‡ traiter,
-	* sMotCle, ch‚ine de caractËre ‡ chercher
-	* vDelimiteurs, liste de ch‚ine de caractËre contenant
-	* les dÈlimiteurs
-	* NÈcessite : Rien
+	* Entr√©e : sFichier, fichier √† traiter,
+	* sMotCle, ch√¢ine de caract√®re √† chercher
+	* vDelimiteurs, liste de ch√¢ine de caract√®re contenant
+	* les d√©limiteurs
+	* N√©cessite : Rien
 	* Sortie : map<string, vector<string>>
-	* EntraÓne : VÈrification de la prÈsence du mot clÈ
-	* sous la forme souhaitÈe dans le fichier et renvoie
-	* les valeurs associÈes
+	* Entra√Æne : V√©rification de la pr√©sence du mot cl√©
+	* sous la forme souhait√©e dans le fichier et renvoie
+	* les valeurs associ√©es
 	******************************************************/
     static map<string,vector<string>> PRSLireValeurComplexe(const string& sFichier, const string& sMotCle, const vector<string>& vDelimiteurs);
 
 	/******************************************************
 	* PRSLireValeurLigne
 	*******************************************************
-	* EntrÈe : sLigne, ligne ‡ traiter,
-	* sMotCle, ch‚ine de caractËre ‡ chercher
-	* NÈcessite : Rien
+	* Entr√©e : sLigne, ligne √† traiter,
+	* sMotCle, ch√¢ine de caract√®re √† chercher
+	* N√©cessite : Rien
 	* Sortie : string
-	* EntraÓne : VÈrification de la prÈsence du mot clÈ
-	* sous la forme souhaitÈe sur la ligne uniquement et
-	* renvoie la valeur associÈe
+	* Entra√Æne : V√©rification de la pr√©sence du mot cl√©
+	* sous la forme souhait√©e sur la ligne uniquement et
+	* renvoie la valeur associ√©e
 	******************************************************/
     static string PRSLireValeurLigne(const string& sLigne, const string& sMotCle);
 };
