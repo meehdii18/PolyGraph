@@ -23,18 +23,26 @@ void testCGraphOrient()
 
     CAffichage::AFHAfficherGraphe(GPOGraphe);
 
-    GPOGraphe.GPOSupprimerSommet("Sommet 1");
+    GPOGraphe.GPOModifierIdentifiantSommet("Sommet 1", "Sommet 1 renomme");
 
     CAffichage::AFHAfficherGraphe(GPOGraphe);
+
+    GPOGraphe.GPOInverserArcs();
+
+    CAffichage::AFHAfficherGraphe(GPOGraphe);
+
+    GPOGraphe.GPOSupprimerSommet("Sommet 1 renomme");
+
+    CAffichage::AFHAfficherGraphe(GPOGraphe);
+
+    cout << "------------------------------------------FIN TEST------------------------------------------" << endl;
 }
 
 int main()
 {
 
-    //testCGraphOrient();
-    //cout << "------------------------------------------FIN TEST CGraphOrient------------------------------------------" << endl;
-
-
+    testCGraphOrient();
+    
     try
     {
         string fichier = "./donnees.txt";

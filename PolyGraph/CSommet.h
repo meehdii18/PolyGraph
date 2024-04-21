@@ -86,7 +86,18 @@ public:
 	* Entra√Æne : La lecture de l'attribut identifiant du 
 	* sommet
 	******************************************************/
-	const string& SMTLireIdentifiant() const { return sSMTIdentifiant; };
+	const string& SMTLireIdentifiant() const { return sSMTIdentifiant; }
+
+	/******************************************************
+	* SMTModifierIdentifiant
+	*******************************************************
+	* EntrÈe : sNouvelIdentifiant, un string
+	* NÈcessite : Rien
+	* Sortie : Rien
+	* EntraÓne : sNouveauIdentifiant devient le nouvel
+	* identifiant du sommet
+	******************************************************/
+	void SMTModifierIdentifiant(const string& sNouvelIdentifiant) { sSMTIdentifiant = sNouvelIdentifiant; }
 
 	/******************************************************
 	* SMTLireArcsEntrants
@@ -97,7 +108,7 @@ public:
 	* Entra√Æne : La lecture de l'attribut contenant la 
 	* liste des arcs entrants
 	******************************************************/
-	vector<CArc*> SMTLireArcsEntrants() const { return vSMTArcsEntrants; };
+	const vector<CArc*>& SMTLireArcsEntrants() const { return vSMTArcsEntrants; }
 
 	/******************************************************
 	* SMTAjouterArcEntrant
@@ -130,7 +141,7 @@ public:
 	* Entra√Æne : La lecture de l'attribut contenant la
 	* liste des arcs sortants
 	******************************************************/
-	vector<CArc*> SMTLireArcsSortants() const { return vSMTArcsSortants; };
+	vector<CArc*> SMTLireArcsSortants() const { return vSMTArcsSortants; }
 
 	/******************************************************
 	* SMTAjouterArcSortant

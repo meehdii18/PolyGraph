@@ -47,7 +47,7 @@ public:
 	* Entraîne : L'affichage de l'identifiant du sommet 
 	* en paramètre
 	******************************************************/
-	void static AFHAfficherSommet(const CSommet& SMTParam);
+	void static AFHAfficherListeSommets(const vector<string>& vsListe);
 
 	/******************************************************
 	* AFHAfficherSommetAvecArc
@@ -58,7 +58,7 @@ public:
 	* Entraîne : L'affichage de l'identifiant et des arcs
 	* du sommet en paramètre
 	******************************************************/
-	void static AFHAfficherSommetAvecArc(const CSommet& SMTParam);
+	void static AFHAfficherSommetAvecArc(const PGraphOrient<CArc, CSommet>& GPOParam, const string& sIdSommet);
 
 	/******************************************************
 	* AFHAfficherArc
@@ -69,7 +69,7 @@ public:
 	* Entraîne : L'affichage des informations concernants
 	* l'arc en paramètre
 	******************************************************/
-	void static AFHAfficherArc(const CArc& ARCParam);
+	void static AFHAfficherArc(const vector<vector<string>>& vvsListe);
 
 	/******************************************************
 	* AFHAfficherGraph

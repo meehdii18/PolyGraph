@@ -49,7 +49,7 @@ private:
 	* graphe, nullptr sinon
 	* Entraîne : Rien
 	******************************************************/
-	TSommet* GPOTrouverSommet(const string& sIdentifiant);
+	TSommet* GPOTrouverSommet(const string& sIdentifiant) const;
 
 	/******************************************************
 	* GPOTrouverArc
@@ -61,7 +61,7 @@ private:
 	* graphe, nullptr sinon
 	* Entraîne : Rien
 	******************************************************/
-	TArc* GPOTrouverArc(const string& sOrigine, const string& sDestination);
+	TArc* GPOTrouverArc(const string& sOrigine, const string& sDestination) const;
 
 public:
 	// CONSTRUCTEURS ET DESTRUCTEURS
@@ -94,7 +94,7 @@ public:
 	* Sortie : Rien
 	* Entraîne : Le graphe est détruit
 	******************************************************/
-	~PGraphOrient() {}
+	~PGraphOrient() {} // A MODIFIER !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 	// MÉTHODES
 
@@ -106,7 +106,7 @@ public:
 	* Sortie : Le vecteur contenant les arcs du graphe
 	* Entraîne : Rien
 	******************************************************/
-	const vector<TArc*>& GPOLireListeArcs() const { return vGPOListeArcs; }
+	vector<vector<string>> GPOLireListeArcs() const;
 
 	/******************************************************
 	* GPOLireListeSommets
@@ -116,7 +116,31 @@ public:
 	* Sortie : Le vecteur contenant les sommets du graphe
 	* Entraîne : Rien
 	******************************************************/
-	const vector<TSommet*>& GPOLireListeSommets() const { return vGPOListeSommets; }
+	vector<string> GPOLireListeSommets() const;
+
+	/******************************************************
+	* GPOLirePredecesseursSommets
+	*******************************************************
+	* Entrée : Rien
+	* Nécessite : Rien
+	* Sortie : Le vecteur contenant les sommets depuis
+	* lesquels des arcs du graphe viennent au sommet
+	* d'identifiant sIDSommet.
+	* Entraîne : Rien
+	******************************************************/
+	vector<string> GPOLirePredecesseursSommet(const string& sIdSommet) const;
+
+	/******************************************************
+	* GPOLireSuccesseursSommets
+	*******************************************************
+	* Entrée : Rien
+	* Nécessite : Rien
+	* Sortie : Le vecteur contenant les sommets vers
+	* lesquels des arcs du graphe vont depuis le sommet
+	* d'identifiant sIDSommet.
+	* Entraîne : Rien
+	******************************************************/
+	vector<string> GPOLireSuccesseursSommet(const string& sIdSommet) const;
 
 	/******************************************************
 	* GPOAjouterSommet
@@ -179,6 +203,16 @@ public:
 	* sommets d'origine et de destination
 	******************************************************/
 	void GPOSupprimerArc(const string& sOrigine, const string& sDestination);
+
+	/******************************************************
+	* GPOInverserArcs
+	*******************************************************
+	* Entrée : Rien
+	* Nécessite : Rien
+	* Sortie : Rien
+	* Entraîne : Tous les arcs du graphe sont inversés
+	******************************************************/
+	void GPOInverserArcs(); // A METTRE DANS UNE CLASSE D'OPÉRATIONS SUR LES GRAPHES
 };
 
 #include "CGraphOrient.th"
