@@ -141,6 +141,7 @@
   <ItemGroup>
     <ClCompile Include="CAffichage.cpp" />
     <ClCompile Include="CArc.cpp" />
+    <ClCompile Include="CCreateurGraph.cpp" />
     <ClCompile Include="CGraph.cpp" />
     <ClCompile Include="CGraphOrient.cpp" />
     <ClCompile Include="CParseur.cpp" />
@@ -150,6 +151,7 @@
   <ItemGroup>
     <ClInclude Include="CAffichage.h" />
     <ClInclude Include="CArc.h" />
+    <ClInclude Include="CCreateurGraph.h" />
     <ClInclude Include="CGraph.h" />
     <ClInclude Include="CGraphOrient.h" />
     <ClInclude Include="CParseur.h" />
