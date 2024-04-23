@@ -2,9 +2,8 @@
 /******************************************************
 * CLASSE : CAffichage
 *******************************************************
-* ROLE : Interface de la classe CAffichage donnant
-* des outils pour afficher les graphes et leurs
-* elements
+* ROLE : Classe donnant des outils pour afficher des 
+* graphes et leurs elements
 *******************************************************
 * VERSION : 1.0
 * AUTEUR : Mehdi AMELLADI et Raphael AVELINE
@@ -24,7 +23,7 @@ using namespace std;
 /* VARIABLES:
 */
 
-class CAffichage //CONVERTIR EN STATIC
+class CAffichage
 {
 private :
 	//ATTRIBUTS

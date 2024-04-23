@@ -2,8 +2,7 @@
 /******************************************************
 * CLASSE : CParseur
 *******************************************************
-* ROLE : Classe statique contenant des fonctions de 
-* parsage
+* ROLE : Classe contenant des fonctions de parsage
 *******************************************************
 * VERSION : 1.0
 * AUTEUR : Mehdi AMELLADI et Raphael AVELINE
@@ -26,7 +25,7 @@ using namespace std ;
 /* VARIABLES:
 */
 
-class CParseur //CONVERTIR EN STATIC
+class CParseur
 {
 private:
 	//ATTRIBUTS

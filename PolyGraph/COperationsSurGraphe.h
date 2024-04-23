@@ -2,7 +2,7 @@
 /******************************************************
 * CLASSE : COperationsSurGraphe
 *******************************************************
-* ROLE : Classe statique permettant d'effectuer des
+* ROLE : Classe permettant d'effectuer des
 * operations plus avancees sur les graphes
 *******************************************************
 * VERSION : 1.0
@@ -25,7 +25,7 @@ using namespace std;
 /* VARIABLES:
 */
 
-class COperationsSurGraphe //CONVERTIR EN STATIC
+class COperationsSurGraphe
 {
 private:
 	//ATTRIBUTS
