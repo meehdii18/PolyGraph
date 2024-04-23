@@ -58,6 +58,28 @@ inline TArc* PGraphOrient<TArc, TSommet>::GPOTrouverArc(const string& sOrigine, 
 	return nullptr;
 }
 
+//CONSTRUCTEURS ET DESTRUCTEURS
+
+/******************************************************
+* ~PGraphOrient
+*******************************************************
+* Entrée : Rien
+* Nécessite : Rien
+* Sortie : Rien
+* Entraîne : Le graphe est détruit
+******************************************************/
+template<class TArc, class TSommet>
+inline PGraphOrient<TArc, TSommet>::~PGraphOrient()
+{
+	unsigned int uiBoucle = 0;
+	unsigned int uiCritereArret = (unsigned int)vGPOListeSommets.size();
+
+	for (uiBoucle; uiBoucle < uiCritereArret; uiBoucle++)
+	{
+		GPOSupprimerSommet(vGPOListeSommets[uiBoucle]->SMTLireIdentifiant());
+	}
+}
+
 //METHODES PUBLIQUES
 
 /******************************************************

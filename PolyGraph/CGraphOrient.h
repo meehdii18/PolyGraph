@@ -94,7 +94,7 @@ public:
 	* Sortie : Rien
 	* Entraîne : Le graphe est détruit
 	******************************************************/
-	~PGraphOrient() {} // A MODIFIER !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	~PGraphOrient();
 
 	// METHODES
 
