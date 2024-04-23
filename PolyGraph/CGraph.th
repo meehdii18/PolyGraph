@@ -1,0 +1,22 @@
+#pragma once
+#include "CGraph.h"
+
+template<class TArc, class TSommet>
+inline void PGraph<TArc, TSommet>::GPOAjouterArc(const string& sOrigine, const string& sDestination)
+{
+	PGraphOrient<TArc, TSommet>::GPOAjouterArc(sOrigine, sDestination);
+	if (sOrigine != sDestination)
+	{
+		PGraphOrient<TArc, TSommet>::GPOAjouterArc(sDestination, sOrigine);
+	}
+}
+
+template<class TArc, class TSommet>
+inline void PGraph<TArc, TSommet>::GPOSupprimerArc(const string& sOrigine, const string& sDestination)
+{
+	PGraphOrient<TArc, TSommet>::GPOSupprimerArc(sOrigine, sDestination);
+	if (sOrigine != sDestination)
+	{
+		PGraphOrient<TArc, TSommet>::GPOSupprimerArc(sDestination, sOrigine);
+	}
+}

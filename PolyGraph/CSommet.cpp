@@ -24,6 +24,8 @@ CSommet::~CSommet()
 		delete vSMTArcsSortants[uiBoucle];
 	}
 
+	//A modifier ou au moins vérifier, peut etre problème si Arc sur lui même.
+
 }
 
 /******************************************************

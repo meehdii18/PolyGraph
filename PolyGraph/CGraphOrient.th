@@ -460,9 +460,9 @@ inline void PGraphOrient<TArc, TSommet>::GPOInverserArcs()
 		if (ARCNouvelArc == nullptr)
 		{
 			GPOSupprimerArc(sAncienneOrigine, sAncienneDestination);
-		}
 
-		GPOAjouterArc(sAncienneDestination, sAncienneOrigine);
+			GPOAjouterArc(sAncienneDestination, sAncienneOrigine);
+		}
 
 		uiBoucle++;
 	}

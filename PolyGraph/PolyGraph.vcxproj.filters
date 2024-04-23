@@ -18,16 +18,10 @@
     <ClCompile Include="main.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="CGraphOrient.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
     <ClCompile Include="CSommet.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
     <ClCompile Include="CArc.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="CGraph.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
     <ClCompile Include="CAffichage.cpp">
@@ -59,10 +53,21 @@
     <ClInclude Include="CParseur.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
+    <ClInclude Include="COperationsSurGraphe.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="donnees.txt">
       <Filter>Fichiers de ressources</Filter>
     </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="CGraph.th">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </None>
+    <None Include="COperationsSurGraphe.th">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </None>
   </ItemGroup>
 </Project>
