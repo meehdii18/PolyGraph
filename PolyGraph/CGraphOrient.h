@@ -38,7 +38,7 @@ private:
 
 	vector<TSommet*> vGPOListeSommets;
 
-	// MÉTHODES PRIVÉES
+	// METHODES PRIVEES
 
 	/******************************************************
 	* GPOTrouverSommet
@@ -96,7 +96,7 @@ public:
 	******************************************************/
 	~PGraphOrient() {} // A MODIFIER !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-	// MÉTHODES
+	// METHODES
 
 	/******************************************************
 	* GPOLireListeArcs
