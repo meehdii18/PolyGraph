@@ -1,6 +1,6 @@
 #include "CParseur.h"
-#include "CGraphOrient.h"
-#include "CGraph.h"
+#include "PGraphOrient.h"
+#include "PGraph.h"
 #include "CAffichage.h"
 #include "COperationsSurGraphe.h"
 

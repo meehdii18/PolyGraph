@@ -1,5 +1,5 @@
 #pragma once
-#include "CGraphOrient.h"
+#include "PGraphOrient.h"
 
 //METHODES PRIVEES
 

@@ -12,7 +12,7 @@
 * INCLUSIONS EXTERNES :
 */
 
-#include "CGraphOrient.h"
+#include "PGraphOrient.h"
 
 #include <iostream>
 

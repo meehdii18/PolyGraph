@@ -13,7 +13,7 @@
 * INCLUSIONS EXTERNES :
 */
 
-#include "CGraphOrient.h"
+#include "PGraphOrient.h"
 
 /* TYPES :
 * Pas de type particulier declare
@@ -53,6 +53,6 @@ public :
 	void GPOSupprimerArc(const string& sOrigine, const string& sDestination);
 };
 
-#include "CGraph.th"
+#include "PGraph.th"
 
 

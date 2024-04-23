@@ -147,18 +147,18 @@
   <ItemGroup>
     <ClInclude Include="CAffichage.h" />
     <ClInclude Include="CArc.h" />
-    <ClInclude Include="CGraph.h" />
-    <ClInclude Include="CGraphOrient.h" />
+    <ClInclude Include="PGraph.h" />
+    <ClInclude Include="PGraphOrient.h" />
     <ClInclude Include="COperationsSurGraphe.h" />
     <ClInclude Include="CParseur.h" />
     <ClInclude Include="CSommet.h" />
-    <ClInclude Include="CGraphOrient.th" />
+    <ClInclude Include="PGraphOrient.th" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="donnees.txt" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="CGraph.th" />
+    <None Include="PGraph.th" />
     <None Include="COperationsSurGraphe.th" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
