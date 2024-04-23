@@ -72,7 +72,7 @@ public:
 	* Entraîne : Le sommet est détruit ainsi que les 
 	* potentiels arcs qui lui sont associés
 	******************************************************/
-	~CSommet();
+	~CSommet() {}
 
 
 	// MÉTHODES

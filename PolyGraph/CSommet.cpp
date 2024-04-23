@@ -1,34 +1,6 @@
 #include "CSommet.h"
 
 /******************************************************
-* ~CSommet
-*******************************************************
-* Entrée : Rien
-* Nécessite : Rien
-* Sortie : Rien
-* Entraîne : Le sommet est détruit ainsi que les
-* potentiels arcs qui lui sont associés
-******************************************************/
-CSommet::~CSommet()
-{
-	unsigned int uiNombreArcsEntrants = (unsigned int) vSMTArcsEntrants.size();
-	unsigned int uiNombreArcsSortants = (unsigned int) vSMTArcsSortants.size();
-	unsigned int uiBoucle = 0;
-
-	for (uiBoucle = 0; uiBoucle < uiNombreArcsEntrants; uiBoucle++)
-	{
-		delete vSMTArcsEntrants[uiBoucle];
-	}
-	for (uiBoucle = 0; uiBoucle < uiNombreArcsSortants; uiBoucle++)
-	{
-		delete vSMTArcsSortants[uiBoucle];
-	}
-
-	//A modifier ou au moins vérifier, peut etre problème si Arc sur lui même.
-
-}
-
-/******************************************************
 * SMTAjouterArcEntrant
 *******************************************************
 * Entrée : Un arc rentrant dans le sommet

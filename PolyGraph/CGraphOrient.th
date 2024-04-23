@@ -200,6 +200,11 @@ inline void PGraphOrient<TArc, TSommet>::GPOSupprimerSommet(const string& sIdent
 {
 	TSommet* SMTAncienSommet = GPOTrouverSommet(sIdentifiant);
 
+	vector<TArc*> vARCArcsEntrants = SMTAncienSommet->SMTLireArcsEntrants();
+	vector<TArc*> vARCArcsSortants = SMTAncienSommet->SMTLireArcsSortants();
+	unsigned int uiBoucle;
+	unsigned int uiCritereArret = (unsigned int)vARCArcsEntrants.size();
+
 	if (SMTAncienSommet == nullptr)
 	{
 		ostringstream ssMessageErreur;
@@ -213,21 +218,24 @@ inline void PGraphOrient<TArc, TSommet>::GPOSupprimerSommet(const string& sIdent
 		throw logic_error(sDescription);
 	}
 
-	vGPOListeArcs.erase(remove_if(vGPOListeArcs.begin(),
-		vGPOListeArcs.end(),
-		[&](TArc* ARCElement) {return ARCElement->ARCLireOrigine() == sIdentifiant or ARCElement->ARCLireDestination() == sIdentifiant; }),
-		vGPOListeArcs.end());
-		
+	for (uiBoucle = 0; uiBoucle < uiCritereArret; uiBoucle++)
+	{
+		GPOSupprimerArc(vARCArcsEntrants[uiBoucle]->ARCLireOrigine(), sIdentifiant);
+	}
+
+	uiCritereArret = (unsigned int)vARCArcsSortants.size();
+
+	for (uiBoucle = 0; uiBoucle < uiCritereArret; uiBoucle++)
+	{
+		GPOSupprimerArc(sIdentifiant, vARCArcsSortants[uiBoucle]->ARCLireDestination());
+	}
+
 	vGPOListeSommets.erase(remove_if(vGPOListeSommets.begin(),
 		vGPOListeSommets.end(),
 		[&](TSommet* SMTElement) {return SMTElement->SMTLireIdentifiant() == sIdentifiant; }),
 		vGPOListeSommets.end());
 
-	delete SMTAncienSommet; // modifier pour que les arcs soient s
-		
-	// supprimer le sommet de la liste de sommets du graphe
-	// puis delete le sommet
-	// C'est censé faire ça, à tester !!!
+	delete SMTAncienSommet;
 	
 }
 
@@ -290,6 +298,8 @@ inline void PGraphOrient<TArc, TSommet>::GPOModifierIdentifiantSommet(const stri
 	{
 		vARCArcsSortants[uiBoucle]->ARCModifierOrigine(sNouvelIdentifiant);
 	}
+
+	// MODIFIER AUSSI LA LISTE D'ARCS DU GRAPHE
 
 	SMTAncienSommet->SMTModifierIdentifiant(sNouvelIdentifiant);
 }
