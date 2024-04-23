@@ -435,13 +435,13 @@ inline void PGraphOrient<TArc, TSommet>::GPOSupprimerArc(const string& sOrigine,
 }
 
 /******************************************************
-	* GPOInverserArcs
-	*******************************************************
-	* Entrée : Rien
-	* Nécessite : Rien
-	* Sortie : Rien
-	* Entraîne : Tous les arcs du graphe sont inversés
-	******************************************************/
+* GPOInverserArcs
+*******************************************************
+* Entrée : Rien
+* Nécessite : Rien
+* Sortie : Rien
+* Entraîne : Tous les arcs du graphe sont inversés
+******************************************************/
 template<class TArc, class TSommet>
 inline void PGraphOrient<TArc, TSommet>::GPOInverserArcs()
 {

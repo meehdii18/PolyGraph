@@ -34,30 +34,8 @@ public:
 	* Sortie : Rien
 	* Entraîne : Tous les arcs du graphe sont inversés
 	******************************************************/
-	template <template<class, class> class PGraphOrient, class TArc, class TSommet> void static OSGInverserArcs(PGraphOrient<TArc, TSommet>& GPOParam)
-	{
-		vector<vector<string>> vARCListeArcs = GPOParam.GPOLireListeArcs();
-		unsigned int uiBoucle = 0;
-		unsigned int uiCritereArret = (unsigned int)vARCListeArcs.size();
-
-		while (uiBoucle < uiCritereArret)
-		{
-			string sAncienneOrigine = vARCListeArcs[uiBoucle][0];
-
-			string sAncienneDestination = vARCListeArcs[uiBoucle][1];
-
-			try
-			{
-				GPOParam.GPOAjouterArc(sAncienneDestination, sAncienneOrigine);
-				GPOParam.GPOSupprimerArc(sAncienneOrigine, sAncienneDestination);
-			}
-			catch (const std::logic_error& erreur)
-			{
-				cerr << "Logic error: " << erreur.what() << endl; // A CHANGER C DEGUEU
-			}
-
-			uiBoucle++;
-		}
-	}
+	template <template<class, class> class PGraphOrient, class TArc, class TSommet> void static OSGInverserArcs(PGraphOrient<TArc, TSommet>& GPOParam);
 
 };
+
+#include "COperationsSurGraphe.th"
