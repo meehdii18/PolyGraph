@@ -1,35 +1,53 @@
 #pragma once
-#include "CGraphOrient.h"
-//class CGraph : public PGraphOrient
-//{
+/******************************************************
+* CLASSE : CGraph
+*******************************************************
+* ROLE : Interface de la classe CGraph permettant de 
+* creer des graphes et d'effectuer des operations de
+* base dessus
+*******************************************************
+* VERSION : 1.0
+* AUTEUR : Mehdi AMELLADI et Raphael AVELINE
+* DATE : 19/03/2024
+*******************************************************
+* INCLUSIONS EXTERNES :
+*/
 
-//};
+#include "CGraphOrient.h"
+
+/* TYPES :
+* Pas de type particulier declare
+*/
+
+/* VARIABLES:
+*/
 
 template<class TArc, class TSommet> class PGraph : public PGraphOrient<TArc, TSommet>
 {
 public :
+	//METHODES
 
 	/******************************************************
 	* GPOAjouterArc
 	*******************************************************
-	* Entrée : sOrigine et sDestination l'origine et la
-	* destination de l'arc à créer
-	* Nécessite : Rien
+	* Entree : sOrigine et sDestination l'origine et la
+	* destination de l'arc a creer
+	* Necessite : Rien
 	* Sortie : Rien
-	* Entraîne : La création d'un arc reliant les sommets
-	* d'origine et de destination, si ceux-si existent et
-	* si l'arc n'existe pas.
+	* Entraine : La creation de deux arcs qui joignent les
+	* deux sommets sOrigine et sDestination dans les deux
+	* sens
 	******************************************************/
 	void GPOAjouterArc(const string& sOrigine, const string& sDestination);
 
 	/******************************************************
 	* GPOSupprimerArc
 	*******************************************************
-	* Entrée : sOrigine et sDestination l'origine et la
-	* destination de l'arc cà supprimer
-	* Nécessite : Rien
+	* Entree : sOrigine et sDestination l'origine et la
+	* destination de l'arc a supprimer
+	* Necessite : Rien
 	* Sortie : Rien
-	* Entraîne : La suppression de l'arc reliant les
+	* Entraine : La suppression des arcs reliant les
 	* sommets d'origine et de destination
 	******************************************************/
 	void GPOSupprimerArc(const string& sOrigine, const string& sDestination);

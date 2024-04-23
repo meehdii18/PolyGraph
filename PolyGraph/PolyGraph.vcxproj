@@ -140,7 +140,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="CAffichage.cpp" />
-    <ClCompile Include="CArc.cpp" />
     <ClCompile Include="CParseur.cpp" />
     <ClCompile Include="CSommet.cpp" />
     <ClCompile Include="main.cpp" />

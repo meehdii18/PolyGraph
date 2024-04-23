@@ -7,11 +7,10 @@ using namespace std;
 /******************************************************
 * PRSMinuscule
 *******************************************************
-* Entrée : sParam, chaîne de caractère à modifier
-* Nécessite : rien
-* Sortie : string 
-* Entraîne : La transformation de toute la chaîne de 
-* caractère en minuscule
+* Entree : sParam la chaine de caractères a modifier
+* Necessite : Rien
+* Sortie : sParam transformee en minuscule
+* Entraine : Rien
 ******************************************************/
 string CParseur::PRSMinuscule(string sParam)
 {
@@ -22,13 +21,12 @@ string CParseur::PRSMinuscule(string sParam)
 /******************************************************
 * PRSLireValeur
 *******************************************************
-* Entrée : sFichier, fichier à traiter, 
-* sMotCle, châine de caractère à chercher
-* Nécessite : Rien
-* Sortie : string
-* Entraîne : Vérification de la présence du mot clé
-* sous la forme souhaitée dans le fichier et renvoie
-* la valeur associée
+* Entree : sFichier le fichier a traiter,
+* sMotCle la chaine de caractères a chercher
+* Necessite : Rien
+* Sortie : le string contenant la valeur associee au
+* mot cle sMotCle
+* Entraine : Rien
 ******************************************************/
 string CParseur::PRSLireValeur(string sFichier, string sMotCle)
 {
@@ -37,17 +35,17 @@ string CParseur::PRSLireValeur(string sFichier, string sMotCle)
     if (strFichier.is_open()) {
         string sLigne;
         while (getline(strFichier, sLigne)) {
-            // Vérifier si la ligne ne se trouve pas entre des crochet car on la traite dans l'autre version de LireValeur
+            // Verifier si la ligne ne se trouve pas entre des crochet car on la traite dans l'autre version de LireValeur
             if (sLigne.find('[') == string::npos && sLigne.find(']') == string::npos) {
                 size_t stPosEgal = sLigne.find('=');
                 if (stPosEgal != string::npos) { // S'il y a bien un = dans la ligne et qu'il n'y a pas de crochet on traite la ligne
                     string sMotMinuscule = PRSMinuscule(sMotCle);
                     string sLigneMinuscule = PRSMinuscule(sLigne.substr(0, stPosEgal));
-                    // Supprimer les espaces entre le = et le mot clé
+                    // Supprimer les espaces entre le = et le mot cle
                     sLigneMinuscule.erase(remove_if(sLigneMinuscule.begin(), sLigneMinuscule.end(), ::isspace), sLigneMinuscule.end());
                     if (sLigneMinuscule == sMotMinuscule) {
                         string sValeur = sLigne.substr(stPosEgal + 1);
-                        // Retirer les espaces au début de la chaîne
+                        // Retirer les espaces au debut de la chaine
                         sValeur.erase(0, sValeur.find_first_not_of(" \t"));
                         return sValeur;
                     }
@@ -60,21 +58,20 @@ string CParseur::PRSLireValeur(string sFichier, string sMotCle)
         throw runtime_error("Impossible d'ouvrir le fichier");
     }
 
-    return ""; // Retourner une chaîne vide si aucune valeur correspondante n'a été trouvée
+    return ""; // Retourner une chaine vide si aucune valeur correspondante n'a ete trouvee
 }
 
 /******************************************************
 * PRSLireValeurComplexe
 *******************************************************
-* Entrée : sFichier, fichier à traiter,
-* sMotCle, châine de caractère à chercher
-* vDelimiteurs, liste de châine de caractère contenant
-* les délimiteurs
-* Nécessite : Rien
-* Sortie : map<string, vector<string>>
-* Entraîne : Vérification de la présence du mot clé
-* sous la forme souhaitée dans le fichier et renvoie
-* les valeurs associées
+* Entree : sFichier le fichier a traiter,
+* sMotCle la chaine de caractère a chercher,
+* vDelimiteurs la liste de chaine de caractères 
+* contenant les delimiteurs
+* Necessite : Rien
+* Sortie : Un vecteur contenant les valeurs associees 
+* au mot cle si celui-ci est present
+* Entraine : Rien
 ******************************************************/
 map<string, vector<string>> CParseur::PRSLireValeurComplexe(const string &sFichier, const string &sMotCle, const vector<string> &vDelimiteurs)
 {   
@@ -86,15 +83,15 @@ map<string, vector<string>> CParseur::PRSLireValeurComplexe(const string &sFichi
         while (getline(strFichier, sLigne)) {
             // On parcours chaque ligne
             // On cherche "sMotCle=["
-            // sur les ligne suivantes jusqu'à "]" on appel PRSLireValeur simple pour chaque délimiteurs et 
-            // on ajoute dans vDonnees le résultat pour chaque délimiteurs sur chaque ligne
+            // sur les ligne suivantes jusqu'a "]" on appel PRSLireValeur simple pour chaque delimiteurs et 
+            // on ajoute dans vDonnees le resultat pour chaque delimiteurs sur chaque ligne
             if (sLigne.find(sMotCle + "=[") != string::npos) {
                 while (!(sLigne == "]")) {
                     getline(strFichier, sLigne);
                     for (const string& sDelimiteurs : vDelimiteurs) {
-                        // Créer une fonction PRSLireValeurLigne qui fait pareil que PRSLireValeur mais sur une seule ligne
-                        // Cherche le mot clé suivi de =
-                        // Stocke dans une variable tout ce qui suit le = ( sauf les premiers espaces ) jusqu'à rencontré soit une virgule ou fin de ligne et recommence
+                        // Creer une fonction PRSLireValeurLigne qui fait pareil que PRSLireValeur mais sur une seule ligne
+                        // Cherche le mot cle suivi de =
+                        // Stocke dans une variable tout ce qui suit le = ( sauf les premiers espaces ) jusqu'a rencontre soit une virgule ou fin de ligne et recommence
                         vDonnees[sDelimiteurs].push_back(PRSLireValeurLigne(sLigne,sDelimiteurs));
                     }
                 }
@@ -112,13 +109,12 @@ map<string, vector<string>> CParseur::PRSLireValeurComplexe(const string &sFichi
 /******************************************************
 * PRSLireValeurLigne
 *******************************************************
-* Entrée : sLigne, ligne à traiter,
-* sMotCle, châine de caractère à chercher
-* Nécessite : Rien
-* Sortie : string
-* Entraîne : Vérification de la présence du mot clé
-* sous la forme souhaitée sur la ligne uniquement et
-* renvoie la valeur associée
+* Entree : sLigne la ligne a traiter,
+* sMotCle la chaine de caractère a chercher
+* Necessite : Rien
+* Sortie : un string contenant la valeur associee au
+* mot cle sMotCle si celui-ci est present
+* Entraine : Rien
 ******************************************************/
 string CParseur::PRSLireValeurLigne(const string& sLigne, const string& sMotCle)
 {

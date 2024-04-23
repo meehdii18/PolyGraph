@@ -4,10 +4,10 @@
 /******************************************************
 * OSGInverserArcs
 *******************************************************
-* Entrée : Rien
-* Nécessite : Rien
+* Entree : Rien
+* Necessite : Rien
 * Sortie : Rien
-* Entraîne : Tous les arcs du graphe sont inversés
+* Entraine : Inverse le sens de tous les arcs du graphe
 ******************************************************/
 template <template<class, class> class PGraphOrient, class TArc, class TSommet>
 void static COperationsSurGraphe::OSGInverserArcs(PGraphOrient<TArc, TSommet>& GPOParam)

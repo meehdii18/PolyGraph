@@ -2,95 +2,100 @@
 /******************************************************
 * CLASSE : CParseur
 *******************************************************
-* ROLE : Interface de la classe CParseur contenant
-* des fonctions de parsage
+* ROLE : Classe statique contenant des fonctions de 
+* parsage
 *******************************************************
 * VERSION : 1.0
-* AUTEUR : Mehdi AMELLADI et Raphaël AVELINE
+* AUTEUR : Mehdi AMELLADI et Raphael AVELINE
 * DATE : 17/04/2024
 *******************************************************
 * INCLUSIONS EXTERNES :
 */
+
 #include <vector>
 #include <map>
 #include <fstream>
 #include <sstream>
+
 using namespace std ;
 
 /* TYPES :
-* Pas de type particulier déclaré
+* Pas de type particulier declare
 */
 
 /* VARIABLES:
 */
 
-class CParseur {
+class CParseur //CONVERTIR EN STATIC
+{
+private:
+	//ATTRIBUTS
+
+	// Aucun attribut dans cette classe car ça n'aurait pas de sens d'en ajouter
+
 public:
-    // Constructeur et destructeur
+    // CONSTRUCTEURS ET DESTRUCTEURS
+
     /******************************************************
-	* CParseur (interdit)
+	* CParseur (delete)
 	*******************************************************
-	* Entrée : Rien
-	* Nécessite : Rien
+	* Entree : Rien
+	* Necessite : Rien
 	* Sortie : Rien
-	* Entraîne : Il ne fait pas sens d'instancier un objet
-	* de la classe CParseur étant donnée que toutes les 
-	* méthodes sont statiques 
+	* Entraine : Cela ne sert a rien d'instancier un objet
+	* de la classe CParseur car toutes les methodes sont 
+	* statiques 
 	******************************************************/
     CParseur() = delete;
 
 	
-	// Méthodes
+	// METHODES
 
 	/******************************************************
 	* PRSMinuscule
 	*******************************************************
-	* Entrée : sParam, chaîne de caractère à modifier
-	* Nécessite : Rien
-	* Sortie : string
-	* Entraîne : La transformation de toute la chaîne de
-	* caractère en minuscule
+	* Entree : sParam la chaine de caractères a modifier
+	* Necessite : Rien
+	* Sortie : sParam transformee en minuscule
+	* Entraine : Rien
 	******************************************************/
     static string PRSMinuscule(string sParam);
 
 	/******************************************************
 	* PRSLireValeur
 	*******************************************************
-	* Entrée : sFichier, fichier à traiter,
-	* sMotCle, châine de caractère à chercher
-	* Nécessite : Rien
-	* Sortie : string
-	* Entraîne : Vérification de la présence du mot clé
-	* sous la forme souhaitée dans le fichier et renvoie
-	* la valeur associée
+	* Entree : sFichier le fichier a traiter,
+	* sMotCle la chaine de caractères a chercher
+	* Necessite : Rien
+	* Sortie : le string contenant la valeur associee au
+	* mot cle sMotCle
+	* Entraine : Rien
 	******************************************************/
     static string PRSLireValeur(string sFichier,string sMotCle);
 
 	/******************************************************
 	* PRSLireValeurComplexe
 	*******************************************************
-	* Entrée : sFichier, fichier à traiter,
-	* sMotCle, châine de caractère à chercher
-	* vDelimiteurs, liste de châine de caractère contenant
-	* les délimiteurs
-	* Nécessite : Rien
-	* Sortie : map<string, vector<string>>
-	* Entraîne : Vérification de la présence du mot clé
-	* sous la forme souhaitée dans le fichier et renvoie
-	* les valeurs associées
-	******************************************************/
+	* Entree : sFichier le fichier a traiter,
+	* sMotCle la chaine de caractère a chercher,
+	* vDelimiteurs la liste de chaine de caractères
+	* contenant les delimiteurs
+	* Necessite : Rien
+	* Sortie : Un vecteur contenant les valeurs associees
+	* au mot cle si celui-ci est present
+	* Entraine : Rien
+	******************************************************/	
     static map<string,vector<string>> PRSLireValeurComplexe(const string& sFichier, const string& sMotCle, const vector<string>& vDelimiteurs);
 
 	/******************************************************
 	* PRSLireValeurLigne
 	*******************************************************
-	* Entrée : sLigne, ligne à traiter,
-	* sMotCle, châine de caractère à chercher
-	* Nécessite : Rien
-	* Sortie : string
-	* Entraîne : Vérification de la présence du mot clé
-	* sous la forme souhaitée sur la ligne uniquement et
-	* renvoie la valeur associée
+	* Entree : sLigne la ligne a traiter,
+	* sMotCle la chaine de caractère a chercher
+	* Necessite : Rien
+	* Sortie : un string contenant la valeur associee au
+	* mot cle sMotCle si celui-ci est present
+	* Entraine : Rien
 	******************************************************/
     static string PRSLireValeurLigne(const string& sLigne, const string& sMotCle);
 };

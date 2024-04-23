@@ -1,9 +1,10 @@
-#include <iostream>
 #include "CParseur.h"
 #include "CGraphOrient.h"
 #include "CGraph.h"
 #include "CAffichage.h"
 #include "COperationsSurGraphe.h"
+
+#include <iostream>
 
 using namespace std;
 
