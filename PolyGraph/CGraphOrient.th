@@ -435,40 +435,6 @@ inline void PGraphOrient<TArc, TSommet>::GPOSupprimerArc(const string& sOrigine,
 }
 
 /******************************************************
-* GPOInverserArcs
-*******************************************************
-* Entrée : Rien
-* Nécessite : Rien
-* Sortie : Rien
-* Entraîne : Tous les arcs du graphe sont inversés
-******************************************************/
-template<class TArc, class TSommet>
-inline void PGraphOrient<TArc, TSommet>::GPOInverserArcs()
-{
-	vector<TArc*> vARCListeArcs = vGPOListeArcs;
-	unsigned int uiBoucle = 0;
-	unsigned int uiCritereArret = (unsigned int)vARCListeArcs.size();
-
-	while (uiBoucle < uiCritereArret)
-	{
-		string sAncienneOrigine = vARCListeArcs[uiBoucle]->ARCLireOrigine();
-
-		string sAncienneDestination = vARCListeArcs[uiBoucle]->ARCLireDestination();
-
-		TArc* ARCNouvelArc = GPOTrouverArc(sAncienneDestination, sAncienneOrigine);
-
-		if (ARCNouvelArc == nullptr)
-		{
-			GPOSupprimerArc(sAncienneOrigine, sAncienneDestination);
-
-			GPOAjouterArc(sAncienneDestination, sAncienneOrigine);
-		}
-
-		uiBoucle++;
-	}
-}
-
-/******************************************************
 * GPOTrouverArc
 *******************************************************
 * Entrée : sOrigine et sDestination l'origine et la

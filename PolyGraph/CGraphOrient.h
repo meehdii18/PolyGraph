@@ -204,15 +204,6 @@ public:
 	******************************************************/
 	void GPOSupprimerArc(const string& sOrigine, const string& sDestination);
 
-	/******************************************************
-	* GPOInverserArcs
-	*******************************************************
-	* Entrée : Rien
-	* Nécessite : Rien
-	* Sortie : Rien
-	* Entraîne : Tous les arcs du graphe sont inversés
-	******************************************************/
-	void GPOInverserArcs(); // A METTRE DANS UNE CLASSE D'OPÉRATIONS SUR LES GRAPHES
 };
 
 #include "CGraphOrient.th"
