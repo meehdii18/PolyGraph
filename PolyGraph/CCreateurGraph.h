@@ -1,13 +1,13 @@
 #pragma once
 /******************************************************
-* CLASSE : CCreateurGraph (nom à potentiellement modifier)
+* CLASSE : CCreateurGraph (nom a potentiellement modifier)
 *******************************************************
 * ROLE : Interface de la classe CCreateurGraphe ayant 
-* comme rôle la création de graph à partir d'informations
-* récupérées via une entrée utilisateur
+* comme role la creation de graph a partir d'informations
+* recuperees via une entree utilisateur
 *******************************************************
 * VERSION : 1.0
-* AUTEUR : Mehdi AMELLADI et Raphaël AVELINE
+* AUTEUR : Mehdi AMELLADI et Raphaï¿½l AVELINE
 * DATE : 18/04/2024
 *******************************************************
 * INCLUSIONS EXTERNES :
@@ -23,32 +23,42 @@ private :
 public :
 	// Constructeurs et destructeurs
 
+ 	/******************************************************
+	* CCreateurGraph (defaut) // Je pense que ce sera delete et que y'aura que des mÃ©thodes statiques comme le parseur
+	*******************************************************
+	* Entree : Rien
+	* Necessite : Rien
+	* Sortie : Rien
+	* Entraine : Cela ne sert a rien d'instancier un objet
+	* de la classe CParseur car toutes les methodes sont
+	* statiques
+	******************************************************/
 	CCreateurGraph() = default;
 	
-	// Méthodes
+	// Methodes
 
 	/******************************************************
 	* CCGCreerGraphOrientFichier
 	*******************************************************
-	* Entrée : string, le fichier à traiter pour créer 
+	* Entree : string, le fichier a traiter pour creer
 	* le graphe
-	* Nécessite : Rien
+	* Necessite : Rien
 	* Sortie : Rien
-	* Entraîne : La lecture du fichier en paramètre et s'il
-	* est conforme, la création du graphe orienté associé
+	* Entraine : La lecture du fichier en parametre et s'il
+	* est conforme, la creation du graphe oriente associe
 	******************************************************/
-	void CCGCreerGraphOrientFichier(string& sFichier);
+	void CCGCreerGraphOrientDepuisFichier(string& sFichier);
 
 	/******************************************************
 	* CCGCreerGraphFichier
 	*******************************************************
-	* Entrée : string, le fichier à traiter pour créer
+	* Entree : string, le fichier a traiter pour crï¿½er
 	* le graphe
-	* Nécessite : Rien
+	* Necessite : Rien
 	* Sortie : Rien
-	* Entraîne : La lecture du fichier en paramètre et s'il
-	* est conforme, la création du graphe associé
+	* Entraine : La lecture du fichier en parametre et s'il
+	* est conforme, la creation du graphe associe
 	******************************************************/
-	void CCGCreerGraphFichier(string& sFichier);
+	void CCGCreerGraphDepuisFichier(string& sFichier);
 };
 
