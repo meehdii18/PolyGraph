@@ -2,96 +2,97 @@
 /******************************************************
 * CLASSE : CAffichage
 *******************************************************
-* ROLE : Interface de la classe CAffichage donnant
-* des outils pour afficher les éléments de chaque classe
-* du programme
+* ROLE : Classe donnant des outils pour afficher des 
+* graphes et leurs elements
 *******************************************************
 * VERSION : 1.0
-* AUTEUR : Mehdi AMELLADI et Raphaël AVELINE
+* AUTEUR : Mehdi AMELLADI et Raphael AVELINE
 * DATE : 02/04/2024
 *******************************************************
 * INCLUSIONS EXTERNES :
 */
-#include "CGraphOrient.h"
+
+#include "PGraphOrient.h"
+
 using namespace std;
+
+/* TYPES :
+* Pas de type particulier declare
+*/
+
+/* VARIABLES:
+*/
 
 class CAffichage
 {
 private :
+	//ATTRIBUTS
+
 	// Aucun attribut dans cette classe car ça n'aurait pas de sens d'en ajouter
 
 public:
 	// CONSTRUCTEURS ET DESTRUCTEUR
 
 	/******************************************************
-	* CAffichage (interdit)
+	* CAffichage (delete)
 	*******************************************************
-	* Entrée : Rien
-	* Nécessite : Rien
+	* Entree : Rien
+	* Necessite : Rien
 	* Sortie : Rien
-	* Entraîne : Il ne fait pas vraiment sens d'instancier
+	* Entraine : Il ne fait pas vraiment sens d'instancier
 	* un objet de la classe CAffichage donc le 
 	* constructeur est interdit
 	******************************************************/
 	CAffichage() = delete;
 
 
-	// MÉTHODES
+	// METHODES
 
 	/******************************************************
-	* AFHAfficherSommet
+	* AFHAfficherListeSommet
 	*******************************************************
-	* Entrée : CSommet*, le sommet à afficher
-	* Nécessite : Rien
+	* Entree : vsListe, la liste des identifiants des
+	* sommets a afficher
+	* Necessite : Rien
 	* Sortie : Rien
-	* Entraîne : L'affichage de l'identifiant du sommet 
-	* en paramètre
+	* Entraine : L'affichage des identifiants des sommets
+	* du graphe
 	******************************************************/
 	void static AFHAfficherListeSommets(const vector<string>& vsListe);
 
 	/******************************************************
 	* AFHAfficherSommetAvecArc
 	*******************************************************
-	* Entrée : CSommet*, le sommet à afficher
-	* Nécessite : Rien
+	* Entree : GPOParam le graphe auquel le sommet a 
+	* afficher appartient, et sIdSommet l'identifiant de ce
+	* sommet
+	* Necessite : Rien
 	* Sortie : Rien
-	* Entraîne : L'affichage de l'identifiant et des arcs
-	* du sommet en paramètre
+	* Entraine : L'affichage de l'identifiant et des arcs
+	* du sommet
 	******************************************************/
 	void static AFHAfficherSommetAvecArc(const PGraphOrient<CArc, CSommet>& GPOParam, const string& sIdSommet);
 
 	/******************************************************
-	* AFHAfficherArc
+	* AFHAfficherArcs
 	*******************************************************
-	* Entrée : CArc*, l'arc à afficher
-	* Nécessite : Rien
+	* Entree : vvsListe, la liste des origines et 
+	* destinations des arcs du graphe
+	* Necessite : Rien
 	* Sortie : Rien
-	* Entraîne : L'affichage des informations concernants
-	* l'arc en paramètre
+	* Entraine : L'affichage des informations des arcs du
+	* graphe
 	******************************************************/
-	void static AFHAfficherArc(const vector<vector<string>>& vvsListe);
-
-	/******************************************************
-	* AFHAfficherGraph
-	*******************************************************
-	* Entrée : PGraphOrient<CArc,CSommet>*, le graphe
-	* orienté à afficher
-	* Nécessite : Rien
-	* Sortie : Rien
-	* Entraîne : L'affichage des informations concernants
-	* le graphe orienté en paramètre
-	******************************************************/
-	void static AFHAfficherGraphe(const PGraphOrient<CArc,CSommet>& GPOParam);
+	void static AFHAfficherArcs(const vector<vector<string>>& vvsListe);
 
 	/******************************************************
 	* AFHAfficherGraphe
 	*******************************************************
-	* Entrée : PGraph<?,CSommet>*, le graphe 
-	* à afficher
-	* Nécessite : Rien
+	* Entree : GPOParam, le graphe a afficher
+	* Necessite : Rien
 	* Sortie : Rien
-	* Entraîne : L'affichage des informations concernants
-	* le graphe en paramètre
+	* Entraine : L'affichage des informations concernants
+	* le graphe passe en paramètre
 	******************************************************/
-	// void static AFHAfficherGraphe(PGraph<?, CSommet>* ?Param); ? -> Classe héritée de CArc ayant la même origine et destination pas encore créer et trigramme pas encore trouvé pour CGraphe
+	void static AFHAfficherGraphe(const PGraphOrient<CArc,CSommet>& GPOParam);
 };

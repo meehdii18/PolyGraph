@@ -2,11 +2,11 @@
 /******************************************************
 * CLASSE : CArc
 *******************************************************
-* ROLE : Interface de la classe Carc repr�sentant
-* les arcs d'un graphe
+* ROLE : Interface de la classe Carc representant les 
+* arcs d'un graphe
 *******************************************************
 * VERSION : 1.0
-* AUTEUR : Mehdi AMELLADI et Rapha�l AVELINE
+* AUTEUR : Mehdi AMELLADI et Raphael AVELINE
 * DATE : 13/03/2024
 *******************************************************
 * INCLUSIONS EXTERNES :
@@ -14,18 +14,21 @@
 
 #include <iostream>
 #include <string>
+
 using namespace std;
 
 /* TYPES :
-* Pas de type particulier d�clar�
+* Pas de type particulier declare
 */
 
 /* VARIABLES:
 */
+
 class CArc
 {
 private:
 	// ATTRIBUTS
+
 	string sARCOrigine;
 	string sARCDestination;
 
@@ -33,14 +36,14 @@ public:
 	// CONSTRUCTEURS ET DESTRUCTEUR
 
 	/******************************************************
-	* CArc (interdit)
+	* CArc (delete)
 	*******************************************************
-	* Entr�e : Rien
-	* N�cessite : Rien
+	* Entree : Rien
+	* Necessite : Rien
 	* Sortie : Rien
-	* Entra�ne : Un arc est initialis� avec une origine et
+	* Entraine : Un arc est initialise avec une origine et
 	* une destination vide, ce constructeur donne un objet
-	* non coh�rent qui n'est pas � utiliser en l'�tat.
+	* non coherent qui n'est pas a utiliser en l'etat.
 	* Il est donc interdit.
 	******************************************************/
 	CArc() = delete;
@@ -48,68 +51,78 @@ public:
 	/******************************************************
 	* CArc
 	*******************************************************
-	* Entr�e : sOrigine string, l'origine de l'arc
+	* Entree : sOrigine string, l'origine de l'arc
 	* sDestination string, la destination de l'arc
-	* N�cessite : Rien
+	* Necessite : Rien
 	* Sortie : Rien
-	* Entra�ne : Un arc reliant origine vers destination
-	* est initialis�
+	* Entraine : Un arc allant de sOrigine vers 
+	* sDestination est initialise
 	******************************************************/
-	CArc(const string &sOrigine, const string &sDestination);
+	CArc(const string& sOrigine, const string& sDestination) : sARCOrigine(sOrigine), sARCDestination(sDestination) {}
 
+	/******************************************************
+	* ~CArc (default)
+	*******************************************************
+	* Entree : Rien
+	* Necessite : Rien
+	* Sortie : Rien
+	* Entraine : L'arc est détruit
+	******************************************************/
 	~CArc() = default;
 
-	// M�THODES
+	// METHODES
 
 	/******************************************************
 	* ARCLireOrigine
 	*******************************************************
-	* Entr�e : Rien
-	* N�cessite : Rien
-	* Sortie : sARCOrigine : string
-	* Entra�ne : Rien
+	* Entree : Rien
+	* Necessite : Rien
+	* Sortie : sARCOrigine l'origine de l'arc
+	* Entraine : Rien
 	******************************************************/
 	const string& ARCLireOrigine() const { return sARCOrigine; }
 
 	/******************************************************
 	* ARCLireDestination
 	*******************************************************
-	* Entr�e : Rien
-	* N�cessite : Rien
-	* Sortie : sARCDestination : string
-	* Entra�ne : Rien
+	* Entree : Rien
+	* Necessite : Rien
+	* Sortie : sARCDestination la destination de l'arc
+	* Entraine : Rien
 	******************************************************/
 	const string& ARCLireDestination() const { return sARCDestination; }
 
 	/******************************************************
 	* ARCModifierOrigine
 	*******************************************************
-	* Entr�e : sParam string, la nouvelle origine de l'arc
-	* N�cessite : sParam appartient au graphe
+	* Entree : sParam string, la nouvelle origine de l'arc
+	* Necessite : le sommet d'identifiant sParam appartient 
+	* au graphe
 	* Sortie : Rien
-	* Entra�ne : L'origine de l'arc est modifi�e
+	* Entraine : L'origine de l'arc est modifiee
 	******************************************************/
 	void ARCModifierOrigine(const string& sParam) { sARCOrigine = sParam; }
 
 	/******************************************************
 	* ARCModifierDestination
 	*******************************************************
-	* Entr�e : sParam string, la nouvelle destination 
+	* Entree : sParam string, la nouvelle destination 
 	* de l'arc
-	* N�cessite : sParam appartient au graphe
+	* Necessite : le sommet d'identifiant sParam appartient 
+	* au graphe
 	* Sortie : Rien
-	* Entra�ne : La destination de l'arc est modifi�e
+	* Entraine : La destination de l'arc est modifiee
 	******************************************************/
 	void ARCModifierDestination(const string& sParam) { sARCDestination = sParam; }
 
 	/******************************************************
 	* operator==
 	*******************************************************
-	* Entr�e : Deux arcs � comparer
-	* N�cessite : Rien
-	* Sortie : Vrai si les deux arcs ont les m�mes 
+	* Entree : Deux arcs a comparer
+	* Necessite : Rien
+	* Sortie : Vrai si les deux arcs ont les memes 
 	* origines et destinations.
-	* Entra�ne : Rien
+	* Entraine : Rien
 	******************************************************/
 	bool operator==(const CArc& ARCArcAComparer) { return (ARCLireOrigine() == ARCArcAComparer.ARCLireOrigine() and ARCLireDestination() == ARCArcAComparer.ARCLireDestination()); }
 };

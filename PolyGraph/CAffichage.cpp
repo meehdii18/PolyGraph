@@ -1,13 +1,14 @@
 #include "CAffichage.h"
 
 /******************************************************
-* AFHAfficherSommet
+* AFHAfficherListeSommet
 *******************************************************
-* Entr�e : CSommet*, pointeur sur le sommet � afficher
-* N�cessite : Rien
+* Entree : vsListe, la liste des identifiants des
+* sommets a afficher
+* Necessite : Rien
 * Sortie : Rien
-* Entra�ne : L'affichage des informations concernants
-* le sommet en param�tre
+* Entraine : L'affichage des identifiants des sommets
+* du graphe
 ******************************************************/
 void CAffichage::AFHAfficherListeSommets(const vector<string>& vsListe)
 {
@@ -23,11 +24,13 @@ void CAffichage::AFHAfficherListeSommets(const vector<string>& vsListe)
 /******************************************************
 * AFHAfficherSommetAvecArc
 *******************************************************
-* Entr�e : CSommet*, pointeur sur le sommet � afficher
-* N�cessite : Rien
+* Entree : GPOParam le graphe auquel le sommet a
+* afficher appartient, et sIdSommet l'identifiant de ce
+* sommet
+* Necessite : Rien
 * Sortie : Rien
-* Entra�ne : L'affichage des informations concernants
-* le sommet en param�tre
+* Entraine : L'affichage de l'identifiant et des arcs
+* du sommet
 ******************************************************/
 void CAffichage::AFHAfficherSommetAvecArc(const PGraphOrient<CArc, CSommet>& GPOParam, const string& sIdSommet)
 {
@@ -57,15 +60,16 @@ void CAffichage::AFHAfficherSommetAvecArc(const PGraphOrient<CArc, CSommet>& GPO
 
 
 /******************************************************
-* AFHAfficherArc
+* AFHAfficherArcs
 *******************************************************
-* Entr�e : CArc*, pointeur sur l'arc � afficher
-* N�cessite : Rien
+* Entree : vvsListe, la liste des origines et
+* destinations des arcs du graphe
+* Necessite : Rien
 * Sortie : Rien
-* Entra�ne : L'affichage des informations concernants
-* l'arc en param�tre
+* Entraine : L'affichage des informations des arcs du
+* graphe
 ******************************************************/
-void CAffichage::AFHAfficherArc(const vector<vector<string>>& vvsListe)
+void CAffichage::AFHAfficherArcs(const vector<vector<string>>& vvsListe)
 {
 	unsigned int uiBoucle;
 
@@ -79,14 +83,13 @@ void CAffichage::AFHAfficherArc(const vector<vector<string>>& vvsListe)
 
 
 /******************************************************
-* AFHAfficherGrapheOrient
+* AFHAfficherGraphe
 *******************************************************
-* Entr�e : PGraphOrient<CArc,CSommet>*, pointeur sur
-* le graphe orient� � afficher
-* N�cessite : Rien
+* Entree : GPOParam, le graphe a afficher
+* Necessite : Rien
 * Sortie : Rien
-* Entra�ne : L'affichage des informations concernants
-* le graphe orient� en param�tre
+* Entraine : L'affichage des informations concernants
+* le graphe passe en paramètre
 ******************************************************/
 void CAffichage::AFHAfficherGraphe(const PGraphOrient<CArc, CSommet>& GPOParam)
 {
@@ -100,7 +103,7 @@ void CAffichage::AFHAfficherGraphe(const PGraphOrient<CArc, CSommet>& GPOParam)
 
 	cout << "////////////// Arcs :" << endl;
 
-	AFHAfficherArc(vvsListeArc);
+	AFHAfficherArcs(vvsListeArc);
 
 	cout << "------------------------------------------" << endl;
 }

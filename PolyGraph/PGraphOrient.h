@@ -1,18 +1,18 @@
 #pragma once
 /******************************************************
-* CLASSE : CGraphOrient pour représenter un graphe 
-* orienté
+* CLASSE : CGraphOrient
 *******************************************************
 * ROLE : Interface de la classe CGraphOrient permettant
-* de créer des graphes orientés et d'effectuer des
-* opérations sur celui-ci
+* de creer des graphes orientes et d'effectuer des
+* operations de base dessus
 *******************************************************
 * VERSION : 1.0
-* AUTEUR : Mehdi AMELLADI et Raphaël AVELINE
+* AUTEUR : Mehdi AMELLADI et Raphael AVELINE
 * DATE : 19/03/2024
 *******************************************************
 * INCLUSIONS EXTERNES :
 */
+
 #include "CArc.h"
 #include "CSommet.h"
 
@@ -21,14 +21,16 @@
 #include <functional>
 #include <sstream>
 #include <iostream>
+
 using namespace std;
 
 /* TYPES :
-* Pas de type particulier déclaré
+* Pas de type particulier declare
 */
 
 /* VARIABLES:
 */
+
 template<class TArc, class TSommet> class PGraphOrient
 {
 private:
@@ -38,117 +40,119 @@ private:
 
 	vector<TSommet*> vGPOListeSommets;
 
-	// MÉTHODES PRIVÉES
+	// METHODES PRIVEES
 
 	/******************************************************
 	* GPOTrouverSommet
 	*******************************************************
-	* Entrée : sIdentifiant l'identifiant du sommet cherché
-	* Nécessite : Rien
+	* Entree : sIdentifiant l'identifiant du sommet cherche
+	* Necessite : Rien
 	* Sortie : Un pointeur vers le sommet si il est dans le
 	* graphe, nullptr sinon
-	* Entraîne : Rien
+	* Entraine : Rien
 	******************************************************/
 	TSommet* GPOTrouverSommet(const string& sIdentifiant) const;
 
 	/******************************************************
 	* GPOTrouverArc
 	*******************************************************
-	* Entrée : sOrigine et sDestination l'origine et la
-	* destination de l'arc cherché
-	* Nécessite : Rien
+	* Entree : sOrigine et sDestination l'origine et la
+	* destination de l'arc cherche
+	* Necessite : Rien
 	* Sortie : Un pointeur vers l'arc si il est dans le
 	* graphe, nullptr sinon
-	* Entraîne : Rien
+	* Entraine : Rien
 	******************************************************/
 	TArc* GPOTrouverArc(const string& sOrigine, const string& sDestination) const;
 
 public:
-	// CONSTRUCTEURS ET DESTRUCTEURS
+	// CONSTRUCTEURS ET DESTRUCTEUR
 
 	/******************************************************
-	* PGraphOrient
+	* PGraphOrient (default)
 	*******************************************************
-	* Entrée : Rien
-	* Nécessite : Rien
+	* Entree : Rien
+	* Necessite : Rien
 	* Sortie : Rien
-	* Entraîne : Un graphe vide est créé
+	* Entraine : Un graphe vide est cree
 	******************************************************/
-	PGraphOrient() {}
+	PGraphOrient() = default;
 
 	/******************************************************
 	* PGraphOrient (Recopie)
 	*******************************************************
-	* Entrée : Rien
-	* Nécessite : Rien
+	* Entree : Rien
+	* Necessite : Rien
 	* Sortie : Rien
-	* Entraîne : Un graphe copie de GPOParam est créé
+	* Entraine : Un graphe copie de GPOParam est cree
 	******************************************************/
 	PGraphOrient(const PGraphOrient &GPOParam);
 
 	/******************************************************
 	* ~PGraphOrient
 	*******************************************************
-	* Entrée : Rien
-	* Nécessite : Rien
+	* Entree : Rien
+	* Necessite : Rien
 	* Sortie : Rien
-	* Entraîne : Le graphe est détruit
+	* Entraine : Le graphe est detruit, avec les sommets et
+	* les arcs le composant
 	******************************************************/
-	~PGraphOrient() {} // A MODIFIER !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	~PGraphOrient();
 
-	// MÉTHODES
+	// METHODES
 
 	/******************************************************
 	* GPOLireListeArcs
 	*******************************************************
-	* Entrée : Rien
-	* Nécessite : Rien
+	* Entree : Rien
+	* Necessite : Rien
 	* Sortie : Le vecteur contenant les arcs du graphe
-	* Entraîne : Rien
+	* Entraine : Rien
 	******************************************************/
 	vector<vector<string>> GPOLireListeArcs() const;
 
 	/******************************************************
 	* GPOLireListeSommets
 	*******************************************************
-	* Entrée : Rien
-	* Nécessite : Rien
-	* Sortie : Le vecteur contenant les sommets du graphe
-	* Entraîne : Rien
+	* Entree : Rien
+	* Necessite : Rien
+	* Sortie : Le vecteur contenant les identifiants des 
+	* sommets du graphe
+	* Entraine : Rien
 	******************************************************/
 	vector<string> GPOLireListeSommets() const;
 
 	/******************************************************
 	* GPOLirePredecesseursSommets
 	*******************************************************
-	* Entrée : Rien
-	* Nécessite : Rien
-	* Sortie : Le vecteur contenant les sommets depuis
-	* lesquels des arcs du graphe viennent au sommet
-	* d'identifiant sIDSommet.
-	* Entraîne : Rien
+	* Entree : Rien
+	* Necessite : Rien
+	* Sortie : Le vecteur contenant les identifiants des 
+	* sommets depuis lesquels des arcs du graphe viennent 
+	* au sommet d'identifiant sIDSommet
+	* Entraine : Rien
 	******************************************************/
 	vector<string> GPOLirePredecesseursSommet(const string& sIdSommet) const;
 
 	/******************************************************
 	* GPOLireSuccesseursSommets
 	*******************************************************
-	* Entrée : Rien
-	* Nécessite : Rien
-	* Sortie : Le vecteur contenant les sommets vers
-	* lesquels des arcs du graphe vont depuis le sommet
-	* d'identifiant sIDSommet.
-	* Entraîne : Rien
+	* Entree : Rien
+	* Necessite : Rien
+	* Sortie : Le vecteur contenant les identifiants des 
+	* sommets vers lesquels des arcs du graphe vont depuis 
+	* le sommet d'identifiant sIDSommet
+	* Entraine : Rien
 	******************************************************/
 	vector<string> GPOLireSuccesseursSommet(const string& sIdSommet) const;
 
 	/******************************************************
 	* GPOAjouterSommet
 	*******************************************************
-	* Entrée : sIdentifiant l'identifiant du sommet à créer
-	* Nécessite : Rien
+	* Entree : sIdentifiant l'identifiant du sommet a creer
+	* Necessite : Rien
 	* Sortie : Rien
-	* Entraîne : La création d'un sommet d'identifiant 
+	* Entraine : La creation d'un sommet d'identifiant 
 	* sIdentifiant, puis l'ajout de ce sommet dans 
 	* vGPOListeSommets.
 	******************************************************/
@@ -157,11 +161,11 @@ public:
 	/******************************************************
 	* GPOSupprimerSommet
 	*******************************************************
-	* Entrée : sIdentifiant l'identifiant du sommet à 
+	* Entree : sIdentifiant l'identifiant du sommet a 
 	* supprimer
-	* Nécessite : Rien
+	* Necessite : Rien
 	* Sortie : Rien
-	* Entraîne : La suppression du sommet d'identifiant
+	* Entraine : La suppression du sommet d'identifiant
 	* sIdentifiant du graphe
 	******************************************************/
 	void GPOSupprimerSommet(const string& sIdentifiant);
@@ -169,25 +173,24 @@ public:
 	/******************************************************
 	* GPOModifierIdentifiantSommet
 	*******************************************************
-	* Entrée : sIdentifiant, string, identifiant à modifier
-	* sNouvelIdenfiant, string, le nouvel identifiant du
-	* sommet
-	* Nécessite : Rien
+	* Entree : sIdentifiant l'identifiant a modifier
+	* sNouvelIdenfiant le nouvel identifiant du sommet
+	* Necessite : Rien
 	* Sortie : Rien
-	* Entraîne : La modification de l'attribut identifiant
-	* du sommet
+	* Entraine : La modification de l' identifiant du 
+	* sommet
 	******************************************************/
 	void GPOModifierIdentifiantSommet(const string& sIdentifiant, const string& sNouvelIdentifiant);
 
 	/******************************************************
 	* GPOAjouterArc
 	*******************************************************
-	* Entrée : sOrigine et sDestination l'origine et la
-	* destination de l'arc à créer
-	* Nécessite : Rien
+	* Entree : sOrigine et sDestination l'origine et la
+	* destination de l'arc a creer
+	* Necessite : Rien
 	* Sortie : Rien
-	* Entraîne : La création d'un arc reliant les sommets
-	* d'origine et de destination, si ceux-si existent et
+	* Entraine : La creation d'un arc reliant les sommets
+	* d'origine et de destination, si ceux-ci existent et
 	* si l'arc n'existe pas.
 	******************************************************/
 	void GPOAjouterArc(const string& sOrigine, const string& sDestination);
@@ -195,24 +198,15 @@ public:
 	/******************************************************
 	* GPOSupprimerArc
 	*******************************************************
-	* Entrée : sOrigine et sDestination l'origine et la
-	* destination de l'arc cà supprimer
-	* Nécessite : Rien
+	* Entree : sOrigine et sDestination l'origine et la
+	* destination de l'arc a supprimer
+	* Necessite : Rien
 	* Sortie : Rien
-	* Entraîne : La suppression de l'arc reliant les
+	* Entraine : La suppression de l'arc reliant les
 	* sommets d'origine et de destination
 	******************************************************/
 	void GPOSupprimerArc(const string& sOrigine, const string& sDestination);
 
-	/******************************************************
-	* GPOInverserArcs
-	*******************************************************
-	* Entrée : Rien
-	* Nécessite : Rien
-	* Sortie : Rien
-	* Entraîne : Tous les arcs du graphe sont inversés
-	******************************************************/
-	void GPOInverserArcs(); // A METTRE DANS UNE CLASSE D'OPÉRATIONS SUR LES GRAPHES
 };
 
-#include "CGraphOrient.th"
+#include "PGraphOrient.th"

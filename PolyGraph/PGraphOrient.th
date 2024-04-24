@@ -1,36 +1,99 @@
 #pragma once
-#include "CGraphOrient.h"
+#include "PGraphOrient.h"
+
+//METHODES PRIVEES
+
+/******************************************************
+* GPOTrouverSommet
+*******************************************************
+* Entree : sIdentifiant l'identifiant du sommet cherche
+* Necessite : Rien
+* Sortie : Un pointeur vers le sommet si il est dans le
+* graphe, nullptr sinon
+* Entraine : Rien
+******************************************************/
+template<class TArc, class TSommet>
+inline TSommet* PGraphOrient<TArc, TSommet>::GPOTrouverSommet(const string& sIdentifiant) const
+{
+	vector<TSommet*> vSMTListeSommets = vGPOListeSommets;
+	unsigned int uiBoucle = 0;
+	unsigned int uiCritereArret = (unsigned int)vSMTListeSommets.size();
+
+	while (uiBoucle < uiCritereArret)
+	{
+		if (vSMTListeSommets[uiBoucle]->SMTLireIdentifiant() == sIdentifiant)
+		{
+			return vSMTListeSommets[uiBoucle];
+		}
+		uiBoucle++;
+	}
+	return nullptr;
+}
+
+/******************************************************
+* GPOTrouverArc
+*******************************************************
+* Entree : sOrigine et sDestination l'origine et la
+* destination de l'arc cherche
+* Necessite : Rien
+* Sortie : Un pointeur vers le'arc si il est dans le
+* graphe, nullptr sinon
+* Entraine : Rien
+******************************************************/
+template<class TArc, class TSommet>
+inline TArc* PGraphOrient<TArc, TSommet>::GPOTrouverArc(const string& sOrigine, const string& sDestination) const
+{
+	vector<TArc*> vARCListeArcs = vGPOListeArcs;
+	unsigned int uiBoucle = 0;
+	unsigned int uiCritereArret = (unsigned int)vARCListeArcs.size();
+
+	while (uiBoucle < uiCritereArret)
+	{
+		if (vARCListeArcs[uiBoucle]->ARCLireOrigine() == sOrigine and vARCListeArcs[uiBoucle]->ARCLireDestination() == sDestination)
+		{
+			return vARCListeArcs[uiBoucle];
+		}
+		uiBoucle++;
+	}
+	return nullptr;
+}
+
+//CONSTRUCTEURS ET DESTRUCTEURS
+
+/******************************************************
+* ~PGraphOrient
+*******************************************************
+* Entree : Rien
+* Necessite : Rien
+* Sortie : Rien
+* Entraine : Le graphe est detruit, avec les sommets et
+* les arcs le composant
+******************************************************/
+template<class TArc, class TSommet>
+inline PGraphOrient<TArc, TSommet>::~PGraphOrient()
+{
+	unsigned int uiBoucle = 0;
+	unsigned int uiCritereArret = (unsigned int)vGPOListeSommets.size();
+
+	for (uiBoucle; uiBoucle < uiCritereArret; uiBoucle++)
+	{
+		GPOSupprimerSommet(vGPOListeSommets[uiBoucle]->SMTLireIdentifiant());
+	}
+}
+
+//METHODES
 
 /******************************************************
 * GPOLireListeArcs
 *******************************************************
-* Entrée : Rien
-* Nécessite : Rien
-* Sortie : Un vecteur contenant autant de vecteurs que
-* d'arcs dans le graphe, chaque vecteur contient un
-* string représentant l'origine de l'arc et un string
-* représentant la destination de l'arc.
-* Entraîne : Rien
+* Entree : Rien
+* Necessite : Rien
+* Sortie : Le vecteur contenant les arcs du graphe
+* Entraine : Rien
 ******************************************************/
 template<class TArc, class TSommet>
 inline vector<vector<string>> PGraphOrient<TArc, TSommet>::GPOLireListeArcs() const
 {
-	/*
-	vector<TArc> vARCAffichageArcs;
-
-	unsigned int uiBoucle;
-	unsigned int uiCritereArret = (unsigned int)vGPOListeArcs.size();
-
-	for (uiBoucle = 0; uiBoucle < uiCritereArret; uiBoucle++)
-	{
-		TArc ARCCopie(*vGPOListeArcs[uiBoucle]);
-
-		vARCAffichageArcs.push_back(ARCCopie);
-	}
-
-	return vARCAffichageArcs;
-	*/
-
 	vector<vector<string>> vvsAffichageArcs;
 
 	unsigned int uiBoucle;
@@ -53,32 +116,15 @@ inline vector<vector<string>> PGraphOrient<TArc, TSommet>::GPOLireListeArcs() co
 /******************************************************
 * GPOLireListeSommets
 *******************************************************
-* Entrée : Rien
-* Nécessite : Rien
-* Sortie : Un vecteur contenant les identifiants des
-* sommets diu graphe.
-* Entraîne : Rien
+* Entree : Rien
+* Necessite : Rien
+* Sortie : Le vecteur contenant les identifiants des
+* sommets du graphe
+* Entraine : Rien
 ******************************************************/
 template<class TArc, class TSommet>
 inline vector<string> PGraphOrient<TArc, TSommet>::GPOLireListeSommets() const
 {
-	/*
-	vector<TSommet> vSMTAffichageSommets;
-
-	unsigned int uiBoucle;
-	unsigned int uiCritereArret = (unsigned int)vGPOListeSommets.size();
-
-	for (uiBoucle = 0; uiBoucle < uiCritereArret; uiBoucle++)
-	{
-		TSommet SMTCopie(*vGPOListeSommets[uiBoucle]);
-
-		vSMTAffichageSommets.push_back(SMTCopie); // A REMODIFIER : ESSAYER DE CONSTRUIRE CORRECTEMENT CSOMMET PAR RECOPIE
-
-	}
-	
-	return vSMTAffichageSommets;
-	*/
-
 	vector<string> vsAffichageSommets;
 
 	unsigned int uiBoucle;
@@ -95,12 +141,12 @@ inline vector<string> PGraphOrient<TArc, TSommet>::GPOLireListeSommets() const
 /******************************************************
 * GPOLirePredecesseursSommets
 *******************************************************
-* Entrée : Rien
-* Nécessite : Rien
-* Sortie : Le vecteur contenant les sommets depuis
-* lesquels des arcs du graphe viennent au sommet
-* d'identifiant sIDSommet.
-* Entraîne : Rien
+* Entree : Rien
+* Necessite : Rien
+* Sortie : Le vecteur contenant les identifiants des
+* sommets depuis lesquels des arcs du graphe viennent
+* au sommet d'identifiant sIDSommet
+* Entraine : Rien
 ******************************************************/
 template<class TArc, class TSommet>
 inline vector<string> PGraphOrient<TArc, TSommet>::GPOLirePredecesseursSommet(const string& sIdSommet) const
@@ -125,12 +171,12 @@ inline vector<string> PGraphOrient<TArc, TSommet>::GPOLirePredecesseursSommet(co
 /******************************************************
 * GPOLireSuccesseursSommets
 *******************************************************
-* Entrée : Rien
-* Nécessite : Rien
-* Sortie : Le vecteur contenant les sommets vers
-* lesquels des arcs du graphe vont depuis le sommet
-* d'identifiant sIDSommet.
-* Entraîne : Rien
+* Entree : Rien
+* Necessite : Rien
+* Sortie : Le vecteur contenant les identifiants des
+* sommets vers lesquels des arcs du graphe vont depuis
+* le sommet d'identifiant sIDSommet
+* Entraine : Rien
 ******************************************************/
 template<class TArc, class TSommet>
 inline vector<string> PGraphOrient<TArc, TSommet>::GPOLireSuccesseursSommet(const string& sIdSommet) const
@@ -155,44 +201,42 @@ inline vector<string> PGraphOrient<TArc, TSommet>::GPOLireSuccesseursSommet(cons
 /******************************************************
 * GPOAjouterSommet
 *******************************************************
-* Entrée : sIdentifiant l'identifiant du sommet à créer
-* Nécessite : Rien
+* Entree : sIdentifiant l'identifiant du sommet a creer
+* Necessite : Rien
 * Sortie : Rien
-* Entraîne : La création d'un sommet d'identifiant
+* Entraine : La creation d'un sommet d'identifiant
 * sIdentifiant, puis l'ajout de ce sommet dans
 * vGPOListeSommets.
 ******************************************************/
 template<class TArc, class TSommet>
 inline void PGraphOrient<TArc, TSommet>::GPOAjouterSommet(const string& sIdentifiant)
 {
-	if (GPOTrouverSommet(sIdentifiant) == nullptr)
-	{
-		TSommet* SMTNouveau = new TSommet(sIdentifiant);
-
-		vGPOListeSommets.push_back(SMTNouveau);
-	}
-	else
+	if (GPOTrouverSommet(sIdentifiant) != nullptr)
 	{
 		ostringstream ssMessageErreur;
 
 		ssMessageErreur << "Le sommet d'identifiant ";
 		ssMessageErreur << sIdentifiant.c_str();
-		ssMessageErreur << " existe déjà dans le graphe et n'a donc pas été ajouté.";
+		ssMessageErreur << " existe deja dans le graphe et n'a donc pas ete ajoute.";
 
 		string sDescription = ssMessageErreur.str();
 
 		throw logic_error(sDescription);
-	}	
+	}
+
+	TSommet* SMTNouveau = new TSommet(sIdentifiant);
+
+	vGPOListeSommets.push_back(SMTNouveau);
 }
 
 /******************************************************
 * GPOSupprimerSommet
 *******************************************************
-* Entrée : sIdentifiant l'identifiant du sommet à
+* Entree : sIdentifiant l'identifiant du sommet a
 * supprimer
-* Nécessite : Rien
+* Necessite : Rien
 * Sortie : Rien
-* Entraîne : La suppression du sommet d'identifiant
+* Entraine : La suppression du sommet d'identifiant
 * sIdentifiant du graphe
 ******************************************************/
 template<class TArc, class TSommet>
@@ -200,47 +244,55 @@ inline void PGraphOrient<TArc, TSommet>::GPOSupprimerSommet(const string& sIdent
 {
 	TSommet* SMTAncienSommet = GPOTrouverSommet(sIdentifiant);
 
+	vector<TArc*> vARCArcsEntrants = SMTAncienSommet->SMTLireArcsEntrants();
+	vector<TArc*> vARCArcsSortants = SMTAncienSommet->SMTLireArcsSortants();
+	unsigned int uiBoucle;
+	unsigned int uiCritereArret;
+
 	if (SMTAncienSommet == nullptr)
 	{
 		ostringstream ssMessageErreur;
 
 		ssMessageErreur << "Le sommet d'identifiant "; 
 		ssMessageErreur << sIdentifiant.c_str();
-		ssMessageErreur << " n'existe pas dans le graphe et n'a donc pas été supprimé.";
+		ssMessageErreur << " n'existe pas dans le graphe et n'a donc pas ete supprime.";
 
 		string sDescription = ssMessageErreur.str();
 
 		throw logic_error(sDescription);
 	}
 
-	vGPOListeArcs.erase(remove_if(vGPOListeArcs.begin(),
-		vGPOListeArcs.end(),
-		[&](TArc* ARCElement) {return ARCElement->ARCLireOrigine() == sIdentifiant or ARCElement->ARCLireDestination() == sIdentifiant; }),
-		vGPOListeArcs.end());
-		
+	uiCritereArret = (unsigned int)vARCArcsEntrants.size();
+
+	for (uiBoucle = 0; uiBoucle < uiCritereArret; uiBoucle++)
+	{
+		GPOSupprimerArc(vARCArcsEntrants[uiBoucle]->ARCLireOrigine(), sIdentifiant);
+	}
+
+	uiCritereArret = (unsigned int)vARCArcsSortants.size();
+
+	for (uiBoucle = 0; uiBoucle < uiCritereArret; uiBoucle++)
+	{
+		GPOSupprimerArc(sIdentifiant, vARCArcsSortants[uiBoucle]->ARCLireDestination());
+	}
+
 	vGPOListeSommets.erase(remove_if(vGPOListeSommets.begin(),
 		vGPOListeSommets.end(),
 		[&](TSommet* SMTElement) {return SMTElement->SMTLireIdentifiant() == sIdentifiant; }),
 		vGPOListeSommets.end());
 
-	delete SMTAncienSommet; // modifier pour que les arcs soient s
-		
-	// supprimer le sommet de la liste de sommets du graphe
-	// puis delete le sommet
-	// C'est censé faire ça, à tester !!!
-	
+	delete SMTAncienSommet;
 }
 
 /******************************************************
 * GPOModifierIdentifiantSommet
 *******************************************************
-* Entrée : sIdentifiant, string, identifiant à modifier
-* sNouvelIdenfiant, string, le nouvel identifiant du
-* sommet
-* Nécessite : Rien
+* Entree : sIdentifiant l'identifiant a modifier
+* sNouvelIdenfiant le nouvel identifiant du sommet
+* Necessite : Rien
 * Sortie : Rien
-* Entraîne : La modification de l'attribut identifiant
-* du sommet
+* Entraine : La modification de l' identifiant du
+* sommet
 ******************************************************/
 template<class TArc, class TSommet>
 inline void PGraphOrient<TArc, TSommet>::GPOModifierIdentifiantSommet(const string& sIdentifiant, const string& sNouvelIdentifiant)
@@ -251,7 +303,7 @@ inline void PGraphOrient<TArc, TSommet>::GPOModifierIdentifiantSommet(const stri
 	vector<TArc*> vARCArcsEntrants = SMTAncienSommet->SMTLireArcsEntrants();
 	vector<TArc*> vARCArcsSortants = SMTAncienSommet->SMTLireArcsSortants();
 	unsigned int uiBoucle;
-	unsigned int uiCritereArret = (unsigned int) vARCArcsEntrants.size();
+	unsigned int uiCritereArret;
 
 
 	if (SMTAncienSommet == nullptr)
@@ -260,7 +312,7 @@ inline void PGraphOrient<TArc, TSommet>::GPOModifierIdentifiantSommet(const stri
 
 		ssMessageErreur << "Le sommet d'identifiant ";
 		ssMessageErreur << sIdentifiant.c_str();
-		ssMessageErreur << " n'existe pas dans le graphe et n'a donc pas été renommé.";
+		ssMessageErreur << " n'existe pas dans le graphe et n'a donc pas ete renomme.";
 
 		string sDescription = ssMessageErreur.str();
 
@@ -272,12 +324,14 @@ inline void PGraphOrient<TArc, TSommet>::GPOModifierIdentifiantSommet(const stri
 
 		ssMessageErreur << "Le sommet d'identifiant ";
 		ssMessageErreur << sNouvelIdentifiant.c_str();
-		ssMessageErreur << " existe déjà dans le graphe et n'a donc pas pu être assigné à nouveau.";
+		ssMessageErreur << " existe deja dans le graphe et n'a donc pas pu etre assigne a nouveau.";
 
 		string sDescription = ssMessageErreur.str();
 
 		throw logic_error(sDescription);
 	}
+
+	uiCritereArret = (unsigned int)vARCArcsEntrants.size();
 
 	for (uiBoucle = 0; uiBoucle < uiCritereArret; uiBoucle++)
 	{
@@ -295,41 +349,14 @@ inline void PGraphOrient<TArc, TSommet>::GPOModifierIdentifiantSommet(const stri
 }
 
 /******************************************************
-* GPOTrouverSommet
-*******************************************************
-* Entrée : sIdentifiant l'identifiant du sommet cherché
-* Nécessite : Rien
-* Sortie : Un pointeur vers le sommet si il est dans le
-* graphe, nullptr sinon
-* Entraîne : Rien
-******************************************************/
-template<class TArc, class TSommet>
-inline TSommet* PGraphOrient<TArc, TSommet>::GPOTrouverSommet(const string& sIdentifiant) const
-{
-	vector<TSommet*> vSMTListeSommets = vGPOListeSommets;
-	unsigned int uiBoucle = 0; 
-	unsigned int uiCritereArret = (unsigned int) vSMTListeSommets.size();
-
-	while (uiBoucle < uiCritereArret)
-	{
-		if (vSMTListeSommets[uiBoucle]->SMTLireIdentifiant() == sIdentifiant)
-		{
-			return vSMTListeSommets[uiBoucle];
-		}
-		uiBoucle++;
-	}
-	return nullptr;
-}
-
-/******************************************************
 * GPOAjouterArc
 *******************************************************
-* Entrée : sOrigine et sDestination l'origine et la
-* destination de l'arc à créer
-* Nécessite : Rien
+* Entree : sOrigine et sDestination l'origine et la
+* destination de l'arc a creer
+* Necessite : Rien
 * Sortie : Rien
-* Entraîne : La création d'un arc reliant les sommets
-* d'origine et de destination, si ceux-si existent et
+* Entraine : La creation d'un arc reliant les sommets
+* d'origine et de destination, si ceux-ci existent et
 * si l'arc n'existe pas.
 ******************************************************/
 template<class TArc, class TSommet>
@@ -370,32 +397,30 @@ inline void PGraphOrient<TArc, TSommet>::GPOAjouterArc(const string& sOrigine, c
 		ssMessageErreur << sOrigine.c_str();
 		ssMessageErreur << " et de destination ";
 		ssMessageErreur << sDestination.c_str();
-		ssMessageErreur << " existe déjà dans le graphe et n'a donc pas été ajouté.";
+		ssMessageErreur << " existe deja dans le graphe et n'a donc pas ete ajoute.";
 
 		string sDescription = ssMessageErreur.str();
 
 		throw logic_error(sDescription);
 	}
-	else
-	{
-		TArc* ARCNouveau = new TArc(sOrigine, sDestination);
 
-		SMTOrigine->SMTAjouterArcSortant(ARCNouveau);
+	TArc* ARCNouveau = new TArc(sOrigine, sDestination);
 
-		SMTDestination->SMTAjouterArcEntrant(ARCNouveau);
+	SMTOrigine->SMTAjouterArcSortant(ARCNouveau);
 
-		vGPOListeArcs.push_back(ARCNouveau);
-	}
+	SMTDestination->SMTAjouterArcEntrant(ARCNouveau);
+
+	vGPOListeArcs.push_back(ARCNouveau);
 }
 
 /******************************************************
 * GPOSupprimerArc
 *******************************************************
-* Entrée : sOrigine et sDestination l'origine et la
-* destination de l'arc cà supprimer
-* Nécessite : Rien
+* Entree : sOrigine et sDestination l'origine et la
+* destination de l'arc a supprimer
+* Necessite : Rien
 * Sortie : Rien
-* Entraîne : La suppression de l'arc reliant les
+* Entraine : La suppression de l'arc reliant les
 * sommets d'origine et de destination
 ******************************************************/
 template<class TArc, class TSommet>
@@ -413,85 +438,22 @@ inline void PGraphOrient<TArc, TSommet>::GPOSupprimerArc(const string& sOrigine,
 		ssMessageErreur << sOrigine.c_str();
 		ssMessageErreur << " et de destination ";
 		ssMessageErreur << sDestination.c_str();
-		ssMessageErreur << " n'existe pas dans le graphe et n'a donc pas été supprimé.";
+		ssMessageErreur << " n'existe pas dans le graphe et n'a donc pas ete supprime.";
 
 		string sDescription = ssMessageErreur.str();
 
 		throw logic_error(sDescription);
 	}
-	else
-	{
-		SMTOrigine->SMTSupprimerArcSortant(ARCAncienArc);
 
-		SMTDestination->SMTSupprimerArcEntrant(ARCAncienArc);
+	SMTOrigine->SMTSupprimerArcSortant(ARCAncienArc);
 
-		vGPOListeArcs.erase(remove_if(vGPOListeArcs.begin(),
-			vGPOListeArcs.end(),
-			[&](TArc* ARCElement) {return ARCElement->ARCLireOrigine() == sOrigine and ARCElement->ARCLireDestination() == sDestination; }),
-			vGPOListeArcs.end());
+	SMTDestination->SMTSupprimerArcEntrant(ARCAncienArc);
 
-		delete ARCAncienArc;
-	}
+	vGPOListeArcs.erase(remove_if(vGPOListeArcs.begin(),
+		vGPOListeArcs.end(),
+		[&](TArc* ARCElement) {return ARCElement->ARCLireOrigine() == sOrigine and ARCElement->ARCLireDestination() == sDestination; }),
+		vGPOListeArcs.end());
+
+	delete ARCAncienArc;
 }
 
-/******************************************************
-	* GPOInverserArcs
-	*******************************************************
-	* Entrée : Rien
-	* Nécessite : Rien
-	* Sortie : Rien
-	* Entraîne : Tous les arcs du graphe sont inversés
-	******************************************************/
-template<class TArc, class TSommet>
-inline void PGraphOrient<TArc, TSommet>::GPOInverserArcs()
-{
-	vector<TArc*> vARCListeArcs = vGPOListeArcs;
-	unsigned int uiBoucle = 0;
-	unsigned int uiCritereArret = (unsigned int)vARCListeArcs.size();
-
-	while (uiBoucle < uiCritereArret)
-	{
-		string sAncienneOrigine = vARCListeArcs[uiBoucle]->ARCLireOrigine();
-
-		string sAncienneDestination = vARCListeArcs[uiBoucle]->ARCLireDestination();
-
-		TArc* ARCNouvelArc = GPOTrouverArc(sAncienneDestination, sAncienneOrigine);
-
-		if (ARCNouvelArc == nullptr)
-		{
-			GPOSupprimerArc(sAncienneOrigine, sAncienneDestination);
-		}
-
-		GPOAjouterArc(sAncienneDestination, sAncienneOrigine);
-
-		uiBoucle++;
-	}
-}
-
-/******************************************************
-* GPOTrouverArc
-*******************************************************
-* Entrée : sOrigine et sDestination l'origine et la
-* destination de l'arc cherché
-* Nécessite : Rien
-* Sortie : Un pointeur vers le'arc si il est dans le
-* graphe, nullptr sinon
-* Entraîne : Rien
-******************************************************/
-template<class TArc, class TSommet>
-inline TArc* PGraphOrient<TArc, TSommet>::GPOTrouverArc(const string& sOrigine, const string& sDestination) const
-{
-	vector<TArc*> vARCListeArcs = vGPOListeArcs;
-	unsigned int uiBoucle = 0;
-	unsigned int uiCritereArret = (unsigned int) vARCListeArcs.size();
-
-	while (uiBoucle < uiCritereArret)
-	{
-		if (vARCListeArcs[uiBoucle]->ARCLireOrigine() == sOrigine and vARCListeArcs[uiBoucle]->ARCLireDestination() == sDestination)
-		{
-			return vARCListeArcs[uiBoucle];
-		}
-		uiBoucle++;
-	}
-	return nullptr;
-}

@@ -1,7 +1,10 @@
-#include <iostream>
 #include "CParseur.h"
-#include "CGraphOrient.h"
+#include "PGraphOrient.h"
+#include "PGraph.h"
 #include "CAffichage.h"
+#include "COperationsSurGraphe.h"
+
+#include <iostream>
 
 using namespace std;
 
@@ -27,7 +30,42 @@ void testCGraphOrient()
 
     CAffichage::AFHAfficherGraphe(GPOGraphe);
 
-    GPOGraphe.GPOInverserArcs();
+    //GPOGraphe.GPOInverserArcs();
+    COperationsSurGraphe::OSGInverserArcs(GPOGraphe);
+
+    CAffichage::AFHAfficherGraphe(GPOGraphe);
+
+    GPOGraphe.GPOSupprimerSommet("Sommet 1 renomme");
+
+    CAffichage::AFHAfficherGraphe(GPOGraphe);
+
+    cout << "------------------------------------------FIN TEST------------------------------------------" << endl;
+}
+
+void testCGraph()
+{
+    PGraph<CArc, CSommet> GPOGraphe;
+
+    CAffichage::AFHAfficherGraphe(GPOGraphe);
+
+    GPOGraphe.GPOAjouterSommet("Sommet 1");
+
+    CAffichage::AFHAfficherGraphe(GPOGraphe);
+
+    GPOGraphe.GPOAjouterSommet("Sommet 2");
+
+    CAffichage::AFHAfficherGraphe(GPOGraphe);
+
+    GPOGraphe.GPOAjouterArc("Sommet 1", "Sommet 2");
+
+    CAffichage::AFHAfficherGraphe(GPOGraphe);
+
+    GPOGraphe.GPOModifierIdentifiantSommet("Sommet 1", "Sommet 1 renomme");
+
+    CAffichage::AFHAfficherGraphe(GPOGraphe);
+
+    //GPOGraphe.GPOInverserArcs();
+    COperationsSurGraphe::OSGInverserArcs(GPOGraphe);
 
     CAffichage::AFHAfficherGraphe(GPOGraphe);
 
@@ -42,6 +80,8 @@ int main()
 {
 
     testCGraphOrient();
+
+    testCGraph();
     
     try
     {

@@ -1,0 +1,43 @@
+#pragma once
+#include "PGraph.h"
+
+/******************************************************
+* GPOAjouterArc
+*******************************************************
+* Entree : sOrigine et sDestination l'origine et la
+* destination de l'arc a creer
+* Necessite : Rien
+* Sortie : Rien
+* Entraine : La creation de deux arcs qui joignent les
+* deux sommets sOrigine et sDestination dans les deux
+* sens
+******************************************************/
+template<class TArc, class TSommet>
+inline void PGraph<TArc, TSommet>::GPOAjouterArc(const string& sOrigine, const string& sDestination)
+{
+	PGraphOrient<TArc, TSommet>::GPOAjouterArc(sOrigine, sDestination);
+	if (sOrigine != sDestination)
+	{
+		PGraphOrient<TArc, TSommet>::GPOAjouterArc(sDestination, sOrigine);
+	}
+}
+
+/******************************************************
+* GPOSupprimerArc
+*******************************************************
+* Entree : sOrigine et sDestination l'origine et la
+* destination de l'arc a supprimer
+* Necessite : Rien
+* Sortie : Rien
+* Entraine : La suppression des arcs reliant les
+* sommets d'origine et de destination
+******************************************************/
+template<class TArc, class TSommet>
+inline void PGraph<TArc, TSommet>::GPOSupprimerArc(const string& sOrigine, const string& sDestination)
+{
+	PGraphOrient<TArc, TSommet>::GPOSupprimerArc(sOrigine, sDestination);
+	if (sOrigine != sDestination)
+	{
+		PGraphOrient<TArc, TSommet>::GPOSupprimerArc(sDestination, sOrigine);
+	}
+}
