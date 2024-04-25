@@ -1,8 +1,8 @@
-#pragma once
+﻿#pragma once
 /******************************************************
 * CLASSE : CCreateurGraph (nom a potentiellement modifier)
 *******************************************************
-* ROLE : Interface de la classe CCreateurGraphe ayant 
+* ROLE : Interface de la classe CCreateurGraphe ayant
 * comme role la creation de graph a partir d'informations
 * recuperees via une entree utilisateur
 *******************************************************
@@ -13,17 +13,17 @@
 * INCLUSIONS EXTERNES :
 */
 #include "CParseur.h"
-#include "CGraph.h"
+#include "PGraph.th"
 using namespace std;
 
 class CCreateurGraph
 {
-private : 
+private:
 
-public :
+public:
 	// Constructeurs et destructeurs
 
- 	/******************************************************
+	/******************************************************
 	* CCreateurGraph (defaut) // Je pense que ce sera delete et que y'aura que des méthodes statiques comme le parseur
 	*******************************************************
 	* Entree : Rien
@@ -34,7 +34,7 @@ public :
 	* statiques
 	******************************************************/
 	CCreateurGraph() = default;
-	
+
 	// Methodes
 
 	/******************************************************
@@ -47,7 +47,7 @@ public :
 	* Entraine : La lecture du fichier en parametre et s'il
 	* est conforme, la creation du graphe oriente associe
 	******************************************************/
-	void CCGCreerGraphOrientDepuisFichier(string& sFichier);
+	PGraphOrient<CArc, CSommet> static CCGCreerGraphOrientDepuisFichier(const string& sFichier);
 
 	/******************************************************
 	* CCGCreerGraphFichier
@@ -59,6 +59,6 @@ public :
 	* Entraine : La lecture du fichier en parametre et s'il
 	* est conforme, la creation du graphe associe
 	******************************************************/
-	void CCGCreerGraphDepuisFichier(string& sFichier);
+	PGraphOrient<CArc, CSommet> static CCGCreerGraphDepuisFichier(const string& sFichier);
 };
 

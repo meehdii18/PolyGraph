@@ -3,6 +3,7 @@
 #include "PGraph.h"
 #include "CAffichage.h"
 #include "COperationsSurGraphe.h"
+#include "CCreateurGraphe.h"
 
 #include <iostream>
 
@@ -79,36 +80,12 @@ void testCGraph()
 int main()
 {
 
-    testCGraphOrient();
+    //testCGraphOrient();
 
-    testCGraph();
+    //testCGraph();
     
-    try
-    {
-        string fichier = "./donnees.txt";
-        string arc = "nbarcs";
-
-        // TEST LIRE VALEUR
-        cout << "NBArcs : " << CParseur::PRSLireValeur(fichier, arc) << endl;
-
-
-        // TEST LIRE VALEUR COMPLEXE
-        string motCle = "Arcs";
-        vector<string> delimiteurs = { "Debut","Fin" };
-        map<string, vector<string>> valeursComplexes = CParseur::PRSLireValeurComplexe(fichier, motCle, delimiteurs);
-        for (const auto& entry : valeursComplexes) {
-            cout << "Cle : " << entry.first << endl;
-            cout << "Valeur : ";
-            for (const auto& value : entry.second) {
-                cout << value << " ";
-            }
-            cout << endl;
-        }
-    }
-    catch (const std::runtime_error& erreur)
-    {
-        std::cerr << "Runtime error: " << erreur.what() << std::endl;
-    }
+    PGraphOrient<CArc, CSommet> Graphe = CCreateurGraph::CCGCreerGraphOrientDepuisFichier("./donnees.txt");
+    CAffichage::AFHAfficherGraphe(Graphe);
 }
 
 

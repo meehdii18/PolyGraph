@@ -58,7 +58,7 @@ public:
 	* Sortie : sParam transformee en minuscule
 	* Entraine : Rien
 	******************************************************/
-    static string PRSMinuscule(string sParam);
+    static string PRSMinuscule(const string& sParam);
 
 	/******************************************************
 	* PRSLireValeur
@@ -70,7 +70,7 @@ public:
 	* mot cle sMotCle
 	* Entraine : Rien
 	******************************************************/
-    static string PRSLireValeur(string sFichier,string sMotCle);
+    static string PRSLireValeur(const string& sFichier,const string& sMotCle);
 
 	/******************************************************
 	* PRSLireValeurComplexe

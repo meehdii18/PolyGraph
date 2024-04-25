@@ -12,10 +12,11 @@ using namespace std;
 * Sortie : sParam transformee en minuscule
 * Entraine : Rien
 ******************************************************/
-string CParseur::PRSMinuscule(string sParam)
+string CParseur::PRSMinuscule(const string& sParam)
 {
-    transform(sParam.begin(), sParam.end(), sParam.begin(), tolower);
-    return sParam;
+    string sCopy = sParam;
+    transform(sCopy.begin(), sCopy.end(), sCopy.begin(), tolower);
+    return sCopy;
 }
 
 /******************************************************
@@ -28,7 +29,7 @@ string CParseur::PRSMinuscule(string sParam)
 * mot cle sMotCle
 * Entraine : Rien
 ******************************************************/
-string CParseur::PRSLireValeur(string sFichier, string sMotCle)
+string CParseur::PRSLireValeur(const string& sFichier, const string& sMotCle)
 {
     ifstream strFichier(sFichier); 
 
@@ -92,7 +93,10 @@ map<string, vector<string>> CParseur::PRSLireValeurComplexe(const string &sFichi
                         // Creer une fonction PRSLireValeurLigne qui fait pareil que PRSLireValeur mais sur une seule ligne
                         // Cherche le mot cle suivi de =
                         // Stocke dans une variable tout ce qui suit le = ( sauf les premiers espaces ) jusqu'a rencontre soit une virgule ou fin de ligne et recommence
-                        vDonnees[sDelimiteurs].push_back(PRSLireValeurLigne(sLigne,sDelimiteurs));
+                        string sValeur = PRSLireValeurLigne(sLigne, sDelimiteurs);
+                        if (!sValeur.empty()) {
+                            vDonnees[sDelimiteurs].push_back(sValeur);
+                        }
                     }
                 }
             }
