@@ -82,7 +82,15 @@ int main()
 
     //testCGraph();
     
-    PGraphOrient<CArc, CSommet> Graphe = CCreateurGraph::CCGCreerGraphOrientDepuisFichier("./donnees.txt");
+    //PGraphOrient<CArc, CSommet> Graphe = CCreateurGraph::CCGCreerGraphOrientDepuisFichier("./donnees.txt");
+    //CAffichage::AFHAfficherGraphe(Graphe);
+    /*
+    PGraph<CArc, CSommet> Graphe;
+    CCreateurGraph::CCGImporterGrapheFichier(Graphe, "./donnees.txt");
+    CAffichage::AFHAfficherGraphe(Graphe);
+    */
+
+    PGraph<CArc, CSommet> Graphe("./donnees.txt");
     CAffichage::AFHAfficherGraphe(Graphe);
 }
 

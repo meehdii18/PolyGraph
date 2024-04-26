@@ -1,10 +1,19 @@
 #include "CCreateurGraphe.h"
-#include "CAffichage.h"
 
-PGraphOrient<CArc, CSommet> CCreateurGraph::CCGCreerGraphOrientDepuisFichier(const string& sFichier)
+/******************************************************
+* CCGImporterGrapheFichier
+*******************************************************
+* Entree : GPOParam le graphe dans lequel importer des
+* donnees;
+* sFichier le chemin d'acces du fichier ou sont
+* contenues les donnees a ajouter
+* Necessite : Rien
+* Sortie : Rien
+* Entraine : La lecture du fichier en parametre et s'il
+* est conforme, la modification du graphe associe
+******************************************************/
+void CCreateurGraph::CCGImporterGrapheFichier(PGraphOrient<CArc, CSommet>& GPOParam, const string& sFichier)
 {
-    PGraphOrient<CArc, CSommet> GPOGraphe;
-
     try
     {
         // LIRE VALEUR SIMPLE
@@ -18,15 +27,15 @@ PGraphOrient<CArc, CSommet> CCreateurGraph::CCGCreerGraphOrientDepuisFichier(con
         map<string, vector<string>> vDonneesArc = CParseur::PRSLireValeurComplexe(sFichier, "Arcs", vDelimiteurs1);
         vector<string> vDelimiteurs2 = { "Numero" };
         map<string, vector<string>> vDonneesSommet = CParseur::PRSLireValeurComplexe(sFichier, "Sommets", vDelimiteurs2);
-        
+
         // Vérification que les données dans le fichier sont cohérentes
         // Si c'est le cas on peut créer les sommets et les arcs
         // Sinon on renvoie une erreur
-        if (vDonneesSommet["Numero"].size() != uiNbSommet) 
+        if (vDonneesSommet["Numero"].size() != uiNbSommet)
         {
             throw(runtime_error("Incoherence des donnees dans le fichier texte concernant le nombre de sommets."));
         }
-        if (vDonneesArc["Debut"].size() != uiNbArc or vDonneesArc["Fin"].size() != uiNbArc) 
+        if (vDonneesArc["Debut"].size() != uiNbArc or vDonneesArc["Fin"].size() != uiNbArc)
         {
             throw(runtime_error("Incoherence des donnees dans le fichier texte concernant le nombre d'arcs."));
         }
@@ -35,14 +44,14 @@ PGraphOrient<CArc, CSommet> CCreateurGraph::CCGCreerGraphOrientDepuisFichier(con
 
         for (uiBoucle = 0; uiBoucle < uiCritereArret; uiBoucle++)
         {
-            GPOGraphe.GPOAjouterSommet(vDonneesSommet["Numero"][uiBoucle]);
+            GPOParam.GPOAjouterSommet(vDonneesSommet["Numero"][uiBoucle]);
         }
 
         uiCritereArret = (unsigned int)vDonneesArc["Debut"].size();
 
         for (uiBoucle = 0; uiBoucle < uiCritereArret; uiBoucle++)
         {
-            GPOGraphe.GPOAjouterArc(vDonneesArc["Debut"][uiBoucle], vDonneesArc["Fin"][uiBoucle]);
+            GPOParam.GPOAjouterArc(vDonneesArc["Debut"][uiBoucle], vDonneesArc["Fin"][uiBoucle]);
         }
 
     }
@@ -50,6 +59,4 @@ PGraphOrient<CArc, CSommet> CCreateurGraph::CCGCreerGraphOrientDepuisFichier(con
     {
         std::cerr << "Runtime error: " << erreur.what() << std::endl;
     }
-
-    return GPOGraphe;
 }

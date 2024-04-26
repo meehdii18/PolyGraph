@@ -35,30 +35,21 @@ public:
 	******************************************************/
 	CCreateurGraph() = default;
 
-	// Methodes
+	// METHODES
 
 	/******************************************************
-	* CCGCreerGraphOrientFichier
+	* CCGImporterGrapheFichier
 	*******************************************************
-	* Entree : string, le fichier a traiter pour creer
-	* le graphe
+	* Entree : GPOParam le graphe dans lequel importer des
+	* donnees;
+	* sFichier le chemin d'acces du fichier ou sont
+	* contenues les donnees a ajouter
 	* Necessite : Rien
 	* Sortie : Rien
 	* Entraine : La lecture du fichier en parametre et s'il
-	* est conforme, la creation du graphe oriente associe
+	* est conforme, la modification du graphe associe
 	******************************************************/
-	PGraphOrient<CArc, CSommet> static CCGCreerGraphOrientDepuisFichier(const string& sFichier);
-
-	/******************************************************
-	* CCGCreerGraphFichier
-	*******************************************************
-	* Entree : string, le fichier a traiter pour cr�er
-	* le graphe
-	* Necessite : Rien
-	* Sortie : Rien
-	* Entraine : La lecture du fichier en parametre et s'il
-	* est conforme, la creation du graphe associe
-	******************************************************/
-	PGraph<CArc, CSommet> static CCGCreerGraphDepuisFichier(const string& sFichier);
+	void static CCGImporterGrapheFichier(PGraphOrient<CArc, CSommet>& GPOParam, const string& sFichier);
 };
 
+#include "CCreateurGraphe.th"

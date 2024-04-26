@@ -25,6 +25,29 @@
 template<class TArc, class TSommet> class PGraph : public PGraphOrient<TArc, TSommet>
 {
 public :
+	/******************************************************
+	* PGraphOrient (default)
+	*******************************************************
+	* Entree : Rien
+	* Necessite : Rien
+	* Sortie : Rien
+	* Entraine : Un graphe vide est cree
+	******************************************************/
+	PGraph() = default;
+
+	/******************************************************
+	* PGraphOrient (Confort)
+	*******************************************************
+	* Entree : sFichier le chemin d'acces au fichier
+	* contenant les donnees avec lesquelles initialiser le
+	* graphe oriente nouvellement cree
+	* Necessite : Rien
+	* Sortie : Rien
+	* Entraine : Un graphe contenant les donnees de
+	* sFichier
+	******************************************************/
+	PGraph(const string& sFichier);
+
 	//METHODES
 
 	/******************************************************
@@ -54,5 +77,6 @@ public :
 };
 
 #include "PGraph.th"
+#include "CCreateurGraphe.h"
 
 

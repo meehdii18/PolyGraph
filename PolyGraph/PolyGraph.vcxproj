@@ -149,6 +149,7 @@
     <ClInclude Include="CAffichage.h" />
     <ClInclude Include="CArc.h" />
     <ClInclude Include="CCreateurGraphe.h" />
+    <ClInclude Include="CCreateurGraphe.th" />
     <ClInclude Include="PGraph.h" />
     <ClInclude Include="PGraphOrient.h" />
     <ClInclude Include="COperationsSurGraphe.h" />

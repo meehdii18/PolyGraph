@@ -89,6 +89,19 @@ public:
 	PGraphOrient(const PGraphOrient &GPOParam);
 
 	/******************************************************
+	* PGraphOrient (Confort)
+	*******************************************************
+	* Entree : sFichier le chemin d'acces au fichier
+	* contenant les donnees avec lesquelles initialiser le
+	* graphe oriente nouvellement cree
+	* Necessite : Rien
+	* Sortie : Rien
+	* Entraine : Un graphe contenant les donnees de 
+	* sFichier
+	******************************************************/
+	PGraphOrient(const string& sFichier);
+
+	/******************************************************
 	* ~PGraphOrient
 	*******************************************************
 	* Entree : Rien
@@ -193,7 +206,7 @@ public:
 	* d'origine et de destination, si ceux-ci existent et
 	* si l'arc n'existe pas.
 	******************************************************/
-	void GPOAjouterArc(const string& sOrigine, const string& sDestination);
+	virtual void GPOAjouterArc(const string& sOrigine, const string& sDestination);
 
 	/******************************************************
 	* GPOSupprimerArc
@@ -205,7 +218,7 @@ public:
 	* Entraine : La suppression de l'arc reliant les
 	* sommets d'origine et de destination
 	******************************************************/
-	void GPOSupprimerArc(const string& sOrigine, const string& sDestination);
+	virtual void GPOSupprimerArc(const string& sOrigine, const string& sDestination);
 
 };
 
