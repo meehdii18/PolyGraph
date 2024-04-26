@@ -1,6 +1,6 @@
 # Table of contents
 
-* [PolyGraph Presentation](README.md)
+* [Presentation](README.md)
 
 ## 🚹 Guide utilisateur
 
