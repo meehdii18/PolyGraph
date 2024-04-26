@@ -77,7 +77,7 @@ inline PGraphOrient<TArc, TSommet>::~PGraphOrient()
 
 	for (uiBoucle; uiBoucle < uiCritereArret; uiBoucle++)
 	{
-		GPOSupprimerSommet(vGPOListeSommets[uiBoucle]->SMTLireIdentifiant());
+		GPOSupprimerSommet(vGPOListeSommets[0]->SMTLireIdentifiant());
 	}
 }
 
@@ -211,22 +211,29 @@ inline vector<string> PGraphOrient<TArc, TSommet>::GPOLireSuccesseursSommet(cons
 template<class TArc, class TSommet>
 inline void PGraphOrient<TArc, TSommet>::GPOAjouterSommet(const string& sIdentifiant)
 {
-	if (GPOTrouverSommet(sIdentifiant) != nullptr)
+	try
 	{
-		ostringstream ssMessageErreur;
+		if (GPOTrouverSommet(sIdentifiant) != nullptr)
+		{
+			ostringstream ssMessageErreur;
 
-		ssMessageErreur << "Le sommet d'identifiant ";
-		ssMessageErreur << sIdentifiant.c_str();
-		ssMessageErreur << " existe deja dans le graphe et n'a donc pas ete ajoute.";
+			ssMessageErreur << "Le sommet d'identifiant ";
+			ssMessageErreur << sIdentifiant.c_str();
+			ssMessageErreur << " existe deja dans le graphe et n'a donc pas ete ajoute.";
 
-		string sDescription = ssMessageErreur.str();
+			string sDescription = ssMessageErreur.str();
 
-		throw logic_error(sDescription);
+			throw logic_error(sDescription);
+		}
+
+		TSommet* SMTNouveau = new TSommet(sIdentifiant);
+
+		vGPOListeSommets.push_back(SMTNouveau);
 	}
-
-	TSommet* SMTNouveau = new TSommet(sIdentifiant);
-
-	vGPOListeSommets.push_back(SMTNouveau);
+	catch (const logic_error& lerror)
+	{
+		std::cerr << "Logic error: " << lerror.what() << std::endl;
+	}
 }
 
 /******************************************************
@@ -242,46 +249,53 @@ inline void PGraphOrient<TArc, TSommet>::GPOAjouterSommet(const string& sIdentif
 template<class TArc, class TSommet>
 inline void PGraphOrient<TArc, TSommet>::GPOSupprimerSommet(const string& sIdentifiant)
 {
-	TSommet* SMTAncienSommet = GPOTrouverSommet(sIdentifiant);
-
-	vector<TArc*> vARCArcsEntrants = SMTAncienSommet->SMTLireArcsEntrants();
-	vector<TArc*> vARCArcsSortants = SMTAncienSommet->SMTLireArcsSortants();
-	unsigned int uiBoucle;
-	unsigned int uiCritereArret;
-
-	if (SMTAncienSommet == nullptr)
+	try
 	{
-		ostringstream ssMessageErreur;
+		TSommet* SMTAncienSommet = GPOTrouverSommet(sIdentifiant);
 
-		ssMessageErreur << "Le sommet d'identifiant "; 
-		ssMessageErreur << sIdentifiant.c_str();
-		ssMessageErreur << " n'existe pas dans le graphe et n'a donc pas ete supprime.";
+		vector<TArc*> vARCArcsEntrants = SMTAncienSommet->SMTLireArcsEntrants();
+		vector<TArc*> vARCArcsSortants = SMTAncienSommet->SMTLireArcsSortants();
+		unsigned int uiBoucle;
+		unsigned int uiCritereArret;
 
-		string sDescription = ssMessageErreur.str();
+		if (SMTAncienSommet == nullptr)
+		{
+			ostringstream ssMessageErreur;
 
-		throw logic_error(sDescription);
+			ssMessageErreur << "Le sommet d'identifiant ";
+			ssMessageErreur << sIdentifiant.c_str();
+			ssMessageErreur << " n'existe pas dans le graphe et n'a donc pas ete supprime.";
+
+			string sDescription = ssMessageErreur.str();
+
+			throw logic_error(sDescription);
+		}
+
+		uiCritereArret = (unsigned int)vARCArcsEntrants.size();
+
+		for (uiBoucle = 0; uiBoucle < uiCritereArret; uiBoucle++)
+		{
+			GPOSupprimerArc(vARCArcsEntrants[uiBoucle]->ARCLireOrigine(), sIdentifiant);
+		}
+
+		uiCritereArret = (unsigned int)vARCArcsSortants.size();
+
+		for (uiBoucle = 0; uiBoucle < uiCritereArret; uiBoucle++)
+		{
+			GPOSupprimerArc(sIdentifiant, vARCArcsSortants[uiBoucle]->ARCLireDestination());
+		}
+
+		vGPOListeSommets.erase(remove_if(vGPOListeSommets.begin(),
+			vGPOListeSommets.end(),
+			[&](TSommet* SMTElement) {return SMTElement->SMTLireIdentifiant() == sIdentifiant; }),
+			vGPOListeSommets.end());
+
+		delete SMTAncienSommet;
 	}
-
-	uiCritereArret = (unsigned int)vARCArcsEntrants.size();
-
-	for (uiBoucle = 0; uiBoucle < uiCritereArret; uiBoucle++)
+	catch (const logic_error& lerror)
 	{
-		GPOSupprimerArc(vARCArcsEntrants[uiBoucle]->ARCLireOrigine(), sIdentifiant);
+		std::cerr << "Logic error: " << lerror.what() << std::endl;
 	}
-
-	uiCritereArret = (unsigned int)vARCArcsSortants.size();
-
-	for (uiBoucle = 0; uiBoucle < uiCritereArret; uiBoucle++)
-	{
-		GPOSupprimerArc(sIdentifiant, vARCArcsSortants[uiBoucle]->ARCLireDestination());
-	}
-
-	vGPOListeSommets.erase(remove_if(vGPOListeSommets.begin(),
-		vGPOListeSommets.end(),
-		[&](TSommet* SMTElement) {return SMTElement->SMTLireIdentifiant() == sIdentifiant; }),
-		vGPOListeSommets.end());
-
-	delete SMTAncienSommet;
 }
 
 /******************************************************
@@ -297,55 +311,62 @@ inline void PGraphOrient<TArc, TSommet>::GPOSupprimerSommet(const string& sIdent
 template<class TArc, class TSommet>
 inline void PGraphOrient<TArc, TSommet>::GPOModifierIdentifiantSommet(const string& sIdentifiant, const string& sNouvelIdentifiant)
 {
-	TSommet* SMTAncienSommet = GPOTrouverSommet(sIdentifiant);
-	TSommet* SMTNouveauSommet = GPOTrouverSommet(sNouvelIdentifiant);
-
-	vector<TArc*> vARCArcsEntrants = SMTAncienSommet->SMTLireArcsEntrants();
-	vector<TArc*> vARCArcsSortants = SMTAncienSommet->SMTLireArcsSortants();
-	unsigned int uiBoucle;
-	unsigned int uiCritereArret;
-
-
-	if (SMTAncienSommet == nullptr)
+	try
 	{
-		ostringstream ssMessageErreur;
+		TSommet* SMTAncienSommet = GPOTrouverSommet(sIdentifiant);
+		TSommet* SMTNouveauSommet = GPOTrouverSommet(sNouvelIdentifiant);
 
-		ssMessageErreur << "Le sommet d'identifiant ";
-		ssMessageErreur << sIdentifiant.c_str();
-		ssMessageErreur << " n'existe pas dans le graphe et n'a donc pas ete renomme.";
+		vector<TArc*> vARCArcsEntrants = SMTAncienSommet->SMTLireArcsEntrants();
+		vector<TArc*> vARCArcsSortants = SMTAncienSommet->SMTLireArcsSortants();
+		unsigned int uiBoucle;
+		unsigned int uiCritereArret;
 
-		string sDescription = ssMessageErreur.str();
 
-		throw logic_error(sDescription);
+		if (SMTAncienSommet == nullptr)
+		{
+			ostringstream ssMessageErreur;
+
+			ssMessageErreur << "Le sommet d'identifiant ";
+			ssMessageErreur << sIdentifiant.c_str();
+			ssMessageErreur << " n'existe pas dans le graphe et n'a donc pas ete renomme.";
+
+			string sDescription = ssMessageErreur.str();
+
+			throw logic_error(sDescription);
+		}
+		if (SMTNouveauSommet != nullptr)
+		{
+			ostringstream ssMessageErreur;
+
+			ssMessageErreur << "Le sommet d'identifiant ";
+			ssMessageErreur << sNouvelIdentifiant.c_str();
+			ssMessageErreur << " existe deja dans le graphe et n'a donc pas pu etre assigne a nouveau.";
+
+			string sDescription = ssMessageErreur.str();
+
+			throw logic_error(sDescription);
+		}
+
+		uiCritereArret = (unsigned int)vARCArcsEntrants.size();
+
+		for (uiBoucle = 0; uiBoucle < uiCritereArret; uiBoucle++)
+		{
+			vARCArcsEntrants[uiBoucle]->ARCModifierDestination(sNouvelIdentifiant);
+		}
+
+		uiCritereArret = (unsigned int)vARCArcsSortants.size();
+
+		for (uiBoucle = 0; uiBoucle < uiCritereArret; uiBoucle++)
+		{
+			vARCArcsSortants[uiBoucle]->ARCModifierOrigine(sNouvelIdentifiant);
+		}
+
+		SMTAncienSommet->SMTModifierIdentifiant(sNouvelIdentifiant);
 	}
-	if (SMTNouveauSommet != nullptr)
+	catch (const logic_error& lerror)
 	{
-		ostringstream ssMessageErreur;
-
-		ssMessageErreur << "Le sommet d'identifiant ";
-		ssMessageErreur << sNouvelIdentifiant.c_str();
-		ssMessageErreur << " existe deja dans le graphe et n'a donc pas pu etre assigne a nouveau.";
-
-		string sDescription = ssMessageErreur.str();
-
-		throw logic_error(sDescription);
+		std::cerr << "Logic error: " << lerror.what() << std::endl;
 	}
-
-	uiCritereArret = (unsigned int)vARCArcsEntrants.size();
-
-	for (uiBoucle = 0; uiBoucle < uiCritereArret; uiBoucle++)
-	{
-		vARCArcsEntrants[uiBoucle]->ARCModifierDestination(sNouvelIdentifiant);
-	}
-
-	uiCritereArret = (unsigned int)vARCArcsSortants.size();
-
-	for (uiBoucle = 0; uiBoucle < uiCritereArret; uiBoucle++)
-	{
-		vARCArcsSortants[uiBoucle]->ARCModifierOrigine(sNouvelIdentifiant);
-	}
-
-	SMTAncienSommet->SMTModifierIdentifiant(sNouvelIdentifiant);
 }
 
 /******************************************************
@@ -362,55 +383,62 @@ inline void PGraphOrient<TArc, TSommet>::GPOModifierIdentifiantSommet(const stri
 template<class TArc, class TSommet>
 inline void PGraphOrient<TArc, TSommet>::GPOAjouterArc(const string& sOrigine, const string& sDestination)
 {
-	TSommet* SMTOrigine = GPOTrouverSommet(sOrigine);
-	TSommet* SMTDestination = GPOTrouverSommet(sDestination);
-
-	if (SMTOrigine == nullptr)
+	try
 	{
-		ostringstream ssMessageErreur;
+		TSommet* SMTOrigine = GPOTrouverSommet(sOrigine);
+		TSommet* SMTDestination = GPOTrouverSommet(sDestination);
 
-		ssMessageErreur << "Le sommet ";
-		ssMessageErreur << sOrigine.c_str();
-		ssMessageErreur << " n'existe pas dans le graphe et ne peut donc pas servir d'origine.";
+		if (SMTOrigine == nullptr)
+		{
+			ostringstream ssMessageErreur;
 
-		string sDescription = ssMessageErreur.str();
+			ssMessageErreur << "Le sommet ";
+			ssMessageErreur << sOrigine.c_str();
+			ssMessageErreur << " n'existe pas dans le graphe et ne peut donc pas servir d'origine.";
 
-		throw logic_error(sDescription);
+			string sDescription = ssMessageErreur.str();
+
+			throw logic_error(sDescription);
+		}
+		if (SMTDestination == nullptr)
+		{
+			ostringstream ssMessageErreur;
+
+			ssMessageErreur << "Le sommet ";
+			ssMessageErreur << sDestination.c_str();
+			ssMessageErreur << " n'existe pas dans le graphe et ne peut donc pas servir de destination.";
+
+			string sDescription = ssMessageErreur.str();
+
+			throw logic_error(sDescription);
+		}
+		if (GPOTrouverArc(sOrigine, sDestination) != nullptr)
+		{
+			ostringstream ssMessageErreur;
+
+			ssMessageErreur << "L'arc d'origine ";
+			ssMessageErreur << sOrigine.c_str();
+			ssMessageErreur << " et de destination ";
+			ssMessageErreur << sDestination.c_str();
+			ssMessageErreur << " existe deja dans le graphe et n'a donc pas ete ajoute.";
+
+			string sDescription = ssMessageErreur.str();
+
+			throw logic_error(sDescription);
+		}
+
+		TArc* ARCNouveau = new TArc(sOrigine, sDestination);
+
+		SMTOrigine->SMTAjouterArcSortant(ARCNouveau);
+
+		SMTDestination->SMTAjouterArcEntrant(ARCNouveau);
+
+		vGPOListeArcs.push_back(ARCNouveau);
 	}
-	if (SMTDestination == nullptr)
+	catch (const logic_error& lerror)
 	{
-		ostringstream ssMessageErreur;
-
-		ssMessageErreur << "Le sommet ";
-		ssMessageErreur << sDestination.c_str();
-		ssMessageErreur << " n'existe pas dans le graphe et ne peut donc pas servir de destination.";
-
-		string sDescription = ssMessageErreur.str();
-
-		throw logic_error(sDescription);
+		std::cerr << "Logic error: " << lerror.what() << std::endl;
 	}
-	if (GPOTrouverArc(sOrigine, sDestination) != nullptr)
-	{
-		ostringstream ssMessageErreur;
-
-		ssMessageErreur << "L'arc d'origine ";
-		ssMessageErreur << sOrigine.c_str();
-		ssMessageErreur << " et de destination ";
-		ssMessageErreur << sDestination.c_str();
-		ssMessageErreur << " existe deja dans le graphe et n'a donc pas ete ajoute.";
-
-		string sDescription = ssMessageErreur.str();
-
-		throw logic_error(sDescription);
-	}
-
-	TArc* ARCNouveau = new TArc(sOrigine, sDestination);
-
-	SMTOrigine->SMTAjouterArcSortant(ARCNouveau);
-
-	SMTDestination->SMTAjouterArcEntrant(ARCNouveau);
-
-	vGPOListeArcs.push_back(ARCNouveau);
 }
 
 /******************************************************
@@ -426,34 +454,41 @@ inline void PGraphOrient<TArc, TSommet>::GPOAjouterArc(const string& sOrigine, c
 template<class TArc, class TSommet>
 inline void PGraphOrient<TArc, TSommet>::GPOSupprimerArc(const string& sOrigine, const string& sDestination)
 {
-	TArc* ARCAncienArc = GPOTrouverArc(sOrigine, sDestination);
-	TSommet* SMTOrigine = GPOTrouverSommet(sOrigine);
-	TSommet* SMTDestination = GPOTrouverSommet(sDestination);
-
-	if (ARCAncienArc == nullptr)
+	try
 	{
-		ostringstream ssMessageErreur;
+		TArc* ARCAncienArc = GPOTrouverArc(sOrigine, sDestination);
+		TSommet* SMTOrigine = GPOTrouverSommet(sOrigine);
+		TSommet* SMTDestination = GPOTrouverSommet(sDestination);
 
-		ssMessageErreur << "L'arc d'origine ";
-		ssMessageErreur << sOrigine.c_str();
-		ssMessageErreur << " et de destination ";
-		ssMessageErreur << sDestination.c_str();
-		ssMessageErreur << " n'existe pas dans le graphe et n'a donc pas ete supprime.";
+		if (ARCAncienArc == nullptr)
+		{
+			ostringstream ssMessageErreur;
 
-		string sDescription = ssMessageErreur.str();
+			ssMessageErreur << "L'arc d'origine ";
+			ssMessageErreur << sOrigine.c_str();
+			ssMessageErreur << " et de destination ";
+			ssMessageErreur << sDestination.c_str();
+			ssMessageErreur << " n'existe pas dans le graphe et n'a donc pas ete supprime.";
 
-		throw logic_error(sDescription);
+			string sDescription = ssMessageErreur.str();
+
+			throw logic_error(sDescription);
+		}
+
+		SMTOrigine->SMTSupprimerArcSortant(ARCAncienArc);
+
+		SMTDestination->SMTSupprimerArcEntrant(ARCAncienArc);
+
+		vGPOListeArcs.erase(remove_if(vGPOListeArcs.begin(),
+			vGPOListeArcs.end(),
+			[&](TArc* ARCElement) {return ARCElement->ARCLireOrigine() == sOrigine and ARCElement->ARCLireDestination() == sDestination; }),
+			vGPOListeArcs.end());
+
+		delete ARCAncienArc;
 	}
-
-	SMTOrigine->SMTSupprimerArcSortant(ARCAncienArc);
-
-	SMTDestination->SMTSupprimerArcEntrant(ARCAncienArc);
-
-	vGPOListeArcs.erase(remove_if(vGPOListeArcs.begin(),
-		vGPOListeArcs.end(),
-		[&](TArc* ARCElement) {return ARCElement->ARCLireOrigine() == sOrigine and ARCElement->ARCLireDestination() == sDestination; }),
-		vGPOListeArcs.end());
-
-	delete ARCAncienArc;
+	catch (const logic_error& lerror)
+	{
+		std::cerr << "Logic error: " << lerror.what() << std::endl;
+	}
 }
 

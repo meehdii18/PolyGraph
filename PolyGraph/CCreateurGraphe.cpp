@@ -10,6 +10,8 @@ PGraphOrient<CArc, CSommet> CCreateurGraph::CCGCreerGraphOrientDepuisFichier(con
         // LIRE VALEUR SIMPLE
         unsigned int uiNbArc = stoi(CParseur::PRSLireValeur(sFichier, "nbarcs"));
         unsigned int uiNbSommet = stoi(CParseur::PRSLireValeur(sFichier, "nbsommets"));
+        unsigned int uiBoucle;
+        unsigned int uiCritereArret;
 
         // LIRE VALEUR COMPLEXE
         vector<string> vDelimiteurs1 = { "Debut","Fin" };
@@ -20,20 +22,28 @@ PGraphOrient<CArc, CSommet> CCreateurGraph::CCGCreerGraphOrientDepuisFichier(con
         // Vérification que les données dans le fichier sont cohérentes
         // Si c'est le cas on peut créer les sommets et les arcs
         // Sinon on renvoie une erreur
-        if (vDonneesSommet["Numero"].size() == uiNbSommet) {
-            if (vDonneesArc["Debut"].size() == uiNbArc && vDonneesArc["Fin"].size() == uiNbArc) {
-                // Ajouter les sommets puis les arcs
-            }
-            else {
-                throw(runtime_error("Incoherence des donnees dans le fichier texte concernant le nombre d'arcs."));
-            }
+        if (vDonneesSommet["Numero"].size() != uiNbSommet) 
+        {
+            throw(runtime_error("Incoherence des donnees dans le fichier texte concernant le nombre de sommets."));
         }
-        else {
-            throw(runtime_error("Incoherence des donnees dans le fichier texte concenrnant le nombre de sommets."));
+        if (vDonneesArc["Debut"].size() != uiNbArc or vDonneesArc["Fin"].size() != uiNbArc) 
+        {
+            throw(runtime_error("Incoherence des donnees dans le fichier texte concernant le nombre d'arcs."));
+        }
+        //Ajouter sommets et arcs
+        uiCritereArret = (unsigned int)vDonneesSommet["Numero"].size();
+
+        for (uiBoucle = 0; uiBoucle < uiCritereArret; uiBoucle++)
+        {
+            GPOGraphe.GPOAjouterSommet(vDonneesSommet["Numero"][uiBoucle]);
         }
 
+        uiCritereArret = (unsigned int)vDonneesArc["Debut"].size();
 
-
+        for (uiBoucle = 0; uiBoucle < uiCritereArret; uiBoucle++)
+        {
+            GPOGraphe.GPOAjouterArc(vDonneesArc["Debut"][uiBoucle], vDonneesArc["Fin"][uiBoucle]);
+        }
 
     }
     catch (const runtime_error& erreur)

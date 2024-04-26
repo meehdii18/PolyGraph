@@ -59,6 +59,6 @@ public:
 	* Entraine : La lecture du fichier en parametre et s'il
 	* est conforme, la creation du graphe associe
 	******************************************************/
-	PGraphOrient<CArc, CSommet> static CCGCreerGraphDepuisFichier(const string& sFichier);
+	PGraph<CArc, CSommet> static CCGCreerGraphDepuisFichier(const string& sFichier);
 };
 

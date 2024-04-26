@@ -31,7 +31,6 @@ void testCGraphOrient()
 
     CAffichage::AFHAfficherGraphe(GPOGraphe);
 
-    //GPOGraphe.GPOInverserArcs();
     COperationsSurGraphe::OSGInverserArcs(GPOGraphe);
 
     CAffichage::AFHAfficherGraphe(GPOGraphe);
@@ -65,7 +64,6 @@ void testCGraph()
 
     CAffichage::AFHAfficherGraphe(GPOGraphe);
 
-    //GPOGraphe.GPOInverserArcs();
     COperationsSurGraphe::OSGInverserArcs(GPOGraphe);
 
     CAffichage::AFHAfficherGraphe(GPOGraphe);

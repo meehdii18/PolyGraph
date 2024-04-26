@@ -129,14 +129,9 @@ string CParseur::PRSLireValeurLigne(const string& sLigne, const string& sMotCle)
         size_t stPosEgal = sLigneMinuscule.find('=', stPosMotCle);
         if (stPosEgal != string::npos) {
             size_t stPosVirgule = sLigneMinuscule.find(',', stPosEgal);
-            if (stPosVirgule != string::npos) {
-                size_t stPosNonEspace = sLigne.find_first_not_of(" \t", stPosEgal + 1);
-                return sLigne.substr(stPosNonEspace, stPosVirgule - stPosNonEspace);
-            }
-            else{
-                size_t stPosNonEspace = sLigne.find_first_not_of(" \t", stPosEgal + 1);
-                return sLigne.substr(stPosNonEspace);
-            }
+            size_t stDebutSansEspace = sLigne.find_first_not_of(" \t", stPosEgal + 1);
+            size_t stFinSansEspace = sLigne.find_last_not_of(" \t,", stPosVirgule) + 1;
+            return sLigne.substr(stDebutSansEspace, stFinSansEspace - stDebutSansEspace);
         }
     }
     return "";
