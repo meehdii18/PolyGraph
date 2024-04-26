@@ -11,3 +11,7 @@
 * [Opérations sur les sommets](guide-utilisateur/operations-sur-les-sommets.md)
 * [Opérations sur les arcs](guide-utilisateur/operations-sur-les-arcs.md)
 * [Opérations sur les graphes](guide-utilisateur/operations-sur-les-graphes.md)
+
+## ⌨️ Manuel développeur
+
+* [Fonctionnement de CParseur](manuel-developpeur/fonctionnement-de-cparseur.md)
