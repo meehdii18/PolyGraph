@@ -13,7 +13,7 @@
 * INCLUSIONS EXTERNES :
 */
 #include "CParseur.h"
-#include "PGraph.th"
+#include "PGraph.h"
 using namespace std;
 
 class CCreateurGraph
