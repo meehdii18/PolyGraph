@@ -92,6 +92,9 @@ int main()
 
     PGraph<CArc, CSommet> Graphe("./donnees.txt");
     CAffichage::AFHAfficherGraphe(Graphe);
+    Graphe.GPOSupprimerSommet("3");
+    Graphe.GPOSupprimerArc("1", "2");
+    CAffichage::AFHAfficherGraphe(Graphe);
 }
 
 

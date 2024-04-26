@@ -253,10 +253,9 @@ inline void PGraphOrient<TArc, TSommet>::GPOSupprimerSommet(const string& sIdent
 	{
 		TSommet* SMTAncienSommet = GPOTrouverSommet(sIdentifiant);
 
-		vector<TArc*> vARCArcsEntrants = SMTAncienSommet->SMTLireArcsEntrants();
-		vector<TArc*> vARCArcsSortants = SMTAncienSommet->SMTLireArcsSortants();
-		unsigned int uiBoucle;
-		unsigned int uiCritereArret;
+		vector<TArc*> vARCArcsEntrants;
+
+		vector<TArc*> vARCArcsSortants;
 
 		if (SMTAncienSommet == nullptr)
 		{
@@ -271,18 +270,22 @@ inline void PGraphOrient<TArc, TSommet>::GPOSupprimerSommet(const string& sIdent
 			throw logic_error(sDescription);
 		}
 
-		uiCritereArret = (unsigned int)vARCArcsEntrants.size();
+		vARCArcsEntrants = SMTAncienSommet->SMTLireArcsEntrants();
 
-		for (uiBoucle = 0; uiBoucle < uiCritereArret; uiBoucle++)
+		while (vARCArcsEntrants.size() != 0)
 		{
-			GPOSupprimerArc(vARCArcsEntrants[uiBoucle]->ARCLireOrigine(), sIdentifiant);
+			string sOrigine = vARCArcsEntrants[0]->ARCLireOrigine();
+			GPOSupprimerArc(sOrigine, sIdentifiant);
+			vARCArcsEntrants = SMTAncienSommet->SMTLireArcsEntrants();
 		}
 
-		uiCritereArret = (unsigned int)vARCArcsSortants.size();
+		vARCArcsSortants = SMTAncienSommet->SMTLireArcsSortants();
 
-		for (uiBoucle = 0; uiBoucle < uiCritereArret; uiBoucle++)
+		while (vARCArcsSortants.size() != 0)
 		{
-			GPOSupprimerArc(sIdentifiant, vARCArcsSortants[uiBoucle]->ARCLireDestination());
+			string sDestination = vARCArcsSortants[0]->ARCLireDestination();
+			GPOSupprimerArc(sIdentifiant, sDestination);
+			vARCArcsSortants = SMTAncienSommet->SMTLireArcsSortants();
 		}
 
 		vGPOListeSommets.erase(remove_if(vGPOListeSommets.begin(),
@@ -481,7 +484,7 @@ inline void PGraphOrient<TArc, TSommet>::GPOSupprimerArc(const string& sOrigine,
 
 		vGPOListeArcs.erase(remove_if(vGPOListeArcs.begin(),
 			vGPOListeArcs.end(),
-			[&](TArc* ARCElement) {return ARCElement->ARCLireOrigine() == sOrigine and ARCElement->ARCLireDestination() == sDestination; }),
+			[&sOrigine,&sDestination](TArc* ARCElement) {return (ARCElement->ARCLireOrigine() == sOrigine and ARCElement->ARCLireDestination() == sDestination); }),
 			vGPOListeArcs.end());
 
 		delete ARCAncienArc;

@@ -49,7 +49,8 @@ void CSommet::SMTSupprimerArcEntrant(CArc* ARCArcEntrant)
 {
 	vSMTArcsEntrants.erase(remove_if(vSMTArcsEntrants.begin(),
 		vSMTArcsEntrants.end(),
-		[&](CArc* ARCElement) {return *ARCElement == *ARCArcEntrant; }));
+		[&](CArc* ARCElement) {return *ARCElement == *ARCArcEntrant; }),
+		vSMTArcsEntrants.end());
 }
 
 /******************************************************
@@ -101,5 +102,6 @@ void CSommet::SMTSupprimerArcSortant(CArc* ARCArcSortant)
 {
 	vSMTArcsSortants.erase(remove_if(vSMTArcsSortants.begin(),
 		vSMTArcsSortants.end(),
-		[&](CArc* ARCElement) {return *ARCElement == *ARCArcSortant; }));
+		[&](CArc* ARCElement) { return *ARCElement == *ARCArcSortant; }),
+		vSMTArcsSortants.end());
 }
