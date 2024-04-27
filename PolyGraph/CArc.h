@@ -49,6 +49,17 @@ public:
 	CArc() = delete;
 
 	/******************************************************
+	* CArc (recopie : delete)
+	*******************************************************
+	* Entree : Rien
+	* Necessite : Rien
+	* Sortie : Rien
+	* Entraine : Un arc est unique au sein d'un graphe.
+	* Il est donc interdit.
+	******************************************************/
+	CArc(const CArc& ARCParam) = delete;
+
+	/******************************************************
 	* CArc
 	*******************************************************
 	* Entree : sOrigine string, l'origine de l'arc

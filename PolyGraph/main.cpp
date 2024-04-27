@@ -68,6 +68,12 @@ void testCGraph()
 
     CAffichage::AFHAfficherGraphe(GPOGraphe);
 
+    PGraph<CArc, CSommet> GPOGraphe2(GPOGraphe);
+
+    cout << "recopie" << endl;
+
+    CAffichage::AFHAfficherGraphe(GPOGraphe2);
+
     GPOGraphe.GPOSupprimerSommet("Sommet 1 renomme");
 
     CAffichage::AFHAfficherGraphe(GPOGraphe);

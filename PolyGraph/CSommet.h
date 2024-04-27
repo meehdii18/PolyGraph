@@ -55,6 +55,17 @@ public:
 	******************************************************/
 	CSommet() = delete;
 
+	/******************************************************
+	* CSommet (recopie : delete)
+	*******************************************************
+	* Entree : Rien
+	* Necessite : Rien
+	* Sortie : Rien
+	* Entraine : Un identifiant de sommet est unique au
+	* sein d'un graphe
+	* Il est donc interdit
+	******************************************************/
+	CSommet(const CSommet& SMTParam) = delete;
 
 	/******************************************************
 	* CSommet

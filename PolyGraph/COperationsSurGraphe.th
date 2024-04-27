@@ -22,15 +22,8 @@ void static COperationsSurGraphe::OSGInverserArcs(PGraphOrient<TArc, TSommet>& G
 
 		string sAncienneDestination = vARCListeArcs[uiBoucle][1];
 
-		try
-		{
-			GPOParam.GPOAjouterArc(sAncienneDestination, sAncienneOrigine);
-			GPOParam.GPOSupprimerArc(sAncienneOrigine, sAncienneDestination);
-		}
-		catch (const std::logic_error& erreur)
-		{
-			cerr << "Logic error: " << erreur.what() << endl; // A CHANGER C DEGUEU
-		}
+		GPOParam.GPOSupprimerArc(sAncienneOrigine, sAncienneDestination);
+		GPOParam.GPOAjouterArc(sAncienneDestination, sAncienneOrigine);
 
 		uiBoucle++;
 	}

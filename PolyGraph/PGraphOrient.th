@@ -61,6 +61,37 @@ inline TArc* PGraphOrient<TArc, TSommet>::GPOTrouverArc(const string& sOrigine, 
 //CONSTRUCTEURS ET DESTRUCTEURS
 
 /******************************************************
+* PGraphOrient (Recopie)
+*******************************************************
+* Entree : Rien
+* Necessite : Rien
+* Sortie : Rien
+* Entraine : Un graphe copie de GPOParam est cree
+******************************************************/
+template<class TArc, class TSommet>
+inline PGraphOrient<TArc, TSommet>::PGraphOrient(const PGraphOrient& GPOParam)
+{
+	vector<string> vsListeSommets = GPOParam.GPOLireListeSommets();
+	vector<vector<string>> vvsListeArcs = GPOParam.GPOLireListeArcs();
+	unsigned int uiBoucle;
+	unsigned int uiCritereArret;
+	
+	uiCritereArret = (unsigned int)vsListeSommets.size();
+
+	for (uiBoucle = 0; uiBoucle < uiCritereArret; uiBoucle++)
+	{
+		GPOAjouterSommet(vsListeSommets[uiBoucle]);
+	}
+
+	uiCritereArret = (unsigned int)vvsListeArcs.size();
+
+	for (uiBoucle = 0; uiBoucle < uiCritereArret; uiBoucle++)
+	{
+		GPOAjouterArc(vvsListeArcs[uiBoucle][0], vvsListeArcs[uiBoucle][1]);
+	}
+}
+
+/******************************************************
 * ~PGraphOrient
 *******************************************************
 * Entree : Rien
