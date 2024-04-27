@@ -16,7 +16,7 @@ void CAffichage::AFHAfficherListeSommets(const vector<string>& vsListe)
 
 	for (uiBoucle = 0; uiBoucle < vsListe.size(); uiBoucle++)
 	{
-		cout << "ID Sommet : " << vsListe[uiBoucle] << endl;
+		cout << " - \"" << vsListe[uiBoucle] << "\"" << endl;
 	}
 }
 
@@ -42,14 +42,19 @@ void CAffichage::AFHAfficherSommetAvecArc(const PGraphOrient<CArc, CSommet>& GPO
 
 	unsigned int uiBoucle;
 
-	cout << "/// Arcs entrants :" << endl;
+
+	cout << "   ///////////////////" << endl;
+	cout << "   // Arcs entrants //" << endl;
+	cout << "   ///////////////////" << endl;
 
 	for (uiBoucle = 0; uiBoucle < vsArcsEntrants.size(); uiBoucle++)
 	{
 		cout << " - " << vsArcsEntrants[uiBoucle] << endl;
 	}
 
-	cout << "//// Arcs sortants :" << endl;
+	cout << "   ///////////////////" << endl;
+	cout << "   // Arcs sortants //" << endl;
+	cout << "   ///////////////////" << endl;
 
 	for (uiBoucle = 0; uiBoucle < vsArcsSortants.size(); uiBoucle++)
 	{
@@ -77,7 +82,7 @@ void CAffichage::AFHAfficherArcs(const vector<vector<string>>& vvsListe)
 	{
 		string sOrigine = vvsListe[uiBoucle][0];
 		string sDestination = vvsListe[uiBoucle][1];
-		cout << sOrigine << " -> " << sDestination << endl;
+		cout << " - \"" << sOrigine << "\" -> \"" << sDestination << "\"" << endl;
 	}
 }
 
@@ -97,13 +102,19 @@ void CAffichage::AFHAfficherGraphe(const PGraphOrient<CArc, CSommet>& GPOParam)
 	vector<vector<string>> vvsListeArc = GPOParam.GPOLireListeArcs();
 
 	cout << "------------------------------------------" << endl;
-	cout << "Graphe Oriente : \n" << "////////////// Sommets :" << endl;
+	cout << "Graphe : \n" << endl;
+	cout << "/////////////" << endl;
+	cout << "// Sommets //" << endl;
+	cout << "/////////////\n" << endl;
 
 	AFHAfficherListeSommets(vsListeSommet);
 
-	cout << "////////////// Arcs :" << endl;
+
+	cout << "\n////////////" << endl;
+	cout << "//  Arcs  //" << endl;
+	cout << "////////////\n" << endl;
 
 	AFHAfficherArcs(vvsListeArc);
 
-	cout << "------------------------------------------" << endl;
+	cout << "\n------------------------------------------" << endl;
 }

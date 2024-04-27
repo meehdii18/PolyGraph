@@ -78,23 +78,21 @@ void testCGraph()
 int main()
 {
 
-    //testCGraphOrient();
+    testCGraphOrient();
 
-    //testCGraph();
+    testCGraph();
     
-    //PGraphOrient<CArc, CSommet> Graphe = CCreateurGraph::CCGCreerGraphOrientDepuisFichier("./donnees.txt");
-    //CAffichage::AFHAfficherGraphe(Graphe);
-    /*
-    PGraph<CArc, CSommet> Graphe;
+    /*PGraph<CArc, CSommet> Graphe;
     CCreateurGraph::CCGImporterGrapheFichier(Graphe, "./donnees.txt");
     CAffichage::AFHAfficherGraphe(Graphe);
-    */
+    
 
     PGraph<CArc, CSommet> Graphe("./donnees.txt");
     CAffichage::AFHAfficherGraphe(Graphe);
     Graphe.GPOSupprimerSommet("3");
     Graphe.GPOSupprimerArc("1", "2");
     CAffichage::AFHAfficherGraphe(Graphe);
+    */
 }
 
 
