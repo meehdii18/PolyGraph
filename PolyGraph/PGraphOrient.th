@@ -188,12 +188,15 @@ inline vector<string> PGraphOrient<TArc, TSommet>::GPOLirePredecesseursSommet(co
 
 	vector<string> vsAffichagePredecesseurs;
 
-	unsigned int uiBoucle;
-	unsigned int uiCritereArret = (unsigned int)vARCArcsEntrants.size();
-
-	for (uiBoucle = 0; uiBoucle < uiCritereArret; uiBoucle++)
+	if (SMTCourant != nullptr)
 	{
-		vsAffichagePredecesseurs.push_back(vARCArcsEntrants[uiBoucle]->ARCLireOrigine());
+		unsigned int uiBoucle;
+		unsigned int uiCritereArret = (unsigned int)vARCArcsEntrants.size();
+
+		for (uiBoucle = 0; uiBoucle < uiCritereArret; uiBoucle++)
+		{
+			vsAffichagePredecesseurs.push_back(vARCArcsEntrants[uiBoucle]->ARCLireOrigine());
+		}
 	}
 
 	return vsAffichagePredecesseurs;
@@ -218,12 +221,15 @@ inline vector<string> PGraphOrient<TArc, TSommet>::GPOLireSuccesseursSommet(cons
 
 	vector<string> vsAffichageSuccesseurs;
 
-	unsigned int uiBoucle;
-	unsigned int uiCritereArret = (unsigned int)vARCArcsSortants.size();
-
-	for (uiBoucle = 0; uiBoucle < uiCritereArret; uiBoucle++)
+	if (SMTCourant != nullptr)
 	{
-		vsAffichageSuccesseurs.push_back(vARCArcsSortants[uiBoucle]->ARCLireDestination());
+		unsigned int uiBoucle;
+		unsigned int uiCritereArret = (unsigned int)vARCArcsSortants.size();
+
+		for (uiBoucle = 0; uiBoucle < uiCritereArret; uiBoucle++)
+		{
+			vsAffichageSuccesseurs.push_back(vARCArcsSortants[uiBoucle]->ARCLireDestination());
+		}
 	}
 
 	return vsAffichageSuccesseurs;

@@ -30,6 +30,32 @@ private :
 
 	// Aucun attribut dans cette classe car ça n'aurait pas de sens d'en ajouter
 
+	//METHODES PRIVEES
+
+	/******************************************************
+	* AFHAfficherListeSommet
+	*******************************************************
+	* Entree : vsListe, la liste des identifiants des
+	* sommets a afficher
+	* Necessite : Rien
+	* Sortie : Rien
+	* Entraine : L'affichage des identifiants des sommets
+	* du graphe
+	******************************************************/
+	void static AFHAfficherListeSommets(const vector<string>& vsListe);
+
+	/******************************************************
+	* AFHAfficherArcs
+	*******************************************************
+	* Entree : vvsListe, la liste des origines et
+	* destinations des arcs du graphe
+	* Necessite : Rien
+	* Sortie : Rien
+	* Entraine : L'affichage des informations des arcs du
+	* graphe
+	******************************************************/
+	void static AFHAfficherArcs(const vector<vector<string>>& vvsListe);
+
 public:
 	// CONSTRUCTEURS ET DESTRUCTEUR
 
@@ -49,18 +75,6 @@ public:
 	// METHODES
 
 	/******************************************************
-	* AFHAfficherListeSommet
-	*******************************************************
-	* Entree : vsListe, la liste des identifiants des
-	* sommets a afficher
-	* Necessite : Rien
-	* Sortie : Rien
-	* Entraine : L'affichage des identifiants des sommets
-	* du graphe
-	******************************************************/
-	void static AFHAfficherListeSommets(const vector<string>& vsListe);
-
-	/******************************************************
 	* AFHAfficherSommetAvecArc
 	*******************************************************
 	* Entree : GPOParam le graphe auquel le sommet a 
@@ -72,18 +86,6 @@ public:
 	* du sommet
 	******************************************************/
 	void static AFHAfficherSommetAvecArc(const PGraphOrient<CArc, CSommet>& GPOParam, const string& sIdSommet);
-
-	/******************************************************
-	* AFHAfficherArcs
-	*******************************************************
-	* Entree : vvsListe, la liste des origines et 
-	* destinations des arcs du graphe
-	* Necessite : Rien
-	* Sortie : Rien
-	* Entraine : L'affichage des informations des arcs du
-	* graphe
-	******************************************************/
-	void static AFHAfficherArcs(const vector<vector<string>>& vvsListe);
 
 	/******************************************************
 	* AFHAfficherGraphe

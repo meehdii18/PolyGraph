@@ -68,7 +68,7 @@ public:
 	CSommet(const CSommet& SMTParam) = delete;
 
 	/******************************************************
-	* CSommet
+	* CSommet (confort)
 	*******************************************************
 	* Entree : sParam string, l'identifiant avec lequel est
 	* initialise le sommet

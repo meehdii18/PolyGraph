@@ -20,6 +20,27 @@ void CAffichage::AFHAfficherListeSommets(const vector<string>& vsListe)
 	}
 }
 
+/******************************************************
+* AFHAfficherArcs
+*******************************************************
+* Entree : vvsListe, la liste des origines et
+* destinations des arcs du graphe
+* Necessite : Rien
+* Sortie : Rien
+* Entraine : L'affichage des informations des arcs du
+* graphe
+******************************************************/
+void CAffichage::AFHAfficherArcs(const vector<vector<string>>& vvsListe)
+{
+	unsigned int uiBoucle;
+
+	for (uiBoucle = 0; uiBoucle < vvsListe.size(); uiBoucle++)
+	{
+		string sOrigine = vvsListe[uiBoucle][0];
+		string sDestination = vvsListe[uiBoucle][1];
+		cout << " - \"" << sOrigine << "\" -> \"" << sDestination << "\"" << endl;
+	}
+}
 
 /******************************************************
 * AFHAfficherSommetAvecArc
@@ -37,7 +58,7 @@ void CAffichage::AFHAfficherSommetAvecArc(const PGraphOrient<CArc, CSommet>& GPO
 	cout << "---------------------" << endl;
 	vector<string> vsArcsEntrants = GPOParam.GPOLirePredecesseursSommet(sIdSommet);
 	vector<string> vsArcsSortants = GPOParam.GPOLireSuccesseursSommet(sIdSommet);
-	
+
 	cout << "ID Sommet : " << sIdSommet << endl;
 
 	unsigned int uiBoucle;
@@ -62,30 +83,6 @@ void CAffichage::AFHAfficherSommetAvecArc(const PGraphOrient<CArc, CSommet>& GPO
 	}
 	cout << "---------------------" << endl;
 }
-
-
-/******************************************************
-* AFHAfficherArcs
-*******************************************************
-* Entree : vvsListe, la liste des origines et
-* destinations des arcs du graphe
-* Necessite : Rien
-* Sortie : Rien
-* Entraine : L'affichage des informations des arcs du
-* graphe
-******************************************************/
-void CAffichage::AFHAfficherArcs(const vector<vector<string>>& vvsListe)
-{
-	unsigned int uiBoucle;
-
-	for (uiBoucle = 0; uiBoucle < vvsListe.size(); uiBoucle++)
-	{
-		string sOrigine = vvsListe[uiBoucle][0];
-		string sDestination = vvsListe[uiBoucle][1];
-		cout << " - \"" << sOrigine << "\" -> \"" << sDestination << "\"" << endl;
-	}
-}
-
 
 /******************************************************
 * AFHAfficherGraphe
