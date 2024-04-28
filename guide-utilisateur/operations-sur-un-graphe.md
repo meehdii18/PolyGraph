@@ -1,14 +1,23 @@
 # Opérations sur un graphe
 
-Les opérations décrient ici seront expliquées avec des graphes non orientées mais fonctionnent également avec des graphes orientées
+Les opérations décrites ici seront expliquées avec des graphes non orientées mais fonctionnent également avec des graphes orientées
 
 ## Ajouter un sommet
 
-La méthode GPOAjouterSommet prenant en paramètre un string étant l'identifiant du sommet, ajoutera un sommet au graphe sur lequel on appel la méthode
+La méthode GPOAjouterSommet prenant en paramètre un string étant l'identifiant du sommet, ajoutera un sommet au graphe sur lequel on appelle la méthode
 
 ```cpp
 PGraphOrient<CArc, CSommet> GPOGraphe;
 GPOGraphe.GPOAjouterSommet("Sommet 2");
+```
+
+## Supprimer un sommet
+
+La méthode GPOSupprimerSommet prenant en paramètre un string étant l'identifiant du sommet, supprimera le sommet correspondant du graphe sur lequel on appelle la méthode 
+
+```cpp
+PGraphOrient<CArc, CSommet> GPOGraphe;
+GPOGraphe.GPOSupprimerSommet("Sommet 2");
 ```
 
 ## Modifier l'identifiant d'un sommet existant
