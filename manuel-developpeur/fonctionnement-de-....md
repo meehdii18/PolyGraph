@@ -31,3 +31,11 @@ Cette classe est statique car celà n'a pas de sens d'en créer des instances. E
 ## CAffichage
 
 Cette classe est statique car celà n'a pas de sens d'en créer des instances. Elle contient toutes les fonctions qui permettent d'afficher les graphes et leurs données.
+
+## CParseur
+
+Cette classe est statique car celà n'a pas de sens d'en créer des instances. Elle contient toutes kes fonctions qui permettent de parser un fichier.
+
+## CCreateurGraphe
+
+Cette classe est statique car celà n'a pas de sens d'en créer des instances. Elle fait le lien entre le parsage et les graphes.
