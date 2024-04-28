@@ -26,7 +26,7 @@ template<class TArc, class TSommet> class PGraph : public PGraphOrient<TArc, TSo
 {
 public :
 	/******************************************************
-	* PGraphOrient (default)
+	* PGraph (default)
 	*******************************************************
 	* Entree : Rien
 	* Necessite : Rien
@@ -36,7 +36,7 @@ public :
 	PGraph() = default;
 
 	/******************************************************
-	* PGraphOrient (Confort)
+	* PGraph (Confort)
 	*******************************************************
 	* Entree : sFichier le chemin d'acces au fichier
 	* contenant les donnees avec lesquelles initialiser le

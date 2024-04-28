@@ -9,96 +9,22 @@
 
 using namespace std;
 
-void testCGraphOrient()
+int main(int argc, char* argv[])
 {
-    PGraphOrient<CArc, CSommet> GPOGraphe;
+    if (argc != 2)
+    {
+        cout << "Veuillez rentrez le bon nombre de parametres." << endl;
+    }
+    else
+    {
+        PGraphOrient<CArc, CSommet> GPOGraphe(argv[1]);
 
-    CAffichage::AFHAfficherGraphe(GPOGraphe);
+        CAffichage::AFHAfficherGraphe(GPOGraphe);
 
-    GPOGraphe.GPOAjouterSommet("Sommet 1");
+        COperationsSurGraphe::OSGInverserArcs(GPOGraphe);
 
-    CAffichage::AFHAfficherGraphe(GPOGraphe);
-
-    GPOGraphe.GPOAjouterSommet("Sommet 2");
-
-    CAffichage::AFHAfficherGraphe(GPOGraphe);
-
-    GPOGraphe.GPOAjouterArc("Sommet 1", "Sommet 2");
-
-    CAffichage::AFHAfficherGraphe(GPOGraphe);
-
-    GPOGraphe.GPOModifierIdentifiantSommet("Sommet 1", "Sommet 1 renomme");
-
-    CAffichage::AFHAfficherGraphe(GPOGraphe);
-
-    COperationsSurGraphe::OSGInverserArcs(GPOGraphe);
-
-    CAffichage::AFHAfficherGraphe(GPOGraphe);
-
-    GPOGraphe.GPOSupprimerSommet("Sommet 1 renomme");
-
-    CAffichage::AFHAfficherGraphe(GPOGraphe);
-
-    cout << "------------------------------------------FIN TEST------------------------------------------" << endl;
-}
-
-void testCGraph()
-{
-    PGraph<CArc, CSommet> GPOGraphe;
-
-    CAffichage::AFHAfficherGraphe(GPOGraphe);
-
-    GPOGraphe.GPOAjouterSommet("Sommet 1");
-
-    CAffichage::AFHAfficherGraphe(GPOGraphe);
-
-    GPOGraphe.GPOAjouterSommet("Sommet 2");
-
-    CAffichage::AFHAfficherGraphe(GPOGraphe);
-
-    GPOGraphe.GPOAjouterArc("Sommet 1", "Sommet 2");
-
-    CAffichage::AFHAfficherGraphe(GPOGraphe);
-
-    GPOGraphe.GPOModifierIdentifiantSommet("Sommet 1", "Sommet 1 renomme");
-
-    CAffichage::AFHAfficherGraphe(GPOGraphe);
-
-    COperationsSurGraphe::OSGInverserArcs(GPOGraphe);
-
-    CAffichage::AFHAfficherGraphe(GPOGraphe);
-
-    PGraph<CArc, CSommet> GPOGraphe2(GPOGraphe);
-
-    cout << "recopie" << endl;
-
-    CAffichage::AFHAfficherGraphe(GPOGraphe2);
-
-    GPOGraphe.GPOSupprimerSommet("Sommet 1 renomme");
-
-    CAffichage::AFHAfficherGraphe(GPOGraphe);
-
-    cout << "------------------------------------------FIN TEST------------------------------------------" << endl;
-}
-
-int main()
-{
-
-    testCGraphOrient();
-
-    testCGraph();
-    
-    /*PGraph<CArc, CSommet> Graphe;
-    CCreateurGraph::CCGImporterGrapheFichier(Graphe, "./donnees.txt");
-    CAffichage::AFHAfficherGraphe(Graphe);
-    
-
-    PGraph<CArc, CSommet> Graphe("./donnees.txt");
-    CAffichage::AFHAfficherGraphe(Graphe);
-    Graphe.GPOSupprimerSommet("3");
-    Graphe.GPOSupprimerArc("1", "2");
-    CAffichage::AFHAfficherGraphe(Graphe);
-    */
+        CAffichage::AFHAfficherGraphe(GPOGraphe);
+    }
 }
 
 
