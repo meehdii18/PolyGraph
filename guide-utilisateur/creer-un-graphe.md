@@ -18,7 +18,7 @@ PGraphOrient<CArc, CSommet> GPOGraphe;
 
 ## Création d'un graphe depuis un fichier de données
 
-Il est possible d'importer les données d'un fichier texte pour créer un graphe, ce fichier dois ressembler à cet exemple :&#x20;
+Il est possible d'importer les données d'un fichier texte pour créer un graphe, ce fichier doit ressembler à cet exemple :&#x20;
 
 {% code title="donnees.txt" %}
 ```
