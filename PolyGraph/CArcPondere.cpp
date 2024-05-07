@@ -17,5 +17,5 @@ CArcPondere::CArcPondere(const string& sOrigine, const string& sDestination, con
 
 bool CArcPondere::operator==(const CArcPondere& ARPArcAComparer)
 {
-    return (ARCLireOrigine() == ARPArcAComparer.ARCLireOrigine() and ARCLireDestination() == ARPArcAComparer.ARCLireDestination()) and ;
+    return (ARCLireOrigine() == ARPArcAComparer.ARCLireOrigine() and ARCLireDestination() == ARPArcAComparer.ARCLireDestination()) and ARPArcAComparer.ARPLirePoids() == ARPLirePoids();
 }
