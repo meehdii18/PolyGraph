@@ -1,19 +1,17 @@
 #pragma once
 /******************************************************
-* CLASSE : CArc
+* CLASSE : CArcPondere
 *******************************************************
-* ROLE : Interface de la classe Carc representant les 
-* arcs d'un graphe
+* ROLE : Interface de la classe CArcPondere représentant
+* des arcs mais ayant un poids
 *******************************************************
 * VERSION : 1.0
 * AUTEUR : Mehdi AMELLADI et Raphael AVELINE
-* DATE : 13/03/2024
+* DATE : 7/05/2024
 *******************************************************
 * INCLUSIONS EXTERNES :
 */
-
-#include <iostream>
-#include <string>
+#include "CArc.h"
 
 using namespace std;
 
@@ -24,32 +22,31 @@ using namespace std;
 /* VARIABLES:
 */
 
-class CArc
+class CArcPondere : public CArc
 {
-private:
 	// ATTRIBUTS
+private:
+	unsigned int uiPoids;
 
-	string sARCOrigine;
-	string sARCDestination;
-
+	// CONSTRUCTEURS ET DESTRUCTEURS
 public:
-	// CONSTRUCTEURS ET DESTRUCTEUR
 
 	/******************************************************
-	* CArc (delete)
+	* CArcPondere (delete)
 	*******************************************************
 	* Entree : Rien
 	* Necessite : Rien
 	* Sortie : Rien
 	* Entraine : Un arc est initialise avec une origine et
-	* une destination vide, ce constructeur donne un objet
-	* non coherent qui n'est pas a utiliser en l'etat.
+	* une destination vide ainsi que sans poids ce 
+	* constructeur donne un objet non coherent qui n'est
+	* pas a utiliser en l'etat.
 	* Il est donc interdit.
 	******************************************************/
-	CArc() = delete;
+	CArcPondere() = delete;
 
 	/******************************************************
-	* CArc (recopie : delete)
+	* CArcPondere (recopie : delete)
 	*******************************************************
 	* Entree : Rien
 	* Necessite : Rien
@@ -57,85 +54,62 @@ public:
 	* Entraine : Un arc est unique au sein d'un graphe.
 	* Il est donc interdit.
 	******************************************************/
-	CArc(const CArc& ARCParam) = delete;
+	CArcPondere(const CArcPondere& APRParam) = delete;
 
 	/******************************************************
-	* CArc
+	* CArcPondere
 	*******************************************************
 	* Entree : sOrigine string, l'origine de l'arc
 	* sDestination string, la destination de l'arc
+	* uiPoids unsigned int, le poids de l'arc
 	* Necessite : Rien
 	* Sortie : Rien
-	* Entraine : Un arc allant de sOrigine vers 
-	* sDestination est initialise
+	* Entraine : Un arc allant de sOrigine vers
+	* sDestination est initialise avec un poids
 	******************************************************/
-	CArc(const string& sOrigine, const string& sDestination) : sARCOrigine(sOrigine), sARCDestination(sDestination) {}
+	CArcPondere(const string& sOrigine, const string& sDestination, const unsigned int uiPoids);
 
 	/******************************************************
-	* ~CArc (default)
+	* ~CArcPondere (default)
 	*******************************************************
 	* Entree : Rien
 	* Necessite : Rien
 	* Sortie : Rien
-	* Entraine : L'arc est dÃ©truit
+	* Entraine : L'arc ponderé est détruit
 	******************************************************/
-	~CArc() = default;
+	~CArcPondere() = default;
 
 	// METHODES
 
 	/******************************************************
-	* ARCLireOrigine
+	* ARPLirePoids
 	*******************************************************
 	* Entree : Rien
 	* Necessite : Rien
-	* Sortie : sARCOrigine l'origine de l'arc
+	* Sortie : Renvoie le poids de l'arc
 	* Entraine : Rien
 	******************************************************/
-	const string& ARCLireOrigine() const { return sARCOrigine; }
+	const unsigned int& ARPLirePoids() const { return uiPoids; };
 
 	/******************************************************
-	* ARCLireDestination
+	* ARPModifierPoids
 	*******************************************************
-	* Entree : Rien
+	* Entree : uiParam unsigned int, le nouveau poids de l'arc
 	* Necessite : Rien
-	* Sortie : sARCDestination la destination de l'arc
-	* Entraine : Rien
-	******************************************************/
-	const string& ARCLireDestination() const { return sARCDestination; }
-
-	/******************************************************
-	* ARCModifierOrigine
-	*******************************************************
-	* Entree : sParam string, la nouvelle origine de l'arc
-	* Necessite : le sommet d'identifiant sParam appartient 
-	* au graphe
 	* Sortie : Rien
-	* Entraine : L'origine de l'arc est modifiee
+	* Entraine : Le poids de l'arc est modifie
 	******************************************************/
-	void ARCModifierOrigine(const string& sParam) { sARCOrigine = sParam; }
-
-	/******************************************************
-	* ARCModifierDestination
-	*******************************************************
-	* Entree : sParam string, la nouvelle destination 
-	* de l'arc
-	* Necessite : le sommet d'identifiant sParam appartient 
-	* au graphe
-	* Sortie : Rien
-	* Entraine : La destination de l'arc est modifiee
-	******************************************************/
-	void ARCModifierDestination(const string& sParam) { sARCDestination = sParam; }
+	void ARPMoidifierPoids(const unsigned int& uiParam) { uiPoids = uiParam; }
 
 	/******************************************************
 	* operator==
 	*******************************************************
 	* Entree : Deux arcs a comparer
 	* Necessite : Rien
-	* Sortie : Vrai si les deux arcs ont les memes 
-	* origines et destinations.
+	* Sortie : Vrai si les deux arcs ont les memes
+	* origines, destinations et poids.
 	* Entraine : Rien
 	******************************************************/
-	virtual bool operator==(const CArc& ARCArcAComparer) { return (ARCLireOrigine() == ARCArcAComparer.ARCLireOrigine() and ARCLireDestination() == ARCArcAComparer.ARCLireDestination()); }
+	virtual bool operator==(const CArcPondere& ARPArcAComparer);
 };
-
 
