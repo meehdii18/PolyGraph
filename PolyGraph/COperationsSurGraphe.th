@@ -10,7 +10,7 @@
 * Entraine : Inverse le sens de tous les arcs du graphe
 ******************************************************/
 template <template<class, class> class PGraphOrient, class TArc, class TSommet>
-void static COperationsSurGraphe::OSGInverserArcs(PGraphOrient<TArc, TSommet>& GPOParam)
+void COperationsSurGraphe::OSGInverserArcs(PGraphOrient<TArc, TSommet>& GPOParam)
 {
 	vector<vector<string>> vARCListeArcs = GPOParam.GPOLireListeArcs();
 	unsigned int uiBoucle = 0;
@@ -27,4 +27,59 @@ void static COperationsSurGraphe::OSGInverserArcs(PGraphOrient<TArc, TSommet>& G
 
 		uiBoucle++;
 	}
+}
+
+/******************************************************
+* OSGVerifierGrapheComplet
+*******************************************************
+* Entree : GPOParam un graphe oriente
+* Necessite : Rien
+* Sortie : Vrai si le graphe est complet, faux sinon
+* Entraine : Rien
+******************************************************/
+template <template<class, class> class PGraphOrient, class TArc, class TSommet>
+inline bool COperationsSurGraphe::OSGVerifierGrapheComplet(const PGraphOrient<TArc, TSommet>& GPOParam)
+{
+	vector<string> vsListeSommets = GPOParam.GPOLireListeSommets();
+
+	try
+	{
+		for (string sIdSommet : vsListeSommets)
+		{
+			vector<string> vsListeSuccesseurs = GPOParam.GPOLireSuccesseursSommet(sIdSommet);
+
+			for (string sIdSommetAVerifier : vsListeSommets)
+			{
+				if (sIdSommetAVerifier != sIdSommet)
+				{
+					vector<string>::iterator vsIterator;
+
+					vsIterator = find(vsListeSuccesseurs.begin(), vsListeSuccesseurs.end(), sIdSommetAVerifier);
+
+					if (vsIterator == vsListeSuccesseurs.end())
+					{
+						ostringstream ssMessageErreur;
+
+						ssMessageErreur << "Le sommet d'identifiant ";
+						ssMessageErreur << sIdSommet.c_str();
+						ssMessageErreur << " n'est pas relie au sommet d'identifiant";
+						ssMessageErreur << sIdSommetAVerifier.c_str();
+						ssMessageErreur << ", le graphe n'est donc pas complet.";
+
+						string sDescription = ssMessageErreur.str();
+
+						throw logic_error(sDescription);
+					}
+				}
+			}
+		}
+	}
+	catch (const logic_error& lerror)
+	{
+		std::cerr << "Logic error: " << lerror.what() << std::endl;
+
+		return false;
+	}
+
+	return true;
 }

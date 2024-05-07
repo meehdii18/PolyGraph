@@ -52,13 +52,22 @@ public:
 	/******************************************************
 	* OSGInverserArcs
 	*******************************************************
-	* Entree : Rien
+	* Entree : GPOParam un graphe oriente
 	* Necessite : Rien
 	* Sortie : Rien
 	* Entraine : Inverse le sens de tous les arcs du graphe
 	******************************************************/
 	template <template<class, class> class PGraphOrient, class TArc, class TSommet> void static OSGInverserArcs(PGraphOrient<TArc, TSommet>& GPOParam);
 
+	/******************************************************
+	* OSGVerifierGrapheComplet
+	*******************************************************
+	* Entree : GPOParam un graphe oriente
+	* Necessite : Rien
+	* Sortie : Vrai si le graphe est complet, faux sinon
+	* Entraine : Rien
+	******************************************************/
+	template <template<class, class> class PGraphOrient, class TArc, class TSommet> bool static OSGVerifierGrapheComplet(const PGraphOrient<TArc, TSommet>& GPOParam);
 };
 
 #include "COperationsSurGraphe.th"

@@ -14,7 +14,7 @@
 template<class TArc, class TSommet>
 inline PGraphOrient<TArc, TSommet>::PGraphOrient(const string& sFichier)
 {
-	CCreateurGraph::CCGImporterGrapheFichier(*this, "./donnees.txt");
+	CCreateurGraph::CCGImporterGrapheFichier(*this, sFichier);
 }
 
 /******************************************************
@@ -31,5 +31,5 @@ inline PGraphOrient<TArc, TSommet>::PGraphOrient(const string& sFichier)
 template<class TArc, class TSommet>
 inline PGraph<TArc, TSommet>::PGraph(const string& sFichier)
 {
-	CCreateurGraph::CCGImporterGrapheFichier(*this, "./donnees.txt");
+	CCreateurGraph::CCGImporterGrapheFichier(*this, sFichier);
 }
