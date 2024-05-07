@@ -17,13 +17,15 @@ int main(int argc, char* argv[])
     }
     else
     {
-        PGraphOrient<CArc, CSommet> GPOGraphe(argv[1]);
+        PGraph<CArc, CSommet> GPOGraphe(argv[1]);
 
         CAffichage::AFHAfficherGraphe(GPOGraphe);
 
         COperationsSurGraphe::OSGInverserArcs(GPOGraphe);
 
         CAffichage::AFHAfficherGraphe(GPOGraphe);
+
+        cout << COperationsSurGraphe::OSGVerifierGrapheComplet(GPOGraphe) << endl;
     }
 }
 
