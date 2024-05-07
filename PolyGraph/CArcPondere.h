@@ -89,7 +89,7 @@ public:
 	* Sortie : Renvoie le poids de l'arc
 	* Entraine : Rien
 	******************************************************/
-	const unsigned int& ARPLirePoids() const { return uiPoids; };
+	const unsigned int& APRLirePoids() const { return uiPoids; };
 
 	/******************************************************
 	* ARPModifierPoids
@@ -99,7 +99,7 @@ public:
 	* Sortie : Rien
 	* Entraine : Le poids de l'arc est modifie
 	******************************************************/
-	void ARPMoidifierPoids(const unsigned int& uiParam) { uiPoids = uiParam; }
+	void APRMoidifierPoids(const unsigned int& uiParam) { uiPoids = uiParam; }
 
 	/******************************************************
 	* operator==
@@ -110,6 +110,6 @@ public:
 	* origines, destinations et poids.
 	* Entraine : Rien
 	******************************************************/
-	virtual bool operator==(const CArcPondere& ARPArcAComparer);
+	virtual bool operator==(const CArcPondere& APRArcAComparer);
 };
 

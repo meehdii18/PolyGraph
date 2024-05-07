@@ -25,7 +25,7 @@ CArcPondere::CArcPondere(const string& sOrigine, const string& sDestination, con
 * origines, destinations et poids.
 * Entraine : Rien
 ******************************************************/
-bool CArcPondere::operator==(const CArcPondere& ARPArcAComparer)
+bool CArcPondere::operator==(const CArcPondere& APRArcAComparer)
 {
-    return (ARCLireOrigine() == ARPArcAComparer.ARCLireOrigine() and ARCLireDestination() == ARPArcAComparer.ARCLireDestination() and ARPArcAComparer.ARPLirePoids() == ARPLirePoids() );
+    return (ARCLireOrigine() == APRArcAComparer.ARCLireOrigine() and ARCLireDestination() == APRArcAComparer.ARCLireDestination() and APRArcAComparer.APRLirePoids() == APRLirePoids() );
 }
