@@ -34,13 +34,14 @@ using namespace std;
 
 template<class TArc, class TSommet> class PGraphOrient
 {
-private:
+protected:
 	// ATTRIBUTS
 
 	vector<TArc*> vGPOListeArcs;
 
 	vector<TSommet*> vGPOListeSommets;
 
+private:
 	// METHODES PRIVEES
 
 	/******************************************************
@@ -123,7 +124,7 @@ public:
 	* Sortie : Le vecteur contenant les arcs du graphe
 	* Entraine : Rien
 	******************************************************/
-	vector<vector<string>> GPOLireListeArcs() const;		//modifier APR
+	virtual vector<vector<string>> GPOLireListeArcs() const;
 
 	/******************************************************
 	* GPOLireListeSommets
@@ -207,7 +208,7 @@ public:
 	* d'origine et de destination, si ceux-ci existent et
 	* si l'arc n'existe pas.
 	******************************************************/
-	virtual void GPOAjouterArc(const string& sOrigine, const string& sDestination);		// version APR
+	virtual void GPOAjouterArc(const string& sOrigine, const string& sDestination);
 
 	/******************************************************
 	* GPOSupprimerArc
@@ -219,7 +220,7 @@ public:
 	* Entraine : La suppression de l'arc reliant les
 	* sommets d'origine et de destination
 	******************************************************/
-	virtual void GPOSupprimerArc(const string& sOrigine, const string& sDestination);		// version APR
+	virtual void GPOSupprimerArc(const string& sOrigine, const string& sDestination);
 
 };
 

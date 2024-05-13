@@ -146,6 +146,7 @@
     <ClCompile Include="CParseur.cpp" />
     <ClCompile Include="CSommet.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="PGraphOrientPondere.th" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CAffichage.h" />
@@ -159,6 +160,7 @@
     <ClInclude Include="CParseur.h" />
     <ClInclude Include="CSommet.h" />
     <ClInclude Include="PGraphOrient.th" />
+    <ClInclude Include="PGraphOrientPondere.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="PGraph.th" />

@@ -1,0 +1,106 @@
+#include "PGraphOrientPondere.h"
+
+/******************************************************
+* GPOLireListeArcs (version arc pondere)
+*******************************************************
+* Entree : Rien
+* Necessite : Rien
+* Sortie : Le vecteur contenant les arcs du graphe
+* Entraine : Rien
+******************************************************/
+template<class TArc,class TSommet>
+inline vector<vector<string>> PGraphOrientPondere<TArc, TSommet>::GPOLireListeArcs() const
+{
+	vector<vector<string>> vvsAffichageArcs;
+
+	unsigned int uiBoucle;
+	unsigned int uiCritereArret = (unsigned int)PGraphOrient::vGPOListeArcs.size();
+
+	for (uiBoucle = 0; uiBoucle < uiCritereArret; uiBoucle++)
+	{
+		vector<string> vsArc;
+
+		vsArc.push_back(PGraphOrient::vGPOListeArcs[uiBoucle]->ARCLireOrigine());
+
+		vsArc.push_back(PGraphOrient::vGPOListeArcs[uiBoucle]->ARCLireDestination());
+
+		vsArc.push_back(PGraphOrient::vGPOListeArcs[uiBoucle]->APRLirePoids());
+
+		vvsAffichageArcs.push_back(vsArc);
+	}
+
+	return vvsAffichageArcs;
+}
+
+template<class CArcPondere, class TSommet>
+inline void PGraphOrientPondere<CArcPondere, TSommet>::GPOAjouterArc(const string& sOrigine, const string& sDestination, const float fPoids)
+{
+	try
+	{
+		TSommet* SMTOrigine = PGraphOrient::GPOTrouverSommet(sOrigine);
+		TSommet* SMTDestination = PGraphOrient::GPOTrouverSommet(sDestination);
+
+		if (fPoids < 0)
+		{
+			ostringstream ssMessageErreur;
+
+			ssMessageErreur << "La valeur de poids ";
+			ssMessageErreur << sOrigine.c_str();
+			ssMessageErreur << " est negative et n'est donc pas une valeur de poids valide.";
+
+			string sDescription = ssMessageErreur.str();
+
+			throw logic_error(sDescription);
+		}
+		if (SMTOrigine == nullptr)
+		{
+			ostringstream ssMessageErreur;
+
+			ssMessageErreur << "Le sommet ";
+			ssMessageErreur << sOrigine.c_str();
+			ssMessageErreur << " n'existe pas dans le graphe et ne peut donc pas servir d'origine.";
+
+			string sDescription = ssMessageErreur.str();
+
+			throw logic_error(sDescription);
+		}
+		if (SMTDestination == nullptr)
+		{
+			ostringstream ssMessageErreur;
+
+			ssMessageErreur << "Le sommet ";
+			ssMessageErreur << sDestination.c_str();
+			ssMessageErreur << " n'existe pas dans le graphe et ne peut donc pas servir de destination.";
+
+			string sDescription = ssMessageErreur.str();
+
+			throw logic_error(sDescription);
+		}
+		if (PGraphOrient::GPOTrouverArc(sOrigine, sDestination) != nullptr)
+		{
+			ostringstream ssMessageErreur;
+
+			ssMessageErreur << "L'arc d'origine ";
+			ssMessageErreur << sOrigine.c_str();
+			ssMessageErreur << " et de destination ";
+			ssMessageErreur << sDestination.c_str();
+			ssMessageErreur << " existe deja dans le graphe et n'a donc pas ete ajoute.";
+
+			string sDescription = ssMessageErreur.str();
+
+			throw logic_error(sDescription);
+		}
+
+		CArcPondere* ARCNouveau = new CArcPondere(sOrigine, sDestination, fPoids);
+
+		SMTOrigine->SMTAjouterArcSortant(ARCNouveau);
+
+		SMTDestination->SMTAjouterArcEntrant(ARCNouveau);
+
+		PGraphOrient::vGPOListeArcs.push_back(ARCNouveau);
+	}
+	catch (const logic_error& lerror)
+	{
+		std::cerr << "Logic error: " << lerror.what() << std::endl;
+	}
+}

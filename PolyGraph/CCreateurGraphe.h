@@ -14,6 +14,7 @@
 */
 #include "CParseur.h"
 #include "PGraph.h"
+#include "PGraphOrientPondere.h"
 using namespace std;
 
 class CCreateurGraph

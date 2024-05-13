@@ -74,7 +74,7 @@ void CCreateurGraph::CCGImporterGrapheFichier(PGraphOrient<CArc, CSommet>& GPOPa
 * est conforme, la modification du graphe associe
 ******************************************************/
 
-void CCreateurGraph::CCGImporterGrapheFichier(PGraphOrient<CArcPondere, CSommet>& GPOParam, const string& sFichier)
+void CCreateurGraph::CCGImporterGrapheFichier(PGraphOrientPondere<CArcPondere, CSommet>& GPOParam, const string& sFichier)
 {
     try
     {
@@ -113,7 +113,7 @@ void CCreateurGraph::CCGImporterGrapheFichier(PGraphOrient<CArcPondere, CSommet>
 
         for (uiBoucle = 0; uiBoucle < uiCritereArret; uiBoucle++)
         {
-            GPOParam.GPOAjouterArc(vDonneesArc["Debut"][uiBoucle], vDonneesArc["Fin"][uiBoucle], vDonneesArc["Poids"][uiBoucle]);
+            GPOParam.GPOAjouterArc(vDonneesArc["Debut"][uiBoucle], vDonneesArc["Fin"][uiBoucle], stof(vDonneesArc["Poids"][uiBoucle]));
         }
 
     }
