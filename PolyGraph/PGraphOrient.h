@@ -123,7 +123,7 @@ public:
 	* Sortie : Le vecteur contenant les arcs du graphe
 	* Entraine : Rien
 	******************************************************/
-	vector<vector<string>> GPOLireListeArcs() const;
+	vector<vector<string>> GPOLireListeArcs() const;		//modifier APR
 
 	/******************************************************
 	* GPOLireListeSommets
@@ -207,7 +207,7 @@ public:
 	* d'origine et de destination, si ceux-ci existent et
 	* si l'arc n'existe pas.
 	******************************************************/
-	virtual void GPOAjouterArc(const string& sOrigine, const string& sDestination);
+	virtual void GPOAjouterArc(const string& sOrigine, const string& sDestination);		// version APR
 
 	/******************************************************
 	* GPOSupprimerArc
@@ -219,7 +219,7 @@ public:
 	* Entraine : La suppression de l'arc reliant les
 	* sommets d'origine et de destination
 	******************************************************/
-	virtual void GPOSupprimerArc(const string& sOrigine, const string& sDestination);
+	virtual void GPOSupprimerArc(const string& sOrigine, const string& sDestination);		// version APR
 
 };
 

@@ -14,18 +14,3 @@
 CArcPondere::CArcPondere(const string& sOrigine, const string& sDestination, const unsigned int uiParam) : CArc(sOrigine, sDestination) {
     uiPoids = uiParam;
 }
-
-
-/******************************************************
-* operator==
-*******************************************************
-* Entree : Deux arcs a comparer
-* Necessite : Rien
-* Sortie : Vrai si les deux arcs ont les memes
-* origines, destinations et poids.
-* Entraine : Rien
-******************************************************/
-bool CArcPondere::operator==(const CArcPondere& APRArcAComparer)
-{
-    return (ARCLireOrigine() == APRArcAComparer.ARCLireOrigine() and ARCLireDestination() == APRArcAComparer.ARCLireDestination() and APRArcAComparer.APRLirePoids() == APRLirePoids() );
-}

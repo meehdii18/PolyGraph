@@ -26,7 +26,7 @@ class CArcPondere : public CArc
 {
 	// ATTRIBUTS
 private:
-	float uiPoids;
+	float fPoids;
 
 	// CONSTRUCTEURS ET DESTRUCTEURS
 public:
@@ -61,13 +61,13 @@ public:
 	*******************************************************
 	* Entree : sOrigine string, l'origine de l'arc
 	* sDestination string, la destination de l'arc
-	* uiPoids float, le poids de l'arc
+	* fPoids float, le poids de l'arc
 	* Necessite : Rien
 	* Sortie : Rien
 	* Entraine : Un arc allant de sOrigine vers
 	* sDestination est initialise avec un poids
 	******************************************************/
-	CArcPondere(const string& sOrigine, const string& sDestination, const float uiPoids);
+	CArcPondere(const string& sOrigine, const string& sDestination, const float fPoids);
 
 	/******************************************************
 	* ~CArcPondere (default)
@@ -75,7 +75,7 @@ public:
 	* Entree : Rien
 	* Necessite : Rien
 	* Sortie : Rien
-	* Entraine : L'arc ponderé est détruit
+	* Entraine : L'arc pondere est détruit
 	******************************************************/
 	~CArcPondere() = default;
 
@@ -89,16 +89,16 @@ public:
 	* Sortie : Renvoie le poids de l'arc
 	* Entraine : Rien
 	******************************************************/
-	const float& APRLirePoids() const { return uiPoids; };
+	const float& APRLirePoids() const { return fPoids; };
 
 	/******************************************************
 	* ARPModifierPoids
 	*******************************************************
-	* Entree : uiParam float, le nouveau poids de l'arc
+	* Entree : fParam float, le nouveau poids de l'arc
 	* Necessite : Rien
 	* Sortie : Rien
 	* Entraine : Le poids de l'arc est modifie
 	******************************************************/
-	void APRMoidifierPoids(const float& uiParam) { uiPoids = uiParam; }
+	void APRMoidifierPoids(const float& fParam) { fPoids = fParam; }
 };
 
