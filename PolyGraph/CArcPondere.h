@@ -26,7 +26,7 @@ class CArcPondere : public CArc
 {
 	// ATTRIBUTS
 private:
-	float fPoids;
+	float fAPRPoids;
 
 	// CONSTRUCTEURS ET DESTRUCTEURS
 public:
@@ -89,7 +89,7 @@ public:
 	* Sortie : Renvoie le poids de l'arc
 	* Entraine : Rien
 	******************************************************/
-	const float& APRLirePoids() const { return fPoids; };
+	const float& APRLirePoids() const { return fAPRPoids; };
 
 	/******************************************************
 	* ARPModifierPoids
@@ -99,6 +99,6 @@ public:
 	* Sortie : Rien
 	* Entraine : Le poids de l'arc est modifie
 	******************************************************/
-	void APRMoidifierPoids(const float& fParam) { fPoids = fParam; }
+	void APRMoidifierPoids(const float& fParam) { fAPRPoids = fParam; }
 };
 

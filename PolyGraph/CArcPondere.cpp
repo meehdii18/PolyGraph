@@ -11,6 +11,6 @@
 * Entraine : Un arc allant de sOrigine vers
 * sDestination est initialise avec un poids
 ******************************************************/
-CArcPondere::CArcPondere(const string& sOrigine, const string& sDestination, const unsigned int uiParam) : CArc(sOrigine, sDestination) {
-    uiPoids = uiParam;
+CArcPondere::CArcPondere(const string& sOrigine, const string& sDestination, const float fPoids) : CArc(sOrigine, sDestination) {
+    fAPRPoids = fPoids;
 }
