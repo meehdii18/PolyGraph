@@ -14,6 +14,7 @@
 */
 
 #include "CArc.h"
+#include "CArcPondere.h"
 #include "CSommet.h"
 
 #include <vector>

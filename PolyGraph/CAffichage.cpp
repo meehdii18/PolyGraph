@@ -39,6 +39,9 @@ void CAffichage::AFHAfficherArcs(const vector<vector<string>>& vvsListe)
 		string sOrigine = vvsListe[uiBoucle][0];
 		string sDestination = vvsListe[uiBoucle][1];
 		cout << " - \"" << sOrigine << "\" -> \"" << sDestination << "\"" << endl;
+		if (uiBoucle == 2) { // si on est à deux on devrait être sur le poids de l'arc
+			cout << "ah" << endl;
+		}
 	}
 }
 

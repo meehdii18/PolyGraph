@@ -41,7 +41,7 @@ public:
 	* CCGImporterGrapheFichier
 	*******************************************************
 	* Entree : GPOParam le graphe dans lequel importer des
-	* donnees;
+	* donnees avec des arcs non ponderes;
 	* sFichier le chemin d'acces du fichier ou sont
 	* contenues les donnees a ajouter
 	* Necessite : Rien
@@ -50,6 +50,20 @@ public:
 	* est conforme, la modification du graphe associe
 	******************************************************/
 	void static CCGImporterGrapheFichier(PGraphOrient<CArc, CSommet>& GPOParam, const string& sFichier);
+
+	/******************************************************
+	* CCGImporterGrapheFichier
+	*******************************************************
+	* Entree : GPOParam le graphe dans lequel importer des
+	* donnees avec des arcs ponderes;
+	* sFichier le chemin d'acces du fichier ou sont
+	* contenues les donnees a ajouter
+	* Necessite : Rien
+	* Sortie : Rien
+	* Entraine : La lecture du fichier en parametre et s'il
+	* est conforme, la modification du graphe associe
+	******************************************************/
+	void static CCGImporterGrapheFichier(PGraphOrient<CArcPondere, CSommet>& GPOParam, const string& sFichier);
 };
 
 #include "CCreateurGraphe.th"

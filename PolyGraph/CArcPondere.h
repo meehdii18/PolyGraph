@@ -26,7 +26,7 @@ class CArcPondere : public CArc
 {
 	// ATTRIBUTS
 private:
-	unsigned int uiPoids;
+	float uiPoids;
 
 	// CONSTRUCTEURS ET DESTRUCTEURS
 public:
@@ -61,13 +61,13 @@ public:
 	*******************************************************
 	* Entree : sOrigine string, l'origine de l'arc
 	* sDestination string, la destination de l'arc
-	* uiPoids unsigned int, le poids de l'arc
+	* uiPoids float, le poids de l'arc
 	* Necessite : Rien
 	* Sortie : Rien
 	* Entraine : Un arc allant de sOrigine vers
 	* sDestination est initialise avec un poids
 	******************************************************/
-	CArcPondere(const string& sOrigine, const string& sDestination, const unsigned int uiPoids);
+	CArcPondere(const string& sOrigine, const string& sDestination, const float uiPoids);
 
 	/******************************************************
 	* ~CArcPondere (default)
@@ -89,27 +89,16 @@ public:
 	* Sortie : Renvoie le poids de l'arc
 	* Entraine : Rien
 	******************************************************/
-	const unsigned int& APRLirePoids() const { return uiPoids; };
+	const float& APRLirePoids() const { return uiPoids; };
 
 	/******************************************************
 	* ARPModifierPoids
 	*******************************************************
-	* Entree : uiParam unsigned int, le nouveau poids de l'arc
+	* Entree : uiParam float, le nouveau poids de l'arc
 	* Necessite : Rien
 	* Sortie : Rien
 	* Entraine : Le poids de l'arc est modifie
 	******************************************************/
-	void APRMoidifierPoids(const unsigned int& uiParam) { uiPoids = uiParam; }
-
-	/******************************************************
-	* operator==
-	*******************************************************
-	* Entree : Deux arcs a comparer
-	* Necessite : Rien
-	* Sortie : Vrai si les deux arcs ont les memes
-	* origines, destinations et poids.
-	* Entraine : Rien
-	******************************************************/
-	virtual bool operator==(const CArcPondere& APRArcAComparer);
+	void APRMoidifierPoids(const float& uiParam) { uiPoids = uiParam; }
 };
 
