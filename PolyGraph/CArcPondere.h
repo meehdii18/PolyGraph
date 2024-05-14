@@ -69,6 +69,8 @@ public:
 	******************************************************/
 	CArcPondere(const string& sOrigine, const string& sDestination, const float fPoids);
 
+	CArcPondere(const string& sOrigine, const string& sDestination);
+
 	/******************************************************
 	* ~CArcPondere (default)
 	*******************************************************

@@ -41,8 +41,7 @@ protected:
 
 	vector<TSommet*> vGPOListeSommets;
 
-private:
-	// METHODES PRIVEES
+	// METHODES PROTEGEES
 
 	/******************************************************
 	* GPOTrouverSommet

@@ -14,3 +14,6 @@
 CArcPondere::CArcPondere(const string& sOrigine, const string& sDestination, const float fPoids) : CArc(sOrigine, sDestination) {
     fAPRPoids = fPoids;
 }
+
+CArcPondere::CArcPondere(const string& sOrigine, const string& sDestination) : CArc(sOrigine, sDestination) {
+}

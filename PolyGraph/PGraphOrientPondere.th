@@ -1,3 +1,4 @@
+#pragma once
 #include "PGraphOrientPondere.h"
 
 /******************************************************
@@ -8,23 +9,23 @@
 * Sortie : Le vecteur contenant les arcs du graphe
 * Entraine : Rien
 ******************************************************/
-template<class TArc,class TSommet>
+template<class TArc, class TSommet>
 inline vector<vector<string>> PGraphOrientPondere<TArc, TSommet>::GPOLireListeArcs() const
 {
 	vector<vector<string>> vvsAffichageArcs;
 
 	unsigned int uiBoucle;
-	unsigned int uiCritereArret = (unsigned int)PGraphOrient::vGPOListeArcs.size();
+	unsigned int uiCritereArret = (unsigned int)PGraphOrient<TArc, TSommet>::vGPOListeArcs.size();
 
 	for (uiBoucle = 0; uiBoucle < uiCritereArret; uiBoucle++)
 	{
 		vector<string> vsArc;
 
-		vsArc.push_back(PGraphOrient::vGPOListeArcs[uiBoucle]->ARCLireOrigine());
+		vsArc.push_back(PGraphOrient<TArc, TSommet>::vGPOListeArcs[uiBoucle]->ARCLireOrigine());
 
-		vsArc.push_back(PGraphOrient::vGPOListeArcs[uiBoucle]->ARCLireDestination());
+		vsArc.push_back(PGraphOrient<TArc, TSommet>::vGPOListeArcs[uiBoucle]->ARCLireDestination());
 
-		vsArc.push_back(PGraphOrient::vGPOListeArcs[uiBoucle]->APRLirePoids());
+		vsArc.push_back(to_string(PGraphOrient<TArc, TSommet>::vGPOListeArcs[uiBoucle]->APRLirePoids()));
 
 		vvsAffichageArcs.push_back(vsArc);
 	}
@@ -32,13 +33,13 @@ inline vector<vector<string>> PGraphOrientPondere<TArc, TSommet>::GPOLireListeAr
 	return vvsAffichageArcs;
 }
 
-template<class CArcPondere, class TSommet>
-inline void PGraphOrientPondere<CArcPondere, TSommet>::GPOAjouterArc(const string& sOrigine, const string& sDestination, const float fPoids)
+template<class TArc, class TSommet>
+inline void PGraphOrientPondere<TArc, TSommet>::GPOAjouterArc(const string& sOrigine, const string& sDestination, const float fPoids)
 {
 	try
 	{
-		TSommet* SMTOrigine = PGraphOrient::GPOTrouverSommet(sOrigine);
-		TSommet* SMTDestination = PGraphOrient::GPOTrouverSommet(sDestination);
+		TSommet* SMTOrigine = PGraphOrient<TArc, TSommet>::GPOTrouverSommet(sOrigine);
+		TSommet* SMTDestination = PGraphOrient<TArc, TSommet>::GPOTrouverSommet(sDestination);
 
 		if (fPoids < 0)
 		{
@@ -76,7 +77,7 @@ inline void PGraphOrientPondere<CArcPondere, TSommet>::GPOAjouterArc(const strin
 
 			throw logic_error(sDescription);
 		}
-		if (PGraphOrient::GPOTrouverArc(sOrigine, sDestination) != nullptr)
+		if (PGraphOrient<TArc, TSommet>::GPOTrouverArc(sOrigine, sDestination) != nullptr)
 		{
 			ostringstream ssMessageErreur;
 
@@ -91,13 +92,13 @@ inline void PGraphOrientPondere<CArcPondere, TSommet>::GPOAjouterArc(const strin
 			throw logic_error(sDescription);
 		}
 
-		CArcPondere* ARCNouveau = new CArcPondere(sOrigine, sDestination, fPoids);
+		TArc* ARCNouveau = new TArc(sOrigine, sDestination, fPoids);
 
 		SMTOrigine->SMTAjouterArcSortant(ARCNouveau);
 
 		SMTDestination->SMTAjouterArcEntrant(ARCNouveau);
 
-		PGraphOrient::vGPOListeArcs.push_back(ARCNouveau);
+		PGraphOrient<TArc, TSommet>::vGPOListeArcs.push_back(ARCNouveau);
 	}
 	catch (const logic_error& lerror)
 	{

@@ -64,7 +64,7 @@ public:
 	* Entraine : La lecture du fichier en parametre et s'il
 	* est conforme, la modification du graphe associe
 	******************************************************/
-	void static CCGImporterGrapheFichier(PGraphOrient<CArcPondere, CSommet>& GPOParam, const string& sFichier);
+	void static CCGImporterGrapheFichier(PGraphOrientPondere<CArcPondere, CSommet>& GPOParam, const string& sFichier);
 };
 
 #include "CCreateurGraphe.th"

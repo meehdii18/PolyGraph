@@ -4,6 +4,8 @@ template<class TArc, class TSommet> class PGraphOrientPondere :
     public PGraphOrient<TArc,TSommet>
 {
 public:
+	PGraphOrientPondere() = default; // verif arcs ponderes
+
 	/******************************************************
 	* GPOLireListeArcs
 	*******************************************************
