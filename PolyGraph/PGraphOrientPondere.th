@@ -1,6 +1,12 @@
 #pragma once
 #include "PGraphOrientPondere.h"
 
+template<class TArc, class TSommet>
+inline PGraphOrientPondere<TArc, TSommet>::PGraphOrientPondere()
+{
+	static_assert(is_same<decltype(TArc), CArcPondere>::value, "Le type d'arc doit etre pondere.");
+}
+
 /******************************************************
 * GPOLireListeArcs (version arc pondere)
 *******************************************************
