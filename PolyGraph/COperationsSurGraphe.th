@@ -13,6 +13,7 @@ template <template<class, class> class PGraphOrient, class TArc, class TSommet>
 void COperationsSurGraphe::OSGInverserArcs(PGraphOrient<TArc, TSommet>& GPOParam)
 {
 	vector<vector<string>> vARCListeArcs = GPOParam.GPOLireListeArcs();
+
 	unsigned int uiBoucle = 0;
 	unsigned int uiCritereArret = (unsigned int)vARCListeArcs.size();
 
@@ -21,6 +22,10 @@ void COperationsSurGraphe::OSGInverserArcs(PGraphOrient<TArc, TSommet>& GPOParam
 		string sAncienneOrigine = vARCListeArcs[uiBoucle][0];
 
 		string sAncienneDestination = vARCListeArcs[uiBoucle][1];
+
+		// test if sAncienneDestination -> sAncienneOrigine existe
+		// si non, osef comme avant
+		// si oui, on supprimme les deux puis on les re cree
 
 		GPOParam.GPOSupprimerArc(sAncienneOrigine, sAncienneDestination);
 		GPOParam.GPOAjouterArc(sAncienneDestination, sAncienneOrigine);

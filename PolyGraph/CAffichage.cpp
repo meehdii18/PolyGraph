@@ -140,6 +140,15 @@ void CAffichage::AFHAfficherGraphe(const PGraphOrient<CArc, CSommet>& GPOParam)
 	cout << "\n------------------------------------------" << endl;
 }
 
+/******************************************************
+* AFHAfficherGraphe (pondere)
+*******************************************************
+* Entree : GOPParam, le graphe a afficher
+* Necessite : Rien
+* Sortie : Rien
+* Entraine : L'affichage des informations concernants
+* le graphe passe en paramètre
+******************************************************/
 void CAffichage::AFHAfficherGraphe(const PGraphOrientPondere<CArcPondere, CSommet>& GOPParam)
 {
 	vector<string> vsListeSommet = GOPParam.GPOLireListeSommets();
@@ -163,6 +172,15 @@ void CAffichage::AFHAfficherGraphe(const PGraphOrientPondere<CArcPondere, CSomme
 	cout << "\n------------------------------------------" << endl;
 }
 
+/******************************************************
+* AFHAfficherCycleHamiltonien
+*******************************************************
+* Entree : GOPParam, le graphe dont afficher le cycle
+* hamiltonien
+* Necessite : Rien
+* Sortie : Rien
+* Entraine : L'affichage du cycle hamiltonien du graphe
+******************************************************/
 void CAffichage::AFHAfficherCycleHamiltonien(const PGraphOrientPondere<CArcPondere, CSommet>& GOPParam, const string& sSommetSource)
 {
 	vector<string> vsCycle = COperationsSurGraphe::OSGCycleHamiltonienInsertionMinMax(GOPParam, sSommetSource);
