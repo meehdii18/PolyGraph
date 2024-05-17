@@ -18,11 +18,11 @@ int main(int argc, char* argv[])
 
         CAffichage::AFHAfficherGraphe(GPOGraphe);
 
-        //COperationsSurGraphe::OSGInverserArcs(GPOGraphe); Inverser ne marche plus
+        CAffichage::AFHAfficherCycleHamiltonien(GPOGraphe, "O");
 
-        //CAffichage::AFHAfficherGraphe(GPOGraphe);
+        COperationsSurGraphe::OSGInverserArcs(GPOGraphe);
 
-        //cout << COperationsSurGraphe::OSGVerifierGrapheComplet(GPOGraphe) << endl;
+        CAffichage::AFHAfficherGraphe(GPOGraphe);
 
         CAffichage::AFHAfficherCycleHamiltonien(GPOGraphe, "O");
     }

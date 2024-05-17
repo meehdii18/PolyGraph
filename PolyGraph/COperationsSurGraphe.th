@@ -14,23 +14,27 @@ void COperationsSurGraphe::OSGInverserArcs(PGraphOrient<TArc, TSommet>& GPOParam
 {
 	vector<vector<string>> vARCListeArcs = GPOParam.GPOLireListeArcs();
 
-	unsigned int uiBoucle = 0;
-	unsigned int uiCritereArret = (unsigned int)vARCListeArcs.size();
-
-	while (uiBoucle < uiCritereArret)
+	for (vector<string> vsArc : vARCListeArcs)
 	{
-		string sAncienneOrigine = vARCListeArcs[uiBoucle][0];
+		string sAncienneOrigine = vsArc[0];
 
-		string sAncienneDestination = vARCListeArcs[uiBoucle][1];
+		string sAncienneDestination = vsArc[1];
+		
+		bool bExisteArcOppose = false;
 
-		// test if sAncienneDestination -> sAncienneOrigine existe
-		// si non, osef comme avant
-		// si oui, on supprimme les deux puis on les re cree
+		for (vector<string> vsArcOppose : vARCListeArcs)
+		{
+			if (vsArcOppose[0] == sAncienneDestination and vsArcOppose[1] == sAncienneOrigine)
+			{
+				bExisteArcOppose = true;
+			}
+		}
 
-		GPOParam.GPOSupprimerArc(sAncienneOrigine, sAncienneDestination);
-		GPOParam.GPOAjouterArc(sAncienneDestination, sAncienneOrigine);
-
-		uiBoucle++;
+		if (!bExisteArcOppose)
+		{
+			GPOParam.GPOSupprimerArc(sAncienneOrigine, sAncienneDestination);
+			GPOParam.GPOAjouterArc(sAncienneDestination, sAncienneOrigine);
+		}
 	}
 }
 
@@ -46,21 +50,50 @@ template <template<class CArcPondere, class> class PGraphOrientPondere, class TS
 void COperationsSurGraphe::OSGInverserArcs(PGraphOrientPondere<CArcPondere, TSommet>& GOPParam)
 {
 	vector<vector<string>> vARCListeArcs = GOPParam.GPOLireListeArcs();
-	unsigned int uiBoucle = 0;
-	unsigned int uiCritereArret = (unsigned int)vARCListeArcs.size();
 
-	while (uiBoucle < uiCritereArret)
+	vector<vector<string>> vARCListeArcsAIgnorer;
+
+	for (vector<string> vsArc : vARCListeArcs)
 	{
-		string sAncienneOrigine = vARCListeArcs[uiBoucle][0];
+		string sAncienneOrigine = vsArc[0];
 
-		string sAncienneDestination = vARCListeArcs[uiBoucle][1];
+		string sAncienneDestination = vsArc[1];
 
-		float fPoids = stof(vARCListeArcs[uiBoucle][2]);
+		float fPoids = stof(vsArc[2]);
 
-		GOPParam.GPOSupprimerArc(sAncienneOrigine, sAncienneDestination);
-		GOPParam.GPOAjouterArc(sAncienneDestination, sAncienneOrigine, fPoids);
+		float fPoidsArcOppose;
 
-		uiBoucle++;
+		vector<string> vsArcOppose;
+
+		for (vector<string> vsArcCourant : vARCListeArcs)
+		{
+			if (vsArcCourant[0] == sAncienneDestination and vsArcCourant[1] == sAncienneOrigine)
+			{
+				vsArcOppose = vsArcCourant;
+
+				fPoidsArcOppose = stof(vsArcCourant[2]);
+
+				vARCListeArcsAIgnorer.push_back(vsArcCourant); // On fait une fois le traitement pour l'arc courant et l'arc oppose
+			}
+		}
+
+		if (vsArcOppose.size())
+		{
+			// on verifie si le traitement a deja ete effectue
+			if (find(vARCListeArcsAIgnorer.begin(), vARCListeArcsAIgnorer.end(), vsArc) == vARCListeArcsAIgnorer.end())
+			{
+				GOPParam.GPOSupprimerArc(sAncienneOrigine, sAncienneDestination);
+				GOPParam.GPOSupprimerArc(sAncienneDestination, sAncienneOrigine);
+
+				GOPParam.GPOAjouterArc(sAncienneDestination, sAncienneOrigine, fPoids);
+				GOPParam.GPOAjouterArc(sAncienneOrigine, sAncienneDestination, fPoidsArcOppose);
+			}
+		}
+		else
+		{
+			GOPParam.GPOSupprimerArc(sAncienneOrigine, sAncienneDestination);
+			GOPParam.GPOAjouterArc(sAncienneDestination, sAncienneOrigine, fPoids);
+		}
 	}
 }
 
