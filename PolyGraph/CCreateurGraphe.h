@@ -65,6 +65,40 @@ public:
 	* est conforme, la modification du graphe associe
 	******************************************************/
 	void static CCGImporterGrapheFichier(PGraphOrientPondere<CArcPondere, CSommet>& GPOParam, const string& sFichier);
-};
 
-#include "CCreateurGraphe.th"
+	/******************************************************
+	* CCGCreerGrapheOrientFichier
+	*******************************************************
+	* Entree : sFichier le chemin d'acces du fichier ou
+	* sont contenues les donnees a ajouter au graphe cree
+	* Necessite : Rien
+	* Sortie : Rien
+	* Entraine : La lecture du fichier en parametre et s'il
+	* est conforme, la creation du graphe associe
+	******************************************************/
+	PGraphOrient<CArc, CSommet> static CCGCreerGrapheOrientFichier(const string& sFichier);
+
+	/******************************************************
+	* CCGCreerGrapheFichier
+	*******************************************************
+	* Entree : sFichier le chemin d'acces du fichier ou
+	* sont contenues les donnees a ajouter au graphe cree
+	* Necessite : Rien
+	* Sortie : Rien
+	* Entraine : La lecture du fichier en parametre et s'il
+	* est conforme, la creation du graphe associe
+	******************************************************/
+	PGraph<CArc, CSommet> static CCGCreerGrapheFichier(const string& sFichier);
+
+	/******************************************************
+	* CCGCreerGrapheOrientPondereFichier
+	*******************************************************
+	* Entree : sFichier le chemin d'acces du fichier ou
+	* sont contenues les donnees a ajouter au graphe cree
+	* Necessite : Rien
+	* Sortie : Rien
+	* Entraine : La lecture du fichier en parametre et s'il
+	* est conforme, la creation du graphe associe
+	******************************************************/
+	PGraphOrientPondere<CArcPondere, CSommet> static CCGCreerGrapheOrientPondereFichier(const string& sFichier);
+};

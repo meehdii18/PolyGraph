@@ -16,4 +16,5 @@ CArcPondere::CArcPondere(const string& sOrigine, const string& sDestination, con
 }
 
 CArcPondere::CArcPondere(const string& sOrigine, const string& sDestination) : CArc(sOrigine, sDestination) {
+    fAPRPoids = 0;
 }

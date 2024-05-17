@@ -13,6 +13,7 @@
 */
 
 #include "PGraphOrient.h"
+#include "PGraphOrientPondere.h"
 
 using namespace std;
 
@@ -56,6 +57,18 @@ private :
 	******************************************************/
 	void static AFHAfficherArcs(const vector<vector<string>>& vvsListe);
 
+	/******************************************************
+	* AFHAfficherArcsPonderes
+	*******************************************************
+	* Entree : vvsListe, la liste des origines et
+	* destinations des arcs du graphe
+	* Necessite : Rien
+	* Sortie : Rien
+	* Entraine : L'affichage des informations des arcs du
+	* graphe
+	******************************************************/
+	void static AFHAfficherArcsPonderes(const vector<vector<string>>& vvsListe);
+
 public:
 	// CONSTRUCTEURS ET DESTRUCTEUR
 
@@ -96,5 +109,27 @@ public:
 	* Entraine : L'affichage des informations concernants
 	* le graphe passe en paramètre
 	******************************************************/
-	void static AFHAfficherGraphe(const PGraphOrient<CArc,CSommet>& GPOParam);
+	void static AFHAfficherGraphe(const PGraphOrient<CArc, CSommet>& GPOParam);
+
+	/******************************************************
+	* AFHAfficherGraphe (pondere)
+	*******************************************************
+	* Entree : GOPParam, le graphe a afficher
+	* Necessite : Rien
+	* Sortie : Rien
+	* Entraine : L'affichage des informations concernants
+	* le graphe passe en paramètre
+	******************************************************/
+	void static AFHAfficherGraphe(const PGraphOrientPondere<CArcPondere,CSommet>& GOPParam);
+
+	/******************************************************
+	* AFHAfficherCycleHamiltonien
+	*******************************************************
+	* Entree : GOPParam, le graphe dont afficher le cycle
+	* hamiltonien
+	* Necessite : Rien
+	* Sortie : Rien
+	* Entraine : L'affichage du cycle hamiltonien du graphe
+	******************************************************/
+	void static AFHAfficherCycleHamiltonien(const PGraphOrientPondere<CArcPondere, CSommet>& GOPParam, const string& sSommetSource);
 };

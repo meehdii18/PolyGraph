@@ -30,6 +30,36 @@ void COperationsSurGraphe::OSGInverserArcs(PGraphOrient<TArc, TSommet>& GPOParam
 }
 
 /******************************************************
+* OSGInverserArcs (ponderes)
+*******************************************************
+* Entree : Rien
+* Necessite : Rien
+* Sortie : Rien
+* Entraine : Inverse le sens de tous les arcs du graphe
+******************************************************/
+template <template<class CArcPondere, class> class PGraphOrientPondere, class TSommet>
+void COperationsSurGraphe::OSGInverserArcs(PGraphOrientPondere<CArcPondere, TSommet>& GOPParam)
+{
+	vector<vector<string>> vARCListeArcs = GOPParam.GPOLireListeArcs();
+	unsigned int uiBoucle = 0;
+	unsigned int uiCritereArret = (unsigned int)vARCListeArcs.size();
+
+	while (uiBoucle < uiCritereArret)
+	{
+		string sAncienneOrigine = vARCListeArcs[uiBoucle][0];
+
+		string sAncienneDestination = vARCListeArcs[uiBoucle][1];
+
+		float fPoids = stof(vARCListeArcs[uiBoucle][2]);
+
+		GOPParam.GPOSupprimerArc(sAncienneOrigine, sAncienneDestination);
+		GOPParam.GPOAjouterArc(sAncienneDestination, sAncienneOrigine, fPoids);
+
+		uiBoucle++;
+	}
+}
+
+/******************************************************
 * OSGVerifierGrapheComplet
 *******************************************************
 * Entree : GPOParam un graphe oriente
@@ -82,4 +112,176 @@ inline bool COperationsSurGraphe::OSGVerifierGrapheComplet(const PGraphOrient<TA
 	}
 
 	return true;
+}
+
+/******************************************************
+* OSGCycleHamiltonienInsertionMinMax
+*******************************************************
+* Entree : GPOParam un graphe oriente
+* Necessite : Rien
+* Sortie : un vecteur de string contenant les
+* identifiants des sommets du graphe, ordonnes pour
+* former le cylce hamiltonien du graphe
+* Entraine : Rien
+******************************************************/
+template <template<class CArcOrientPondere, class> class PGraphOrientPondere, class TSommet>
+inline vector<string> COperationsSurGraphe::OSGCycleHamiltonienInsertionMinMax(const PGraphOrientPondere<CArcPondere, TSommet>& GOPParam, const string& sSommetSource)
+{
+	try
+	{
+		// On verifie que le graphe est complet, sinon l'algorithme ne fonctionne pas
+		if (!OSGVerifierGrapheComplet(GOPParam))
+		{
+			throw logic_error("Le graphe passe en parametre n'est pas complet, l'algorithme ne marche donc pas dessus.");
+		}
+
+
+		vector<string> vsCycleHamiltonien;
+
+		vector<string> vsSommetsNonVisites;
+
+		/*
+		* Retire sElem de vsSommetsNonVisites et l'insere dans vsCycleHamiltonien juste avant sElemPos 
+		* Ligne 6 de l'algorithme :
+		* Insérer k dans path entre i et j
+		* k = sElem, j = sElemPos
+		*/
+		function<void(string, string)> fInsererSommetCycleHamiltonien = [&](string sElem, string sElemPos)
+			{
+				vsCycleHamiltonien.insert(find(vsCycleHamiltonien.begin(), vsCycleHamiltonien.end(), sElemPos), sElem);
+
+				vsSommetsNonVisites.erase(remove(vsSommetsNonVisites.begin(), vsSommetsNonVisites.end(), sElem), vsSommetsNonVisites.end());
+			};
+
+		/*
+		* Renvoie le sommet K selon les contraintes de la ligne 4 de l'algorithme :
+		* Soit k le sommet absent de path dont la distance maximale depuis un sommet deja visite est minimale
+		*/
+		function<string()> fTrouverSommetDistanceMinMax = [&]()
+			{
+				string sSommetK;
+				float fDistanceMinMaxSommetKSommetVisite = FLT_MAX;
+
+				for (string sDestination : vsSommetsNonVisites)
+				{
+					float fDistanceMaxDepuisSommetVisite = 0;
+
+					for (string sOrigine : vsCycleHamiltonien)
+					{
+						fDistanceMaxDepuisSommetVisite = max(fDistanceMaxDepuisSommetVisite, GOPParam.fGPOPoidsArc(sOrigine, sDestination));
+					}
+
+					if (fDistanceMaxDepuisSommetVisite < fDistanceMinMaxSommetKSommetVisite)
+					{
+						fDistanceMinMaxSommetKSommetVisite = fDistanceMaxDepuisSommetVisite;
+
+						sSommetK = sDestination;
+					}
+				}
+
+				return sSommetK;
+			};
+
+		/*
+		* Renvoie l'identifiant du sommet j selon la ligne 5 de l'algorithme :
+		* Trouver la paire de sommets (i,j), présents dans path qui minimise W(i,k) + W(k,j) - W(i,j)
+		*/
+		function<string(string)> fTrouverPositionInsertion = [&](string sSommetK)
+			{
+				string sSommetInsertion;
+
+				float fExpressionAMinimiser = FLT_MAX;
+
+				unsigned int uiSommetI;
+				unsigned int uiCritereArret = (unsigned int)vsCycleHamiltonien.size() - 1;
+
+				for (uiSommetI = 0; uiSommetI < uiCritereArret; uiSommetI++)
+				{
+					float fExpressionPoidsIJ = GOPParam.fGPOPoidsArc(vsCycleHamiltonien[uiSommetI], sSommetK)		//   W(i,k)
+						+ GOPParam.fGPOPoidsArc(sSommetK, vsCycleHamiltonien[uiSommetI + 1])						// + W(k,j)
+						- GOPParam.fGPOPoidsArc(vsCycleHamiltonien[uiSommetI], vsCycleHamiltonien[uiSommetI + 1]);	// - W(i,j)
+
+					if (fExpressionPoidsIJ < fExpressionAMinimiser or (fExpressionPoidsIJ == fExpressionAMinimiser and vsCycleHamiltonien[uiSommetI + 1] < sSommetInsertion))
+					{
+						sSommetInsertion = vsCycleHamiltonien[uiSommetI + 1]; // Sommet J
+
+						fExpressionAMinimiser = fExpressionPoidsIJ;
+					}
+				}
+
+				return sSommetInsertion;
+			};
+
+
+		vsSommetsNonVisites = GOPParam.GPOLireListeSommets();
+
+		string sSommetEloigne;
+
+		float fPoidsSommetEloigne = 0;
+
+		for (string sSommet : vsSommetsNonVisites) // On cherche le sommet le plus eloigne de sSommetSource
+		{
+			if (sSommet != sSommetSource)
+			{
+				float fPoidsSommet = GOPParam.fGPOPoidsArc(sSommetSource, sSommet);
+
+				if (fPoidsSommet > fPoidsSommetEloigne)
+				{
+					sSommetEloigne = sSommet;
+
+					fPoidsSommetEloigne = fPoidsSommet;
+				}
+			}
+		}
+
+		fInsererSommetCycleHamiltonien(sSommetEloigne, "");
+
+		fInsererSommetCycleHamiltonien(sSommetSource, sSommetEloigne); 
+		// On a desormais cree "path" (= vsCycleHamiltonien), et on a aussi la liste de tous les sommets non parcourus (ligne 2 de l'algorithme)
+
+		while (vsSommetsNonVisites.size()) // Tant que tous les sommets ne sont pas dans path Faire (ligne 3 de l'algorithme)
+		{
+			string sSommetK = fTrouverSommetDistanceMinMax();
+
+			string sSommetJ = fTrouverPositionInsertion(sSommetK);
+
+			fInsererSommetCycleHamiltonien(sSommetK, sSommetJ);
+		}
+
+		vsCycleHamiltonien.push_back(sSommetSource); // On ajoute le sommet source pour bien former un cycle
+
+		return vsCycleHamiltonien;
+	}
+	catch (const logic_error& lerror)
+	{
+		std::cerr << "Logic error: " << lerror.what() << std::endl;
+
+		return vector<string>();
+	}
+}
+
+/******************************************************
+* OSGCoutParcoursSommets
+*******************************************************
+* Entree : un vecteur de string vsParcours
+* Necessite : vsParcours doit representer un parcours
+* valide du graphe, c'est à dire ne contenir que des
+* identifiants de sommets du graphe relies entre eux
+* Sortie : float : le cout du parcours
+* Entraine : Rien
+******************************************************/
+template <template<class CArcOrientPondere, class> class PGraphOrientPondere, class TSommet>
+float COperationsSurGraphe::OSGCoutParcoursSommets(const PGraphOrientPondere<CArcPondere, TSommet>& GOPParam, const vector<string>& vsParcours)
+{
+	float fCout = 0;
+
+	unsigned int uiSommet;
+	unsigned int uiCritereArret = (unsigned int)vsParcours.size() - 1;
+
+	for (uiSommet = 0; uiSommet < uiCritereArret; uiSommet++)
+	{
+		fCout += GOPParam.fGPOPoidsArc(vsParcours[uiSommet], vsParcours[uiSommet + 1]);
+	}
+
+	return fCout;
 }

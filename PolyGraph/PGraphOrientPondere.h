@@ -3,8 +3,10 @@
 template<class TArc, class TSommet> class PGraphOrientPondere :
     public PGraphOrient<TArc,TSommet>
 {
+	static_assert(std::is_base_of<CArcPondere, TArc>::value, "TArc must be derived from CArcPondere");
+
+
 public:
-	PGraphOrientPondere(); // verif arcs ponderes
 
 	/******************************************************
 	* GPOLireListeArcs
@@ -29,6 +31,19 @@ public:
 	* si l'arc n'existe pas.
 	******************************************************/
 	void GPOAjouterArc(const string& sOrigine, const string& sDestination, const float fPoids);
+
+	/******************************************************
+	* fGPOPoidsArc
+	*******************************************************
+	* Entree : sOrigine et sDestination l'origine et la 
+	* destination de l'arc dont on veux récupérer le poids
+	* Necessite : l'arc sOrigine -> sDestination existe
+	* dans le graphe
+	* Sortie : Le poids de l'arc d'origine sOrigine et de
+	* destination sDestination
+	* Entraine : Rien
+	******************************************************/
+	float fGPOPoidsArc(const string& sOrigine, const string& sDestination) const;
 };
 
 #include "PGraphOrientPondere.th"

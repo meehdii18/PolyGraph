@@ -34,6 +34,8 @@ using namespace std;
 
 template<class TArc, class TSommet> class PGraphOrient
 {
+	//static_assert(!std::is_base_of<CArcPondere, TArc>::value, "PGraphOrient cannot be instantiated with CArcPondere or its derivatives");
+
 protected:
 	// ATTRIBUTS
 
@@ -88,19 +90,6 @@ public:
 	* Entraine : Un graphe copie de GPOParam est cree
 	******************************************************/
 	PGraphOrient(const PGraphOrient &GPOParam);
-
-	/******************************************************
-	* PGraphOrient (Confort)
-	*******************************************************
-	* Entree : sFichier le chemin d'acces au fichier
-	* contenant les donnees avec lesquelles initialiser le
-	* graphe oriente nouvellement cree
-	* Necessite : Rien
-	* Sortie : Rien
-	* Entraine : Un graphe contenant les donnees de 
-	* sFichier
-	******************************************************/
-	PGraphOrient(const string& sFichier);
 
 	/******************************************************
 	* ~PGraphOrient

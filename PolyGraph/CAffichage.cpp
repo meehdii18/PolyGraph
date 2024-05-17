@@ -1,4 +1,5 @@
 #include "CAffichage.h"
+#include "COperationsSurGraphe.h"
 
 /******************************************************
 * AFHAfficherListeSommet
@@ -39,9 +40,29 @@ void CAffichage::AFHAfficherArcs(const vector<vector<string>>& vvsListe)
 		string sOrigine = vvsListe[uiBoucle][0];
 		string sDestination = vvsListe[uiBoucle][1];
 		cout << " - \"" << sOrigine << "\" -> \"" << sDestination << "\"" << endl;
-		if (uiBoucle == 2) { // si on est à deux on devrait être sur le poids de l'arc
-			cout << "ah" << endl;
-		}
+	}
+}
+
+/******************************************************
+* AFHAfficherArcsPonderes
+*******************************************************
+* Entree : vvsListe, la liste des origines et
+* destinations des arcs du graphe
+* Necessite : Rien
+* Sortie : Rien
+* Entraine : L'affichage des informations des arcs du
+* graphe
+******************************************************/
+void CAffichage::AFHAfficherArcsPonderes(const vector<vector<string>>& vvsListe)
+{
+	unsigned int uiBoucle;
+
+	for (uiBoucle = 0; uiBoucle < vvsListe.size(); uiBoucle++)
+	{
+		string sOrigine = vvsListe[uiBoucle][0];
+		string sDestination = vvsListe[uiBoucle][1];
+		string sPoids = vvsListe[uiBoucle][2];
+		cout << " - \"" << sOrigine << "\" -> \"" << sDestination << "\", poids : " << sPoids << endl;
 	}
 }
 
@@ -117,4 +138,49 @@ void CAffichage::AFHAfficherGraphe(const PGraphOrient<CArc, CSommet>& GPOParam)
 	AFHAfficherArcs(vvsListeArc);
 
 	cout << "\n------------------------------------------" << endl;
+}
+
+void CAffichage::AFHAfficherGraphe(const PGraphOrientPondere<CArcPondere, CSommet>& GOPParam)
+{
+	vector<string> vsListeSommet = GOPParam.GPOLireListeSommets();
+	vector<vector<string>> vvsListeArc = GOPParam.GPOLireListeArcs();
+
+	cout << "------------------------------------------" << endl;
+	cout << "Graphe : \n" << endl;
+	cout << "/////////////" << endl;
+	cout << "// Sommets //" << endl;
+	cout << "/////////////\n" << endl;
+
+	AFHAfficherListeSommets(vsListeSommet);
+
+
+	cout << "\n////////////" << endl;
+	cout << "//  Arcs  //" << endl;
+	cout << "////////////\n" << endl;
+
+	AFHAfficherArcsPonderes(vvsListeArc);
+
+	cout << "\n------------------------------------------" << endl;
+}
+
+void CAffichage::AFHAfficherCycleHamiltonien(const PGraphOrientPondere<CArcPondere, CSommet>& GOPParam, const string& sSommetSource)
+{
+	vector<string> vsCycle = COperationsSurGraphe::OSGCycleHamiltonienInsertionMinMax(GOPParam, sSommetSource);
+
+	float fCout = COperationsSurGraphe::OSGCoutParcoursSommets(GOPParam, vsCycle);
+
+	cout << "Cycle hamiltonien : ";
+
+	unsigned int uiSommet;
+
+	unsigned int uiCritereArret = (unsigned int) vsCycle.size() - 1;
+
+	for (uiSommet = 0; uiSommet < uiCritereArret; uiSommet++)
+	{
+		cout << vsCycle[uiSommet] << " -> ";
+	}
+
+	cout << vsCycle[uiCritereArret] << endl;
+
+	cout << "Cout total du cycle : " << fCout << endl;
 }

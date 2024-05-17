@@ -1,12 +1,6 @@
 #pragma once
 #include "PGraphOrientPondere.h"
 
-template<class TArc, class TSommet>
-inline PGraphOrientPondere<TArc, TSommet>::PGraphOrientPondere()
-{
-	static_assert(is_same<decltype(TArc), CArcPondere>::value, "Le type d'arc doit etre pondere.");
-}
-
 /******************************************************
 * GPOLireListeArcs (version arc pondere)
 *******************************************************
@@ -109,5 +103,49 @@ inline void PGraphOrientPondere<TArc, TSommet>::GPOAjouterArc(const string& sOri
 	catch (const logic_error& lerror)
 	{
 		std::cerr << "Logic error: " << lerror.what() << std::endl;
+	}
+}
+
+/******************************************************
+* fGPOPoidsArc
+*******************************************************
+* Entree : sOrigine et sDestination l'origine et la
+* destination de l'arc dont on veux récupérer le poids
+* Necessite : Rien
+* Sortie : Le poids de l'arc d'origine sOrigine et de
+* destination sDestination
+* Entraine : Rien
+* Exceptions : logic_error si l'arc n'existe pas dans
+* le graphe
+******************************************************/
+template<class TArc, class TSommet>
+inline float PGraphOrientPondere<TArc, TSommet>::fGPOPoidsArc(const string& sOrigine, const string& sDestination) const
+{
+	try
+	{
+		TArc* APRArc = PGraphOrient<TArc, TSommet>::GPOTrouverArc(sOrigine, sDestination);
+
+		if (APRArc == nullptr)
+		{
+			ostringstream ssMessageErreur;
+
+			ssMessageErreur << "L'arc pondéré d'origine ";
+			ssMessageErreur << sOrigine.c_str();
+			ssMessageErreur << " et de destination ";
+			ssMessageErreur << sDestination.c_str();
+			ssMessageErreur << " n'existe pas dans le graphe et n'a donc pas de poids.";
+
+			string sDescription = ssMessageErreur.str();
+
+			throw logic_error(sDescription);
+		}
+
+		return APRArc->APRLirePoids();
+	}
+	catch (const logic_error& lerror)
+	{
+		std::cerr << "Logic error: " << lerror.what() << std::endl;
+
+		return -1.0f;
 	}
 }

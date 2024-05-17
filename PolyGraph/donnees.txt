@@ -1,13 +1,42 @@
-nbsommets=3
-nBaRcs=	4
+nbsommets=6
+nBaRcs=	30
 Sommets=[
-Numero=1
-Numero=2
-Numero=3
+Numero=O
+Numero=A
+Numero=B
+Numero=C
+Numero=D
+Numero=E
 ]
 Arcs=[
-	DEBUT        =       1,Fin=2, Poids = 3
-debut=2, Fin=3, poidS = 2.2
-Debut=   3  , Fin=1, poids = 6
-debut = 3, fin = 3, poids=9
+debut=O , fin=A , poids= 4
+debut=O , fin=B , poids= 1
+debut=O , fin=C , poids= 3
+debut=O , fin=D , poids= 6
+debut=O , fin=E , poids= 9
+debut=A , fin=O , poids= 8
+debut=A , fin=B , poids= 5
+debut=A , fin=C , poids= 7
+debut=A , fin=D , poids= 3
+debut=A , fin=E , poids= 1
+debut=B , fin=O , poids= 7
+debut=B , fin=A , poids= 6
+debut=B , fin=C , poids= 2
+debut=B , fin=D , poids= 4
+debut=B , fin=E , poids= 4
+debut=C , fin=O , poids= 6
+debut=C , fin=A , poids= 2
+debut=C , fin=B , poids= 1
+debut=C , fin=D , poids= 6
+debut=C , fin=E , poids= 3
+debut=D , fin=O , poids= 9
+debut=D , fin=A , poids= 8
+debut=D , fin=B , poids= 2
+debut=D , fin=C , poids= 5
+debut=D , fin=E , poids= 4
+debut=E , fin=O , poids= 4
+debut=E , fin=A , poids= 1
+debut=E , fin=B , poids= 3
+debut=E , fin=C , poids= 3
+debut=E , fin=D , poids= 5
 ]

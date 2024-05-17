@@ -33,6 +33,10 @@
     <ClCompile Include="CArcPondere.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
+    <ClCompile Include="PGraphOrientPondere.th" />
+    <ClCompile Include="COperationsSurGraphe.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CSommet.h">
@@ -60,8 +64,10 @@
     <ClInclude Include="CCreateurGraphe.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="CCreateurGraphe.th" />
     <ClInclude Include="CArcPondere.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="PGraphOrientPondere.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>

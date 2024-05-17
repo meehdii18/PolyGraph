@@ -60,6 +60,16 @@ public:
 	template <template<class, class> class PGraphOrient, class TArc, class TSommet> void static OSGInverserArcs(PGraphOrient<TArc, TSommet>& GPOParam);
 
 	/******************************************************
+	* OSGInverserArcs (ponderes)
+	*******************************************************
+	* Entree : GOPParam un graphe oriente
+	* Necessite : Rien
+	* Sortie : Rien
+	* Entraine : Inverse le sens de tous les arcs du graphe
+	******************************************************/
+	template <template<class CArcPondere, class> class PGraphOrient, class TSommet> void static OSGInverserArcs(PGraphOrient<CArcPondere, TSommet>& GOPParam);
+
+	/******************************************************
 	* OSGVerifierGrapheComplet
 	*******************************************************
 	* Entree : GPOParam un graphe oriente
@@ -68,6 +78,30 @@ public:
 	* Entraine : Rien
 	******************************************************/
 	template <template<class, class> class PGraphOrient, class TArc, class TSommet> bool static OSGVerifierGrapheComplet(const PGraphOrient<TArc, TSommet>& GPOParam);
+
+	/******************************************************
+	* OSGCycleHamiltonienInsertionMinMax
+	*******************************************************
+	* Entree : GPOParam un graphe oriente
+	* Necessite : Rien
+	* Sortie : un vecteur de string contenant les
+	* identifiants des sommets du graphe, ordonnes pour
+	* former le cylce hamiltonien du graphe
+	* Entraine : Rien
+	******************************************************/
+	template <template<class CArcPondere, class> class PGraphOrientPondere, class TSommet> vector<string> static OSGCycleHamiltonienInsertionMinMax(const PGraphOrientPondere<CArcPondere, TSommet>& GOPParam, const string& sSommetSource);
+
+	/******************************************************
+	* OSGCoutParcoursSommets
+	*******************************************************
+	* Entree : un vecteur de string vsParcours
+	* Necessite : vsParcours doit representer un parcours
+	* valide du graphe, c'est à dire ne contenir que des
+	* identifiants de sommets du graphe relies entre eux
+	* Sortie : float : le cout du parcours
+	* Entraine : Rien
+	******************************************************/
+	template <template<class CArcPondere, class> class PGraphOrientPondere, class TSommet> float static OSGCoutParcoursSommets(const PGraphOrientPondere<CArcPondere, TSommet>& GOPParam, const vector<string>& vsParcours);
 };
 
 #include "COperationsSurGraphe.th"

@@ -122,3 +122,60 @@ void CCreateurGraph::CCGImporterGrapheFichier(PGraphOrientPondere<CArcPondere, C
         std::cerr << "Runtime error: " << erreur.what() << std::endl;
     }
 }
+
+/******************************************************
+* CCGCreerGrapheOrientFichier
+*******************************************************
+* Entree : sFichier le chemin d'acces du fichier ou
+* sont contenues les donnees a ajouter au graphe cree
+* Necessite : Rien
+* Sortie : Rien
+* Entraine : La lecture du fichier en parametre et s'il
+* est conforme, la creation du graphe associe
+******************************************************/
+PGraphOrient<CArc, CSommet> CCreateurGraph::CCGCreerGrapheOrientFichier(const string& sFichier)
+{
+    PGraphOrient<CArc, CSommet> GPOGraphe;
+
+    CCGImporterGrapheFichier(GPOGraphe, sFichier);
+
+    return GPOGraphe;
+}
+
+/******************************************************
+* CCGCreerGrapheFichier
+*******************************************************
+* Entree : sFichier le chemin d'acces du fichier ou
+* sont contenues les donnees a ajouter au graphe cree
+* Necessite : Rien
+* Sortie : Rien
+* Entraine : La lecture du fichier en parametre et s'il
+* est conforme, la creation du graphe associe
+******************************************************/
+PGraph<CArc, CSommet> CCreateurGraph::CCGCreerGrapheFichier(const string& sFichier)
+{
+    PGraph<CArc, CSommet> GPHGraphe;
+
+    CCGImporterGrapheFichier(GPHGraphe, sFichier);
+
+    return GPHGraphe;
+}
+
+/******************************************************
+* CCGCreerGrapheOrientPondereFichier
+*******************************************************
+* Entree : sFichier le chemin d'acces du fichier ou
+* sont contenues les donnees a ajouter au graphe cree
+* Necessite : Rien
+* Sortie : Rien
+* Entraine : La lecture du fichier en parametre et s'il
+* est conforme, la creation du graphe associe
+******************************************************/
+PGraphOrientPondere<CArcPondere, CSommet> CCreateurGraph::CCGCreerGrapheOrientPondereFichier(const string& sFichier)
+{
+    PGraphOrientPondere<CArcPondere, CSommet> GOPGraphe;
+
+    CCGImporterGrapheFichier(GOPGraphe, sFichier);
+
+    return GOPGraphe;
+}

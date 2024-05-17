@@ -35,19 +35,6 @@ public :
 	******************************************************/
 	PGraph() = default;
 
-	/******************************************************
-	* PGraph (Confort)
-	*******************************************************
-	* Entree : sFichier le chemin d'acces au fichier
-	* contenant les donnees avec lesquelles initialiser le
-	* graphe oriente nouvellement cree
-	* Necessite : Rien
-	* Sortie : Rien
-	* Entraine : Un graphe contenant les donnees de
-	* sFichier
-	******************************************************/
-	PGraph(const string& sFichier);
-
 	//METHODES
 
 	/******************************************************

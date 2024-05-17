@@ -217,7 +217,7 @@ inline vector<string> PGraphOrient<TArc, TSommet>::GPOLireSuccesseursSommet(cons
 {
 	TSommet* SMTCourant = GPOTrouverSommet(sIdSommet);
 
-	vector<TArc*> vARCArcsSortants = SMTCourant->SMTLireArcsSortants();
+	vector<CArc*> vARCArcsSortants = SMTCourant->SMTLireArcsSortants();
 
 	vector<string> vsAffichageSuccesseurs;
 
@@ -290,9 +290,9 @@ inline void PGraphOrient<TArc, TSommet>::GPOSupprimerSommet(const string& sIdent
 	{
 		TSommet* SMTAncienSommet = GPOTrouverSommet(sIdentifiant);
 
-		vector<TArc*> vARCArcsEntrants;
+		vector<CArc*> vARCArcsEntrants;
 
-		vector<TArc*> vARCArcsSortants;
+		vector<CArc*> vARCArcsSortants;
 
 		if (SMTAncienSommet == nullptr)
 		{

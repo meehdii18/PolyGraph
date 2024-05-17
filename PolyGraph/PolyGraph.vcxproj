@@ -143,6 +143,7 @@
     <ClCompile Include="CAffichage.cpp" />
     <ClCompile Include="CArcPondere.cpp" />
     <ClCompile Include="CCreateurGraphe.cpp" />
+    <ClCompile Include="COperationsSurGraphe.cpp" />
     <ClCompile Include="CParseur.cpp" />
     <ClCompile Include="CSommet.cpp" />
     <ClCompile Include="main.cpp" />
@@ -153,7 +154,6 @@
     <ClInclude Include="CArc.h" />
     <ClInclude Include="CArcPondere.h" />
     <ClInclude Include="CCreateurGraphe.h" />
-    <ClInclude Include="CCreateurGraphe.th" />
     <ClInclude Include="PGraph.h" />
     <ClInclude Include="PGraphOrient.h" />
     <ClInclude Include="COperationsSurGraphe.h" />
