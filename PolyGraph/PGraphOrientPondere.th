@@ -129,7 +129,7 @@ inline float PGraphOrientPondere<TArc, TSommet>::fGPOPoidsArc(const string& sOri
 		{
 			ostringstream ssMessageErreur;
 
-			ssMessageErreur << "L'arc pondéré d'origine ";
+			ssMessageErreur << "L'arc pondere d'origine ";
 			ssMessageErreur << sOrigine.c_str();
 			ssMessageErreur << " et de destination ";
 			ssMessageErreur << sDestination.c_str();

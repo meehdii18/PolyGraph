@@ -253,6 +253,19 @@ inline vector<string> COperationsSurGraphe::OSGCycleHamiltonienInsertionMinMax(c
 
 		vsSommetsNonVisites = GOPParam.GPOLireListeSommets();
 
+		if (find(vsSommetsNonVisites.begin(), vsSommetsNonVisites.end(), sSommetSource) == vsSommetsNonVisites.end())
+		{
+			ostringstream ssMessageErreur;
+
+			ssMessageErreur << "Le sommet d'identifiant ";
+			ssMessageErreur << sSommetSource.c_str();
+			ssMessageErreur << " n'appartient pas au graphe";
+
+			string sDescription = ssMessageErreur.str();
+
+			throw logic_error(sDescription);
+		}
+
 		string sSommetEloigne;
 
 		float fPoidsSommetEloigne = 0;
